@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Currency Changer</string>
+    <string name="insert_amount">Insert amount</string>
+</resources>
