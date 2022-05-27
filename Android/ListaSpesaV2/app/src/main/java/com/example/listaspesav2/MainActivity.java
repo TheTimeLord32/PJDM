@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +48,24 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ListaSpesaAdapter(this);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+
+        ItemTouchHelper ith = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                int from = viewHolder.getAdapterPosition();
+                int to = target.getAdapterPosition();
+                adapter.move(from, to);
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Log.d(TAG, "onSwiped() called with: viewHolder = [" + viewHolder + "], direction = [" + direction + "]");
+                int position = viewHolder.getAdapterPosition();
+                adapter.remove(position);
+            }
+        });
+        ith.attachToRecyclerView(rv);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 dialogInterface.dismiss();
                 String name = etName.getText().toString();
                 String num_str = etNum.getText().toString();
+                adapter.addItem(name, Integer.parseInt(num_str));
                 Log.d(TAG, "onClick() called with Name: "+name);
             }
         });

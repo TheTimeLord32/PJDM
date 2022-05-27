@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.annotation.ElementType;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ListaSpesaAdapter extends RecyclerView.Adapter<ListaSpesaAdapter.LSViewHolder> {
 
@@ -28,6 +28,21 @@ public class ListaSpesaAdapter extends RecyclerView.Adapter<ListaSpesaAdapter.LS
 
     }
 
+    public void addItem(String name, int num) {
+        dati.add(new ListElement(name, num));
+        notifyDataSetChanged();
+    }
+
+    public void remove(int position) {
+        dati.remove(dati.get(position));
+        notifyDataSetChanged();
+    }
+
+    public void move(int from, int to) {
+        Collections.swap(dati, from, to);
+        notifyItemMoved(from, to);
+    }
+
     @NonNull
     @Override
     public LSViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,6 +55,12 @@ public class ListaSpesaAdapter extends RecyclerView.Adapter<ListaSpesaAdapter.LS
     public void onBindViewHolder(@NonNull LSViewHolder holder, int position) {
         holder.tvName.setText(dati.get(position).getName());
         holder.tvNum.setText(Integer.toString(dati.get(position).getNum()));
+
+        if (dati.get(position).isSelected()) {
+            holder.ibSel.setImageResource(android.R.drawable.checkbox_on_background);
+        } else {
+            holder.ibSel.setImageResource(android.R.drawable.checkbox_off_background);
+        }
     }
 
     @Override
@@ -47,7 +68,7 @@ public class ListaSpesaAdapter extends RecyclerView.Adapter<ListaSpesaAdapter.LS
         return dati.size();
     }
 
-    class LSViewHolder extends RecyclerView.ViewHolder{
+    class LSViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tvName, tvNum;
         ImageButton ibSel;
@@ -56,6 +77,14 @@ public class ListaSpesaAdapter extends RecyclerView.Adapter<ListaSpesaAdapter.LS
             tvName = itemView.findViewById(R.id.tvName);
             tvNum = itemView.findViewById(R.id.tvNum);
             ibSel = itemView.findViewById(R.id.ibSel);
+            ibSel.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            dati.get(position).toggleSelect();
+            notifyDataSetChanged();
         }
     }
 }
