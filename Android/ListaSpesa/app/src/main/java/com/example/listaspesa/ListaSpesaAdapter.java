@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ListaSpesaAdapter extends BaseAdapter {
@@ -54,15 +56,20 @@ public class ListaSpesaAdapter extends BaseAdapter {
         String name = dati.get(i).getName();
         Integer num = dati.get(i).getNumber();
         View v;
+        TextView tvName, tvNum;
 
         if (view != null) {
             v = view;
+            ListaSpesaViewHolder vh = (ListaSpesaViewHolder) v.getTag();
+            tvName = vh.tvName;
+            tvNum = vh.tvNum;
         }else {
             v = inflater.inflate(R.layout.simple_row, null); //ritorna il constraint layout della radice
+            tvName = v.findViewById(R.id.tvName);
+            tvNum = v.findViewById(R.id.tvNum);
+            ListaSpesaViewHolder vh = new ListaSpesaViewHolder(tvName, tvNum);
+            v.setTag(vh);
         }
-
-        TextView tvName = v.findViewById(R.id.tvName);
-        TextView tvNum = v.findViewById(R.id.tvNum);
 
         tvName.setText(name);
         tvNum.setText(num.toString());
@@ -71,5 +78,15 @@ public class ListaSpesaAdapter extends BaseAdapter {
         //tv.setText(name);
 
         return v;
+    }
+
+    class ListaSpesaViewHolder {
+        TextView tvName;
+        TextView tvNum;
+
+        public ListaSpesaViewHolder(TextView tvName, TextView tvNum) {
+            this.tvName = tvName;
+            this.tvNum = tvNum;
+        }
     }
 }
