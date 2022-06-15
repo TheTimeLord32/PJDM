@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pizze">
+        <item>4 Formaggi</item>
+        <item>4 Stagioni</item>
+        <item>Amatriciana</item>
+        <item>Boscaiola</item>
+        <item>Bufala</item>
+        <item>Capricciosa</item>
+        <item>Margherita</item>
+    </string-array>
+</resources>

@@ -19,5 +19,10 @@ Android/ListaSpesaV2/.gradle
 Android/ListaSpesaV2_Loreti
 Android/TestFragment/.idea
 Android/TestFragment/.gradle
+Android/TestService/.idea/
+Android/TestService/.gradle/
+Android/TestNet/.idea/
+Android/TestNet/.gradle/
+Progetto/PizzeriaDaMatteo/.idea/
+Progetto/PizzeriaDaMatteo/.gradle/
 Progetto/PizzeriaDaMatteo-Eclipse/.settings/
-Progetto/PizzeriaDaMatteo-Android/.idea/
