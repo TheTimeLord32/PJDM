@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>PizzeriaDaMatteo</name>
+	<name>PizzaDaMatteo-Servlet</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -28,4 +28,16 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/WEB-INF/lib/java-json.jar</name>
+			<type>1</type>
+			<location>C:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteo-Servlet/src/main/webapp/WEB-INF/lib/java-json.jar</location>
+		</link>
+		<link>
+			<name>src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.29.jar</name>
+			<type>1</type>
+			<location>C:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteo-Servlet/src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.29.jar</location>
+		</link>
+	</linkedResources>
 </projectDescription>
