@@ -1,0 +1,19 @@
+http://192.168.1.10:8080/PizzaDaMatteo/getPizza (get completa pizze)
+http://192.168.1.10:8080/PizzaDaMatteo/getFritti (get completa fritti)
+http://192.168.1.10:8080/PizzaDaMatteo/getBibite (get completa bibite)
+
+http://192.168.1.10:8080/PizzaDaMatteo/getOrdine (get ordine)
+http://192.168.1.10:8080/PizzaDaMatteo/putOrdine (put ordine)
+http://192.168.1.10:8080/PizzaDaMatteo/delOrdine (elimina ordine)
+
+http://192.168.1.10:8080/PizzaDaMatteo/getOrdine1 (get ordine1)
+http://192.168.1.10:8080/PizzaDaMatteo/putOrdine1 (put ordine1)
+http://192.168.1.10:8080/PizzaDaMatteo/delOrdine1 (elimina ordine1)
+
+http://192.168.1.10:8080/PizzaDaMatteo/getStats (get statistiche su orari e pizze)
+http://192.168.1.10:8080/PizzaDaMatteo/getIngredienti (get ingredienti)
+
+---Nuovi---
+*archiviare ordine per statistiche su Fasce orarie frequenti, Pizze più ordinate*
+*ingredienti Pizze*
+*gestione ingredienti giornalieri*

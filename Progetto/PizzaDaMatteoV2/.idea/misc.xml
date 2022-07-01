@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.351" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.351" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine1.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_stats.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_home2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_put_ordine.xml" value="0.75" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_put_ordine1.xml" value="0.624113475177305" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_put_ordine2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getordine1_row.xml" value="0.75" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getordine_row.xml" value="0.5" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

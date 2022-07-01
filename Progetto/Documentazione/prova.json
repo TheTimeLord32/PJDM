@@ -1,0 +1,23 @@
+{
+	"id_ordine": "id_ordine",
+	"num_pizze": "num_pizze",
+	"pizza1": "pizza1",
+	"pizza2": "pizza2",
+	"pizza3": "pizza3",
+	"pizza4": "pizza4",
+	"pizza5": "pizza5",
+	"num_fritti": "num_fritti",
+	"fritti1": "fritti1",
+	"fritti2": "fritti2",
+	"fritti3": "fritti3",
+	"fritti4": "fritti4",
+	"fritti5": "fritti5",
+	"num_bibite": "num_bibite",
+	"bibite1": "bibite1",
+	"bibite2": "bibite2",
+	"bibite3": "bibite3",
+	"bibite4": "bibite4",
+	"bibite5": "bibite5",
+	"note": "note",
+	"conto": "conto"
+}
