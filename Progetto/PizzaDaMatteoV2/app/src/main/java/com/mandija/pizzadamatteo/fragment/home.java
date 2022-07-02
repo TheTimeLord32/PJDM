@@ -9,12 +9,14 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mandija.pizzadamatteo.R;
 import com.mandija.pizzadamatteo.databinding.FragmentHomeBinding;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.Executor;
@@ -37,9 +39,7 @@ public class home extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public home() {
-        // Required empty public constructor
-    }
+    public home() {}
 
     /**
      * Use this factory method to create a new instance of
@@ -113,12 +113,16 @@ public class home extends Fragment {
                     Handler handler = new Handler(getContext().getMainLooper());
                     Runnable runnable = new Runnable() {
                         @Override
-                        public void run() {
-                            NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getOrdine, bundle);
-                        }
+                        public void run() { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getOrdine, bundle); }
                     };
                     handler.post(runnable);
                 } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (ConnectException e) {
+                    new Handler(getContext().getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getContext(), "Connessione non disponibile", Toast.LENGTH_SHORT).show(); }
+                    });
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();

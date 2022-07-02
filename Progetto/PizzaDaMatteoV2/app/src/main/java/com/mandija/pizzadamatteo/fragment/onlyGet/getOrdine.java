@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +44,7 @@ public class getOrdine extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public getOrdine() {
-        // Required empty public constructor
-    }
+    public getOrdine() {}
 
     /**
      * Use this factory method to create a new instance of
@@ -82,6 +82,7 @@ public class getOrdine extends Fragment {
         binding = FragmentGetOrdineBinding.inflate(inflater, container, false);
         rv = binding.rvLista;
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
         adapter = new ListaOrdineAdapter(getContext());
         rv.setAdapter(adapter);
 
@@ -94,10 +95,9 @@ public class getOrdine extends Fragment {
                 e.printStackTrace();
             }
         }
-
         return binding.getRoot();
     }
-    private Executor executor = Executors.newSingleThreadExecutor();
+    /*private Executor executor = Executors.newSingleThreadExecutor();
     private Bundle bundle = new Bundle();
 
     private void getOrdine1() {
@@ -128,5 +128,5 @@ public class getOrdine extends Fragment {
                 }
             }
         });
-    }
+    }*/
 }

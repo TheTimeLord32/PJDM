@@ -2,6 +2,8 @@ package com.mandija.pizzadamatteo.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +11,27 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mandija.pizzadamatteo.R;
+import com.mandija.pizzadamatteo.databinding.FragmentGetOrdine1Binding;
+import com.mandija.pizzadamatteo.entity.ListaOrdine1Elemento;
 import com.mandija.pizzadamatteo.entity.ListaOrdineElemento;
+import com.mandija.pizzadamatteo.fragment.onlyGet.getOrdine;
 import com.mandija.pizzadamatteo.fragment.onlyGet.getOrdine1;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.ORDViewAdapter> {
 
@@ -51,18 +64,22 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("id_ordine",dati.get(holder.getAdapterPosition()).getId_ordine());
-                bundle.putString("nome_cliente",dati.get(holder.getAdapterPosition()).getNome_cliente());
-                bundle.putString("orario",dati.get(holder.getAdapterPosition()).getOrario());
-                bundle.putString("recapito",dati.get(holder.getAdapterPosition()).getRecapito());
-                bundle.putString("indirizzo",dati.get(holder.getAdapterPosition()).getIndirizzo());
+                Log.d("getOrdine-getOrdine1", "onClick: clicked on: " + dati.get(holder.getAdapterPosition()).getId_ordine());
+
+                /* Bundle bundle = new Bundle();
+                bundle.putInt("id_ordine", dati.get(holder.getAdapterPosition()).getId_ordine());
+                bundle.putString("pizza1", dati.get(holder.getAdapterPosition()).getPizza1());
+                bundle.putString("pizza2", dati.get(holder.getAdapterPosition()).getPizza2());
+                bundle.putString("pizza3", dati.get(holder.getAdapterPosition()).getPizza3());
+                bundle.putString("fritti1", dati.get(holder.getAdapterPosition()).getFritti1());
+                bundle.putString("fritti2", dati.get(holder.getAdapterPosition()).getFritti2());
+                bundle.putString("bibite1", dati.get(holder.getAdapterPosition()).getBibite1());
 
                 getOrdine1 go = new getOrdine1();
-                go.setArguments(bundle);
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fl_lista, go).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fl_lista1, go).addToBackStack(null).commit();
+                */
             }
         });
     }
