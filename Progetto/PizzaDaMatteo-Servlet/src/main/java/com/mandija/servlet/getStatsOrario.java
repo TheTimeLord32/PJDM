@@ -16,14 +16,11 @@ import org.json.JSONArray;
 /**
  * Servlet implementation class getStats
  */
-public class getStats extends HttpServlet {
+public class getStatsOrario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private PizzaDaMatteoDAO_JDBC dao;
 
-    public getStats() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    public getStatsOrario() { super(); }
 
 	public void init() throws ServletException {
     	String ip = getServletContext().getInitParameter("ip");
@@ -32,7 +29,7 @@ public class getStats extends HttpServlet {
 		String userName = getServletContext().getInitParameter("userName");
 		String password = getServletContext().getInitParameter("userPwd");
 
-		System.out.print("PizzaDaMatteo - Stats. Opening DB connection... \n");
+		System.out.print("PizzaDaMatteo - Stats Orario. Opening DB connection... \n");
 		
 		try {
 			dao = new PizzaDaMatteoDAO_JDBC(ip, port, dbName, userName, password);
@@ -44,7 +41,7 @@ public class getStats extends HttpServlet {
     }
     
     public void destroy() {
-		System.out.print("PizzaDaMatteo - Stats. Closing DB connection... \n");
+		System.out.print("PizzaDaMatteo - Stats Orario. Closing DB connection... \n");
 		dao.closeConnection();
 		System.out.println("DONE.");
 	}
@@ -59,7 +56,7 @@ public class getStats extends HttpServlet {
 		String timeStats = request.getParameter("timeStats");
 
 		 try{
-			ArrayList<Stats> allStats = dao.getStats();
+			ArrayList<StatsOrario> allStats = dao.getStatsOrario();
 			JSONArray timeStatsJSON = new JSONArray(allStats);
 			out.print(timeStatsJSON.toString());
 			out.flush();
@@ -67,10 +64,4 @@ public class getStats extends HttpServlet {
 			err.printStackTrace();
 		} 
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

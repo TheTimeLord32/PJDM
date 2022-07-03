@@ -6,7 +6,8 @@
     <string name="getPizza">/getPizza</string>
     <string name="getFritti">/getFritti</string>
     <string name="getBibite">/getBibite</string>
-    <string name="getStats">/getStats</string>
+    <string name="getStatsOrario">/getStatsOrario</string>
+    <string name="getStatsPizze">/getStatsPizze</string>
 
     <string name="getOrdine">/getOrdine</string>
     <string name="getOrdine1">/getOrdine1</string>

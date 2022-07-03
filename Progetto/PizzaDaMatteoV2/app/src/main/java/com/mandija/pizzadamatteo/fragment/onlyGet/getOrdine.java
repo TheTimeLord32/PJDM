@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -82,7 +83,7 @@ public class getOrdine extends Fragment {
         binding = FragmentGetOrdineBinding.inflate(inflater, container, false);
         rv = binding.rvLista;
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
+        rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         adapter = new ListaOrdineAdapter(getContext());
         rv.setAdapter(adapter);
 

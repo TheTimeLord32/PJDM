@@ -17,8 +17,10 @@ import com.mandija.pizzadamatteo.databinding.FragmentPutOrdineBinding;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -133,7 +135,13 @@ public class putOrdine extends Fragment {
                     reader.close();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
-                } catch (IOException e){
+                } catch (ConnectException e) {
+                    new Handler(getContext().getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getContext(), "Connessione non disponibile", Toast.LENGTH_SHORT).show(); }
+                    });
+                    e.printStackTrace();
+                } catch (IOException e) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

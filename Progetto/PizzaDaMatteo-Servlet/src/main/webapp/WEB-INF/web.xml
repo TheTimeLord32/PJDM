@@ -81,12 +81,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>getStats</display-name>
-    <servlet-name>getStats</servlet-name>
-    <servlet-class>com.mandija.servlet.getStats</servlet-class>
+    <display-name>getStatsOrario</display-name>
+    <servlet-name>getStatsOrario</servlet-name>
+    <servlet-class>com.mandija.servlet.getStatsOrario</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>getStats</servlet-name>
-    <url-pattern>/getStats</url-pattern>
+    <servlet-name>getStatsOrario</servlet-name>
+    <url-pattern>/getStatsOrario</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getStatsPizze</display-name>
+    <servlet-name>getStatsPizze</servlet-name>
+    <servlet-class>com.mandija.servlet.getStatsPizze</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getStatsPizze</servlet-name>
+    <url-pattern>/getStatsPizze</url-pattern>
   </servlet-mapping>
 </web-app>

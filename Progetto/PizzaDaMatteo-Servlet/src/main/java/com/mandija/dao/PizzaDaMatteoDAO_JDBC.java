@@ -101,7 +101,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public ArrayList<Ordine> loadOrdine() throws SQLException {
 		ArrayList<Ordine>res = new ArrayList<Ordine>();
-		String query = "SELECT * FROM ordine WHERE confermato != true ORDER BY ordine.id_ordine ASC;";
+		String query = "SELECT * FROM ordine WHERE confermato != 1 ORDER BY ordine.id_ordine ASC;";
 		
 		Statement stmt = conn.createStatement();
 		ResultSet rsetOrdine = stmt.executeQuery(query);
@@ -261,8 +261,8 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 
 	// elenco statistiche orario + pizza
 	@Override
-	public ArrayList<Stats> getStats() throws SQLException {
-		ArrayList<Stats> res = new ArrayList<Stats>();
+	public ArrayList<StatsOrario> getStatsOrario() throws SQLException {
+		ArrayList<StatsOrario> res = new ArrayList<StatsOrario>();
 		String queryOrario = "SELECT orario, count(orario) AS countOrario FROM ordine GROUP BY orario;";
 		
 		Statement stmtStatsOrario = conn.createStatement();
@@ -271,23 +271,30 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		while(rsetStatsOrario.next()) {
 			String orario = rsetStatsOrario.getString(1);
 			String countOrario = rsetStatsOrario.getString(2);
-			res.add(new Stats(orario, countOrario, null, null));
+			res.add(new StatsOrario(orario, countOrario));
 		}
 
 		rsetStatsOrario.close();
 		stmtStatsOrario.close();
+		return res;		
+		
+	}
 
-		String queryPizze = "SELECT nome, quantita FROM pizza;";
+	@Override
+	public ArrayList<StatsPizze> getStatsPizze() throws SQLException {
+		ArrayList<StatsPizze> res = new ArrayList<StatsPizze>();
+		String queryPizze = "SELECT nome, quantita FROM pizza WHERE quantita != 0;";
+		
 		Statement stmtStatsPizze = conn.createStatement();
 		ResultSet rsetStatsPizze = stmtStatsPizze.executeQuery(queryPizze);
 
 		while(rsetStatsPizze.next()) {
-			String nome = rsetStatsPizze.getString(1);
-			String quantita = rsetStatsPizze.getString(2);
-			res.add(new Stats(null, null, nome, quantita));
+			String quantita = rsetStatsPizze.getString(1);
+			String nome = rsetStatsPizze.getString(2);
+			res.add(new StatsPizze(nome, quantita));
 		}
 		rsetStatsPizze.close();
 		stmtStatsPizze.close();
-		return res;		
-	}
+		return res;
+	}	
 }

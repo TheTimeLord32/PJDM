@@ -17,8 +17,11 @@
             android:id="@+id/action_home_to_getOrdine"
             app:destination="@id/getOrdine" />
         <action
-            android:id="@+id/action_home_to_getStats"
-            app:destination="@id/getStats" />
+            android:id="@+id/action_home_to_getStatsOrario"
+            app:destination="@id/getStatsOrario" />
+        <action
+            android:id="@+id/action_home_to_getStatsPizze"
+            app:destination="@id/getStatsPizze" />
     </fragment>
     <fragment
         android:id="@+id/putOrdine"
@@ -42,10 +45,10 @@
             app:destination="@id/getOrdine1" />
     </fragment>
     <fragment
-        android:id="@+id/getStats"
-        android:name="com.mandija.pizzadamatteo.fragment.getStats"
+        android:id="@+id/getStatsOrario"
+        android:name="com.mandija.pizzadamatteo.fragment.getStatsOrario"
         android:label="fragment_get_stats"
-        tools:layout="@layout/fragment_get_stats" />
+        tools:layout="@layout/fragment_get_stats_orario" />
     <fragment
         android:id="@+id/putOrdine1"
         android:name="com.mandija.pizzadamatteo.fragment.onlyPut.putOrdine1"
@@ -56,4 +59,9 @@
         android:name="com.mandija.pizzadamatteo.fragment.onlyGet.getOrdine1"
         android:label="fragment_get_ordine1"
         tools:layout="@layout/fragment_get_ordine1" />
+    <fragment
+        android:id="@+id/getStatsPizze"
+        android:name="com.mandija.pizzadamatteo.fragment.getStatsPizze"
+        android:label="fragment_get_stats_pizze"
+        tools:layout="@layout/fragment_get_stats_pizze" />
 </navigation>
