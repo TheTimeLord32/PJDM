@@ -5,7 +5,7 @@
     android:id="@+id/flStatsOrario"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.getStatsOrario">
+    tools:context=".fragment.stats.getStatsOrario">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvStatsOrario"

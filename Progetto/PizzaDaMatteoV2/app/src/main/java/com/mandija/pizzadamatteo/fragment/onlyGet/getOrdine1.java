@@ -77,10 +77,7 @@ public class getOrdine1 extends Fragment {
             binding.tvFritti1.setText(fritti1);
             binding.tvFritti2.setText(fritti2);
             binding.tvBibite1.setText(bibite1);
-
-
         }
-
         return binding.getRoot();
     }
 }

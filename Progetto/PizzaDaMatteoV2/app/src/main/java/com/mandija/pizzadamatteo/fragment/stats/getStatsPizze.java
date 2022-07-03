@@ -1,4 +1,4 @@
-package com.mandija.pizzadamatteo.fragment;
+package com.mandija.pizzadamatteo.fragment.stats;
 
 import android.os.Bundle;
 
@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mandija.pizzadamatteo.R;
 import com.mandija.pizzadamatteo.adapter.ListaStatsPizzeAdapter;
 import com.mandija.pizzadamatteo.databinding.FragmentGetStatsPizzeBinding;
 

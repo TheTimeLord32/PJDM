@@ -1,4 +1,4 @@
-package com.mandija.pizzadamatteo.fragment;
+package com.mandija.pizzadamatteo.fragment.stats;
 
 import android.os.Bundle;
 

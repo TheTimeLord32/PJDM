@@ -37,14 +37,14 @@ public class putOrdine extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private FragmentPutOrdineBinding binding;
+    private Bundle bundle = new Bundle();
+    private Executor executor = Executors.newSingleThreadExecutor();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public putOrdine() {
-        // Required empty public constructor
-    }
+    public putOrdine() { }
 
     /**
      * Use this factory method to create a new instance of
@@ -91,6 +91,9 @@ public class putOrdine extends Fragment {
                 String orario = binding.etOrario.getText().toString();
                 String recapito = binding.etRecapito.getText().toString();
                 String indirizzo = binding.etIndirizzo.getText().toString();
+                String numPizze = binding.etNumPizze.getText().toString();
+
+                bundle.putString("numPizze", numPizze);
 
                 if(nome_cliente.isEmpty() || orario.isEmpty() || recapito.isEmpty() || indirizzo.isEmpty()) {
                     Toast.makeText(getContext(), "Riempi tutti i campi", Toast.LENGTH_SHORT).show();
@@ -100,7 +103,7 @@ public class putOrdine extends Fragment {
                     binding.etIndirizzo.setError("Riempi il campo");
                 } else {
                     putOrdine(nome_cliente, orario, recapito, indirizzo);
-                    NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1);
+                    NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
                     Toast.makeText(getContext(), "Ordine inviato", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -108,10 +111,7 @@ public class putOrdine extends Fragment {
         return binding.getRoot();
     }
 
-    private Executor executor = Executors.newSingleThreadExecutor();
-    private Bundle bundle = new Bundle();
-
-    /* passare gli edit text nel URL della servlet */
+    // passare gli edit text nel URL della servlet
     private void putOrdine(String nome_cliente, String orario, String recapito, String indirizzo) {
         executor.execute(new Runnable() {
             @Override

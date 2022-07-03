@@ -38,16 +38,16 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public ArrayList<Pizze> loadPizze() throws SQLException {
 		ArrayList<Pizze>res = new ArrayList<Pizze>();
-		String query = "SELECT nome, prezzo FROM pizza;";
+		String query = "SELECT nome FROM pizza;";
 		
 		Statement stmt = conn.createStatement();
 		ResultSet rsPizze = stmt.executeQuery(query);
 		
 		while(rsPizze.next()) {
 			String nome = rsPizze.getString(1);
-			float prezzo = rsPizze.getFloat(2);
+			// float prezzo = rsPizze.getFloat(2);
 		
-			res.add(new Pizze(nome, prezzo));
+			res.add(new Pizze(nome));
 		}
 		rsPizze.close();
 		stmt.close();
@@ -242,7 +242,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// archiviazione ordine
 	@Override
 	public void deleteOrdine(int id_ordine) throws SQLException {
-		String delete = "UPDATE ordine SET confermato = true WHERE id_ordine =\"" + id_ordine + "\";";
+		String delete = "UPDATE ordine SET confermato = 1 WHERE id_ordine =\"" + id_ordine + "\";";
 
 		Statement statement = conn.createStatement();
 		statement.execute(delete);
@@ -252,7 +252,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// archiviazione ordine1
 	@Override
 	public void deleteOrdine1(int id_ordine) throws SQLException {
-		String delete = "UPDATE ordine1 SET confermato = true WHERE id_ordine =\"" + id_ordine + "\";";
+		String delete = "UPDATE ordine1 SET confermato = 1 WHERE id_ordine =\"" + id_ordine + "\";";
 		
 		Statement statement = conn.createStatement();
 		statement.execute(delete);
