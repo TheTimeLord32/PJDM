@@ -3,13 +3,20 @@ package com.mandija.pizzadamatteo.fragment.onlyGet;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mandija.pizzadamatteo.R;
+import com.mandija.pizzadamatteo.adapter.ListaOrdine1Adapter;
 import com.mandija.pizzadamatteo.databinding.FragmentGetOrdine1Binding;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,11 +66,19 @@ public class getOrdine1 extends Fragment {
         }
     }
 
+    private RecyclerView rv;
+    private ListaOrdine1Adapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGetOrdine1Binding.inflate(inflater, container, false);
+        rv = binding.rvLista1;
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        adapter = new ListaOrdine1Adapter(getContext());
+        rv.setAdapter(adapter);
 
-        if (this.getArguments() != null) {
+        /*if (this.getArguments() != null) {
             String pizza1 = this.getArguments().getString("pizza1");
             String pizza2 = this.getArguments().getString("pizza2");
             String pizza3 = this.getArguments().getString("pizza3");
@@ -77,6 +92,16 @@ public class getOrdine1 extends Fragment {
             binding.tvFritti1.setText(fritti1);
             binding.tvFritti2.setText(fritti2);
             binding.tvBibite1.setText(bibite1);
+        }*/
+
+        if (this.getArguments() != null) {
+            String line = this.getArguments().getString("line");
+            try {
+                JSONArray array = new JSONArray(line);
+                adapter.aggiungi1(array);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         return binding.getRoot();
     }

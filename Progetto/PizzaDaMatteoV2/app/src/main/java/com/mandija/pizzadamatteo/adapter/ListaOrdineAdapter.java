@@ -54,19 +54,18 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ORDViewAdapter holder, int position) {
-        String id_ordine = Integer.toString(dati.get(position).getId_ordine());
+        //String id_ordine = Integer.toString(dati.get(position).getId_ordine());
         holder.tvId_ordine.setText(Integer.toString(dati.get(position).getId_ordine()));
         holder.tvCliente.setText(dati.get(position).getNome_cliente());
         holder.tvOrario.setText(dati.get(position).getOrario());
         holder.tvRecapito.setText(dati.get(position).getRecapito());
         holder.tvIndirizzo.setText(dati.get(position).getIndirizzo());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("getOrdine-getOrdine1", "onClick: clicked on: " + dati.get(holder.getAdapterPosition()).getId_ordine());
-
-                bundle.putInt("id_ordine", dati.get(holder.getAdapterPosition()).getId_ordine());
+                Log.d("getOrdine-getOrdine1", "onClick: clicked on: " + id_ordine);
+                /*bundle.putInt("id_ordine", dati.get(holder.getAdapterPosition()).getId_ordine());
                 FunctiongetOrdine1(id_ordine);
 
                 getOrdine1 go1 =new getOrdine1();
@@ -74,7 +73,7 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fl_lista, go1).addToBackStack(null).commit();
             }
-        });
+        });*/
     }
 
     @Override

@@ -2,10 +2,12 @@ package com.mandija.pizzadamatteo.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +33,6 @@ public class ListaOrdine1Adapter extends RecyclerView.Adapter<ListaOrdine1Adapte
         dati = new ArrayList<ListaOrdine1Elemento>();
     }
 
-
     @NonNull
     @Override
     public ORD1ViewAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,7 +43,7 @@ public class ListaOrdine1Adapter extends RecyclerView.Adapter<ListaOrdine1Adapte
 
     @Override
     public void onBindViewHolder(@NonNull ListaOrdine1Adapter.ORD1ViewAdapter holder, int position) {
-        holder.tvId_ordine.setText(Integer.toString(dati.get(position).getId_ordine()));
+//        holder.tvId_ordine.setText(Integer.toString(dati.get(position).getId_ordine()));
         holder.tvPizza1.setText(dati.get(position).getPizza1());
         holder.tvPizza2.setText(dati.get(position).getPizza2());
         holder.tvPizza3.setText(dati.get(position).getPizza3());
@@ -58,7 +59,7 @@ public class ListaOrdine1Adapter extends RecyclerView.Adapter<ListaOrdine1Adapte
         holder.tvBibite3.setText(dati.get(position).getBibite3());
         holder.tvBibite4.setText(dati.get(position).getBibite4());
         holder.tvBibite5.setText(dati.get(position).getBibite5());
-
+/*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,19 +87,21 @@ public class ListaOrdine1Adapter extends RecyclerView.Adapter<ListaOrdine1Adapte
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fl_lista1, go).addToBackStack(null).commit();
             }
         });
-
+*/
     }
 
     @Override
     public int getItemCount() { return dati.size(); }
 
     public void aggiungi1(JSONArray array) {
-        /* elementi getOrdine1*/
+        /* elementi getOrdine1 -- FIX NULL -- */
         for (int i = 0; i < array.length(); i++) {
             try {
-                dati.add(new ListaOrdine1Elemento(array.getJSONObject(i).getInt("id_ordine"), array.getJSONObject(i).getString("pizza1"), array.getJSONObject(i).getString("pizza2"), array.getJSONObject(i).getString("pizza3"), array.getJSONObject(i).getString("pizza4"), array.getJSONObject(i).getString("pizza5"), array.getJSONObject(i).getString("fritti1"), array.getJSONObject(i).getString("fritti2"), array.getJSONObject(i).getString("fritti3"), array.getJSONObject(i).getString("fritti4"), array.getJSONObject(i).getString("fritti5"), array.getJSONObject(i).getString("bibite1"), array.getJSONObject(i).getString("bibite2"), array.getJSONObject(i).getString("bibite3"), array.getJSONObject(i).getString("bibite4"), array.getJSONObject(i).getString("bibite5")));
+                Log.d("aggiungiJSON", "aggiungi1: prima ADD");
+                dati.add(new ListaOrdine1Elemento(array.getJSONObject(i).getInt("id_ordine"), array.getJSONObject(i).getString("pizza1"), array.getJSONObject(i).getString("pizza2"), array.getJSONObject(i).getString("pizza3"), array.getJSONObject(i).getString("pizza4"), array.getJSONObject(i).getString("pizza5"), array.getJSONObject(i).getString("fritto1"), array.getJSONObject(i).getString("fritto2"), array.getJSONObject(i).getString("fritto3"), array.getJSONObject(i).getString("fritto4"), array.getJSONObject(i).getString("fritto5"), array.getJSONObject(i).getString("bibita1"), array.getJSONObject(i).getString("bibita2"), array.getJSONObject(i).getString("bibita3"), array.getJSONObject(i).getString("bibita4"), array.getJSONObject(i).getString("bibita5")));
             } catch (JSONException e) {
                 e.printStackTrace();
+                Toast.makeText(context, "Errore nella stampa", Toast.LENGTH_SHORT).show();
             }
             notifyDataSetChanged();
         }

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mandija.pizzadamatteo.R;
 import com.mandija.pizzadamatteo.adapter.ListaOrdineAdapter;
@@ -24,6 +25,7 @@ import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.Executor;
@@ -96,17 +98,35 @@ public class getOrdine extends Fragment {
                 e.printStackTrace();
             }
         }
+
+        binding.btNextOrdine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id_ordine = binding.etNumVisual.getText().toString();
+                getOrdine1(id_ordine);
+            }
+        });
+
+        binding.btDelOrdine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id_ordine = binding.etNumVisual.getText().toString();
+                delOrdine(id_ordine);
+            }
+        });
+
         return binding.getRoot();
     }
-    /*private Executor executor = Executors.newSingleThreadExecutor();
+
+    private Executor executor = Executors.newSingleThreadExecutor();
     private Bundle bundle = new Bundle();
 
-    private void getOrdine1() {
+    private void getOrdine1(String id_ordine) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine1) + "?id=" + getContext().getString(R.id.tvId_ordine)); // prendere ID dal touch
+                    URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine1) + "?id_ordine=" + id_ordine); // prendere ID manualmente
                     BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
 
                     String line = reader.readLine();
@@ -117,9 +137,7 @@ public class getOrdine extends Fragment {
                     Handler handler = new Handler(getContext().getMainLooper());
                     Runnable runnable = new Runnable() {
                         @Override
-                        public void run() {
-                            NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_getOrdine1, bundle);
-                        }
+                        public void run() { NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_getOrdine1, bundle); }
                     };
                     handler.post(runnable);
                 } catch (MalformedURLException e) {
@@ -129,5 +147,39 @@ public class getOrdine extends Fragment {
                 }
             }
         });
-    }*/
+    }
+
+    private void delOrdine(String id_ordine) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine) + "?id_ordine=" + id_ordine); // prendere ID manualmente
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setRequestMethod("DELETE");
+                    Log.d("del", "run: " + connection.getResponseCode());
+                    connection.connect();
+                    /*BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
+                    String line = reader.readLine();
+                    bundle.putString("line", line);
+                    reader.close();*/
+
+                    // main thread
+                    Handler handler = new Handler(getContext().getMainLooper());
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_home);
+                            Toast.makeText(getContext(), "Ordine cancellato", Toast.LENGTH_SHORT).show(); }
+                    };
+                    handler.post(runnable);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }

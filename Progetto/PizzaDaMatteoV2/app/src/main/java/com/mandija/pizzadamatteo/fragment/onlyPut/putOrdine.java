@@ -20,10 +20,12 @@ import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +41,8 @@ public class putOrdine extends Fragment {
     private FragmentPutOrdineBinding binding;
     private Bundle bundle = new Bundle();
     private Executor executor = Executors.newSingleThreadExecutor();
+    private Pattern pattern = Pattern.compile("\\d\\d[:]\\d\\d");
+    private Matcher matcher;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -91,9 +95,7 @@ public class putOrdine extends Fragment {
                 String orario = binding.etOrario.getText().toString();
                 String recapito = binding.etRecapito.getText().toString();
                 String indirizzo = binding.etIndirizzo.getText().toString();
-                String numPizze = binding.etNumPizze.getText().toString();
-
-                bundle.putString("numPizze", numPizze);
+                matcher = pattern.matcher(orario);  // necessario per regex su orario
 
                 if(nome_cliente.isEmpty() || orario.isEmpty() || recapito.isEmpty() || indirizzo.isEmpty()) {
                     Toast.makeText(getContext(), "Riempi tutti i campi", Toast.LENGTH_SHORT).show();
@@ -101,7 +103,30 @@ public class putOrdine extends Fragment {
                     binding.etOrario.setError("Riempi il campo");
                     binding.etRecapito.setError("Riempi il campo");
                     binding.etIndirizzo.setError("Riempi il campo");
-                } else {
+                }
+
+                boolean nomeValido = nome_cliente.length() > 50;
+                boolean orarioValido = matcher.matches() != true;
+                boolean recapitoValido = recapito.length() > 50;
+                boolean indirizzoValido = indirizzo.length() > 50;
+
+                if (nomeValido) {
+                    Toast.makeText(getContext(), "Nome cliente troppo lungo", Toast.LENGTH_SHORT).show();
+                    binding.etCliente.setError("Massimo 50 caratteri");
+                }
+                if (recapitoValido) {
+                    Toast.makeText(getContext(), "Recapito più lungo di 10 caratteri", Toast.LENGTH_SHORT).show();
+                    binding.etRecapito.setError("Massimo 10 caratteri");
+                }
+                if (indirizzoValido) {
+                    Toast.makeText(getContext(), "Indirizzo troppo lungo", Toast.LENGTH_SHORT).show();
+                    binding.etIndirizzo.setError("Massimo 50 caratteri");
+                }
+                if (orarioValido) {
+                    Toast.makeText(getContext(), "Formato non corretto.", Toast.LENGTH_SHORT).show();
+                    binding.etOrario.setError("Formato corretto: hh:mm");
+                }
+                if (nomeValido == false && orarioValido == false && recapitoValido == false && indirizzoValido == false && matcher.matches() == true) {
                     putOrdine(nome_cliente, orario, recapito, indirizzo);
                     NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
                     Toast.makeText(getContext(), "Ordine inviato", Toast.LENGTH_SHORT).show();
