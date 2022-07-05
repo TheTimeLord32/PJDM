@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mandija.pizzadamatteo.R;
 import com.mandija.pizzadamatteo.adapter.ListaOrdine1Adapter;
 import com.mandija.pizzadamatteo.databinding.FragmentGetOrdine1Binding;
 
@@ -35,9 +34,7 @@ public class getOrdine1 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public getOrdine1() {
-        // Required empty public constructor
-    }
+    public getOrdine1() { }
 
     /**
      * Use this factory method to create a new instance of
@@ -77,22 +74,6 @@ public class getOrdine1 extends Fragment {
         rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         adapter = new ListaOrdine1Adapter(getContext());
         rv.setAdapter(adapter);
-
-        /*if (this.getArguments() != null) {
-            String pizza1 = this.getArguments().getString("pizza1");
-            String pizza2 = this.getArguments().getString("pizza2");
-            String pizza3 = this.getArguments().getString("pizza3");
-            String fritti1 = this.getArguments().getString("fritti1");
-            String fritti2 = this.getArguments().getString("fritti2");
-            String bibite1 = this.getArguments().getString("bibite1");
-
-            binding.tvPizza1.setText(pizza1);
-            binding.tvPizza2.setText(pizza2);
-            binding.tvPizza3.setText(pizza3);
-            binding.tvFritti1.setText(fritti1);
-            binding.tvFritti2.setText(fritti2);
-            binding.tvBibite1.setText(bibite1);
-        }*/
 
         if (this.getArguments() != null) {
             String line = this.getArguments().getString("line");

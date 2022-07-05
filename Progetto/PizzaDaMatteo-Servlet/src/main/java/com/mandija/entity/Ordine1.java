@@ -1,13 +1,11 @@
 package com.mandija.entity;
 
-import java.util.Arrays;
-
 public class Ordine1 {
 	private int id_ordine, num_pizze, num_fritti, num_bibite, conto;
-	private String pizza1, pizza2, pizza3, pizza4, pizza5, fritto1, fritto2, fritto3, fritto4, fritto5, bibita1, bibita2, bibita3, bibita4, bibita5, note;
+	private String pizza1, pizza2, pizza3, pizza4, pizza5, fritti1, fritti2, fritti3, fritti4, fritti5, bibite1, bibite2, bibite3, bibite4, bibite5, note;
 	private boolean confermato;
 		
-	public Ordine1(int id_ordine, int num_pizze, int num_fritti, int num_bibite, int conto, String pizza1, String pizza2, String pizza3, String pizza4, String pizza5, String fritto1, String fritto2, String fritto3, String fritto4, String fritto5, String bibita1, String bibita2, String bibita3, String bibita4, String bibita5, String note, boolean confermato) {
+	public Ordine1(int id_ordine, int num_pizze, int num_fritti, int num_bibite, int conto, String pizza1, String pizza2, String pizza3, String pizza4, String pizza5, String fritti1, String fritti2, String fritti3, String fritti4, String fritti5, String bibite1, String bibite2, String bibite3, String bibite4, String bibite5, String note, boolean confermato) {
 		super();
 		this.id_ordine = id_ordine;
 		this.num_pizze = num_pizze;
@@ -19,16 +17,16 @@ public class Ordine1 {
 		this.pizza3 = pizza3;
 		this.pizza4 = pizza4;
 		this.pizza5 = pizza5;
-		this.fritto1 = fritto1;
-		this.fritto2 = fritto2;
-		this.fritto3 = fritto3;
-		this.fritto4 = fritto4;
-		this.fritto5 = fritto5;
-		this.bibita1 = bibita1;
-		this.bibita2 = bibita2;
-		this.bibita3 = bibita3;
-		this.bibita4 = bibita4;
-		this.bibita5 = bibita5;
+		this.fritti1 = fritti1;
+		this.fritti2 = fritti2;
+		this.fritti3 = fritti3;
+		this.fritti4 = fritti4;
+		this.fritti5 = fritti5;
+		this.bibite1 = bibite1;
+		this.bibite2 = bibite2;
+		this.bibite3 = bibite3;
+		this.bibite4 = bibite4;
+		this.bibite5 = bibite5;
 		this.note = note;
 		this.confermato = confermato;
 	}
@@ -46,15 +44,15 @@ public class Ordine1 {
 	public String getPizza3() { return pizza3; }
 	public String getPizza4() { return pizza4; }
 	public String getPizza5() { return pizza5; }
-	public String getFritto1() { return fritto1; }
-	public String getFritto2() { return fritto2; }
-	public String getFritto3() { return fritto3; }
-	public String getFritto4() { return fritto4; }
-	public String getFritto5() { return fritto5; }
-	public String getBibita1() { return bibita1; }
-	public String getBibita2() { return bibita2; }
-	public String getBibita3() { return bibita3; }
-	public String getBibita4() { return bibita4; }
-	public String getBibita5() { return bibita5; }
+	public String getFritti1() { return fritti1; }
+	public String getFritti2() { return fritti2; }
+	public String getFritti3() { return fritti3; }
+	public String getFritti4() { return fritti4; }
+	public String getFritti5() { return fritti5; }
+	public String getBibite1() { return bibite1; }
+	public String getBibite2() { return bibite2; }
+	public String getBibite3() { return bibite3; }
+	public String getBibite4() { return bibite4; }
+	public String getBibite5() { return bibite5; }
 	
 }

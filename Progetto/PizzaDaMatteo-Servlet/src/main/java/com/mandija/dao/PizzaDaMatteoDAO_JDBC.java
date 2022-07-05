@@ -45,7 +45,6 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		
 		while(rsPizze.next()) {
 			String nome = rsPizze.getString(1);
-			// float prezzo = rsPizze.getFloat(2);
 		
 			res.add(new Pizze(nome));
 		}
@@ -59,16 +58,15 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public ArrayList<Fritti> loadFritti() throws SQLException {
 		ArrayList<Fritti>res = new ArrayList<Fritti>();
-		String query = "SELECT * FROM fritti WHERE fritti.nome != 'Scegli i fritti' AND fritti.prezzo != '0' ORDER BY fritti.nome ASC;";
+		String query = "SELECT nome FROM fritti;";
 		
 		Statement stmt = conn.createStatement();
 		ResultSet rsetFritti = stmt.executeQuery(query);
 		
 		while(rsetFritti.next()) {
 			String nome = rsetFritti.getString(1);
-			float prezzo = rsetFritti.getFloat(2);
 		
-			res.add(new Fritti(nome, prezzo));
+			res.add(new Fritti(nome));
 		}
 		rsetFritti.close();
 		stmt.close();
@@ -80,16 +78,15 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public ArrayList<Bibite> loadBibite() throws SQLException {
 		ArrayList<Bibite>res = new ArrayList<Bibite>();
-		String query = "SELECT * FROM bibite WHERE bibite.nome != 'Scegli la bibita' AND bibite.prezzo != '0' ORDER BY bibite.nome ASC;";
+		String query = "SELECT nome FROM bibite;";
 		
 		Statement stmt = conn.createStatement();
 		ResultSet rsetBibite = stmt.executeQuery(query);
 		
 		while(rsetBibite.next()) {
 			String nome = rsetBibite.getString(1);
-			float prezzo = rsetBibite.getFloat(2);
-		
-			res.add(new Bibite(nome, prezzo));
+			
+			res.add(new Bibite(nome));
 		}
 		rsetBibite.close();
 		stmt.close();
@@ -143,23 +140,23 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 			String pizza4 = rsetOrdine1.getString(6);
 			String pizza5 = rsetOrdine1.getString(7);
 
-			String fritto1 = rsetOrdine1.getString(9);
-			String fritto2 = rsetOrdine1.getString(10);
-			String fritto3 = rsetOrdine1.getString(11);
-			String fritto4 = rsetOrdine1.getString(12);
+			String fritti1 = rsetOrdine1.getString(9);
+			String fritti2 = rsetOrdine1.getString(10);
+			String fritti3 = rsetOrdine1.getString(11);
+			String fritti4 = rsetOrdine1.getString(12);
 			String fritto5 = rsetOrdine1.getString(13);
 
-			String bibita1 = rsetOrdine1.getString(15);
-			String bibita2 = rsetOrdine1.getString(16);
-			String bibita3 = rsetOrdine1.getString(17);
-			String bibita4 = rsetOrdine1.getString(18);
-			String bibita5 = rsetOrdine1.getString(19);
+			String bibite1 = rsetOrdine1.getString(15);
+			String bibite2 = rsetOrdine1.getString(16);
+			String bibite3 = rsetOrdine1.getString(17);
+			String bibite4 = rsetOrdine1.getString(18);
+			String bibite5 = rsetOrdine1.getString(19);
 			
 			String note = rsetOrdine1.getString(20);
 			int conto = rsetOrdine1.getInt(21);
 			boolean confermato = rsetOrdine1.getBoolean(22);
 			
-			res.add(new Ordine1(id_ordine, numPizze, numFritti, numBibite, conto, pizza1, pizza2, pizza3, pizza4, pizza5, fritto1, fritto2, fritto3, fritto4, fritto5, bibita1, bibita2, bibita3, bibita4, bibita5, note, confermato));
+			res.add(new Ordine1(id_ordine, numPizze, numFritti, numBibite, conto, pizza1, pizza2, pizza3, pizza4, pizza5, fritti1, fritti2, fritti3, fritti4, fritto5, bibite1, bibite2, bibite3, bibite4, bibite5, note, confermato));
 		}
 		rsetOrdine1.close();
 		stmt.close();
@@ -203,17 +200,17 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		pstmt.setString(6, ordine1.getPizza4());
 		pstmt.setString(7, ordine1.getPizza5());
 		pstmt.setInt(8, ordine1.getnum_fritti());
-		pstmt.setString(9, ordine1.getFritto1());
-		pstmt.setString(10, ordine1.getFritto2());
-		pstmt.setString(11, ordine1.getFritto3());
-		pstmt.setString(12, ordine1.getFritto4());
-		pstmt.setString(13, ordine1.getFritto5());
+		pstmt.setString(9, ordine1.getFritti1());
+		pstmt.setString(10, ordine1.getFritti2());
+		pstmt.setString(11, ordine1.getFritti3());
+		pstmt.setString(12, ordine1.getFritti4());
+		pstmt.setString(13, ordine1.getFritti5());
 		pstmt.setInt(14, ordine1.getnum_bibite());
-		pstmt.setString(15, ordine1.getBibita1());
-		pstmt.setString(16, ordine1.getBibita2());
-		pstmt.setString(17, ordine1.getBibita3());
-		pstmt.setString(18, ordine1.getBibita4());
-		pstmt.setString(19, ordine1.getBibita5());
+		pstmt.setString(15, ordine1.getBibite1());
+		pstmt.setString(16, ordine1.getBibite2());
+		pstmt.setString(17, ordine1.getBibite3());
+		pstmt.setString(18, ordine1.getBibite4());
+		pstmt.setString(19, ordine1.getBibite5());
 		pstmt.setString(20, ordine1.getNote());
 		pstmt.setInt(21, ordine1.getConto());
 		pstmt.setBoolean(22, ordine1.getConfermato());
@@ -242,21 +239,16 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// archiviazione ordine
 	@Override
 	public void deleteOrdine(int id_ordine) throws SQLException {
-		String delete = "UPDATE ordine SET confermato = 1 WHERE id_ordine =\"" + id_ordine + "\";";
-
-		Statement statement = conn.createStatement();
-		statement.execute(delete);
-		statement.close();		
-	}
-
-	// archiviazione ordine1
-	@Override
-	public void deleteOrdine1(int id_ordine) throws SQLException {
-		String delete = "UPDATE ordine1 SET confermato = 1 WHERE id_ordine =\"" + id_ordine + "\";";
+		String delete = "UPDATE ordine SET confermato = 1 WHERE id_ordine =" + id_ordine + ";";
+		String delete1 = "UPDATE ordine1 SET confermato = 1 WHERE id_ordine =\"" + id_ordine + "\";";
 		
 		Statement statement = conn.createStatement();
 		statement.execute(delete);
 		statement.close();
+		
+		Statement statement1 = conn.createStatement();
+		statement1.execute(delete1);
+		statement1.close();
 	}
 
 	// elenco statistiche orario + pizza
@@ -283,7 +275,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public ArrayList<StatsPizze> getStatsPizze() throws SQLException {
 		ArrayList<StatsPizze> res = new ArrayList<StatsPizze>();
-		String queryPizze = "SELECT nome, quantita FROM pizza WHERE quantita != 0;";
+		String queryPizze = "SELECT nome, quantita FROM pizza WHERE quantita != 0 and nome != '';";
 		
 		Statement stmtStatsPizze = conn.createStatement();
 		ResultSet rsetStatsPizze = stmtStatsPizze.executeQuery(queryPizze);

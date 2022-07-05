@@ -4,7 +4,6 @@ import com.mandija.dao.*;
 import com.mandija.entity.*;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,9 +52,7 @@ public class getStatsOrario extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
-		String timeStats = request.getParameter("timeStats");
-
-		 try{
+		try{
 			ArrayList<StatsOrario> allStats = dao.getStatsOrario();
 			JSONArray timeStatsJSON = new JSONArray(allStats);
 			out.print(timeStatsJSON.toString());

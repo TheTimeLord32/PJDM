@@ -18,7 +18,6 @@ public interface PizzaDaMatteoDAO {
 	public int inserisciOrdine1(Ordine1 ordine1) throws SQLException;
 	
 	public void deleteOrdine(int id_ordine) throws SQLException;
-	public void deleteOrdine1(int id_ordine) throws SQLException;
 	
 	public ArrayList<StatsOrario> getStatsOrario() throws SQLException;
 	public ArrayList<StatsPizze> getStatsPizze() throws SQLException;

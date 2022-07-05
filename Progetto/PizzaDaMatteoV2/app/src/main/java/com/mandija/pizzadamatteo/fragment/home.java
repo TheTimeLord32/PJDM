@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.mandija.pizzadamatteo.R;
 import com.mandija.pizzadamatteo.databinding.FragmentHomeBinding;
-import com.mandija.pizzadamatteo.fragment.onlyPut.putOrdine;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -180,25 +178,30 @@ public class home extends Fragment {
                 try {
                     URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getStatsOrario));
                     BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
-
                     String line = reader.readLine();
                     bundle.putString("line", line);
-                    Log.d("getStats", "run: " + line);
                     reader.close();
-
-                    // main thread
                     Handler handler = new Handler(getContext().getMainLooper());
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsOrario, bundle); }
-                    };
-                    handler.post(runnable);
+
+                    if (line.equals("[]"))
+                    {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() { Toast.makeText(getContext(), "Statistiche orario non disponibili", Toast.LENGTH_SHORT).show(); }
+                        });
+                    } else {
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsOrario, bundle); }
+                        };
+                        handler.post(runnable);
+                    }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (ConnectException e) {
                     new Handler(getContext().getMainLooper()).post(new Runnable() {
                         @Override
-                        public void run() { Toast.makeText(getContext(), "Statistiche orario non disponibile", Toast.LENGTH_SHORT).show(); }
+                        public void run() { Toast.makeText(getContext(), "Statistiche orario non disponibili", Toast.LENGTH_SHORT).show(); }
                     });
                     e.printStackTrace();
                 } catch (Exception e) {
@@ -215,25 +218,30 @@ public class home extends Fragment {
                 try {
                     URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getStatsPizze));
                     BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
-
                     String line = reader.readLine();
                     bundle.putString("line", line);
-                    Log.d("getStats", "run: " + line);
                     reader.close();
-
-                    // main thread
                     Handler handler = new Handler(getContext().getMainLooper());
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsPizze, bundle); }
-                    };
-                    handler.post(runnable);
+
+                    if (line.equals("[]"))
+                    {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() { Toast.makeText(getContext(), "Statistiche pizze non disponibili", Toast.LENGTH_SHORT).show(); }
+                        });
+                    } else {
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsPizze, bundle); }
+                        };
+                        handler.post(runnable);
+                    }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (ConnectException e) {
                     new Handler(getContext().getMainLooper()).post(new Runnable() {
                         @Override
-                        public void run() { Toast.makeText(getContext(), "Statistiche pizze non disponibile", Toast.LENGTH_SHORT).show(); }
+                        public void run() { Toast.makeText(getContext(), "Statistiche pizze non disponibili", Toast.LENGTH_SHORT).show(); }
                     });
                     e.printStackTrace();
                 } catch (Exception e) {

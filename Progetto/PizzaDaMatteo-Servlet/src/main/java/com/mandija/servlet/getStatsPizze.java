@@ -1,7 +1,6 @@
 package com.mandija.servlet;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 
 import com.mandija.dao.PizzaDaMatteoDAO_JDBC;
-import com.mandija.entity.StatsOrario;
 import com.mandija.entity.StatsPizze;
 
 /**
@@ -56,9 +54,7 @@ public class getStatsPizze extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
-		String pizzeStats = request.getParameter("timeStats");
-
-		 try{
+		try{
 			ArrayList<StatsPizze> allStats = dao.getStatsPizze();
 			JSONArray pizzeStatsJSON = new JSONArray(allStats);
 			out.print(pizzeStatsJSON.toString());

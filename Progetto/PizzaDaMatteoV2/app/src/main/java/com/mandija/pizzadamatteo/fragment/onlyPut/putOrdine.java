@@ -107,26 +107,15 @@ public class putOrdine extends Fragment {
 
                 boolean nomeValido = nome_cliente.length() > 50;
                 boolean orarioValido = matcher.matches() != true;
-                boolean recapitoValido = recapito.length() > 50;
+                boolean recapitoValido = recapito.length() > 10;
                 boolean indirizzoValido = indirizzo.length() > 50;
 
-                if (nomeValido) {
-                    Toast.makeText(getContext(), "Nome cliente troppo lungo", Toast.LENGTH_SHORT).show();
-                    binding.etCliente.setError("Massimo 50 caratteri");
-                }
-                if (recapitoValido) {
-                    Toast.makeText(getContext(), "Recapito più lungo di 10 caratteri", Toast.LENGTH_SHORT).show();
-                    binding.etRecapito.setError("Massimo 10 caratteri");
-                }
-                if (indirizzoValido) {
-                    Toast.makeText(getContext(), "Indirizzo troppo lungo", Toast.LENGTH_SHORT).show();
-                    binding.etIndirizzo.setError("Massimo 50 caratteri");
-                }
-                if (orarioValido) {
-                    Toast.makeText(getContext(), "Formato non corretto.", Toast.LENGTH_SHORT).show();
-                    binding.etOrario.setError("Formato corretto: hh:mm");
-                }
-                if (nomeValido == false && orarioValido == false && recapitoValido == false && indirizzoValido == false && matcher.matches() == true) {
+                if (nomeValido) { binding.etCliente.setError("Massimo 50 caratteri"); }
+                if (recapitoValido) { binding.etRecapito.setError("Massimo 10 caratteri"); }
+                if (indirizzoValido) { binding.etIndirizzo.setError("Massimo 50 caratteri"); }
+                if (orarioValido) { binding.etOrario.setError("Formato corretto: hh:mm"); }
+
+                if (nomeValido == false && orarioValido == false && recapitoValido == false && indirizzoValido == false) {
                     putOrdine(nome_cliente, orario, recapito, indirizzo);
                     NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
                     Toast.makeText(getContext(), "Ordine inviato", Toast.LENGTH_SHORT).show();
@@ -147,10 +136,8 @@ public class putOrdine extends Fragment {
                     connection.setRequestMethod("POST");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     String line = reader.readLine();
-
                     bundle.putString("line", line);
 
-                    // main thread
                     Handler mainHandler = new Handler(getActivity().getMainLooper());
                     Runnable myRunnable = new Runnable() {
                         @Override

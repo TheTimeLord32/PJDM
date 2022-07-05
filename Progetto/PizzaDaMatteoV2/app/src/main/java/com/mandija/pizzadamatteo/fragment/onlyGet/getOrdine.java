@@ -128,18 +128,24 @@ public class getOrdine extends Fragment {
                 try {
                     URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine1) + "?id_ordine=" + id_ordine); // prendere ID manualmente
                     BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
-
                     String line = reader.readLine();
                     bundle.putString("line", line);
                     reader.close();
-
-                    // main thread
                     Handler handler = new Handler(getContext().getMainLooper());
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() { NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_getOrdine1, bundle); }
-                    };
-                    handler.post(runnable);
+
+                    if (line.equals("[]"))
+                    {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() { Toast.makeText(getContext(), "Ordine non trovato", Toast.LENGTH_SHORT).show(); }
+                        });
+                    } else {
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() { NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_getOrdine1, bundle); }
+                        };
+                        handler.post(runnable);
+                    }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
@@ -155,25 +161,32 @@ public class getOrdine extends Fragment {
             public void run() {
                 try {
                     URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine) + "?id_ordine=" + id_ordine); // prendere ID manualmente
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
+                    String line = reader.readLine();
+                    Handler handler = new Handler(getContext().getMainLooper());
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setDoOutput(true);
-                    connection.setRequestMethod("DELETE");
-                    Log.d("del", "run: " + connection.getResponseCode());
-                    connection.connect();
-                    /*BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
-                    String line = reader.readLine();
-                    bundle.putString("line", line);
-                    reader.close();*/
 
-                    // main thread
-                    Handler handler = new Handler(getContext().getMainLooper());
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_home);
-                            Toast.makeText(getContext(), "Ordine cancellato", Toast.LENGTH_SHORT).show(); }
-                    };
-                    handler.post(runnable);
+                    connection.setRequestMethod("GET");
+                    if (line.equals("[]")){
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() { Toast.makeText(getContext(), "Ordine non trovato", Toast.LENGTH_SHORT).show(); }
+                        });
+                    } else {
+                        Log.d("del", "run: ok");
+                        connection.disconnect();
+                        connection.setDoOutput(true);
+                        connection.setRequestMethod("DELETE");
+                        Log.d("del", "delOrdine: " + connection.getResponseCode());
+                        connection.connect();
+
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() { Toast.makeText(getContext(), "Ordine cancellato", Toast.LENGTH_SHORT).show(); }
+                        };
+                        handler.post(runnable);
+                    }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
