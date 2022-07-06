@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,24 +96,12 @@ public class putOrdine1 extends Fragment {
         spPizza5 = binding.spPizza5;
         addPizzeSpinner();
 
-        boolean isPizza1 = spPizza1.getSelectedItem().equals("");
-        boolean isPizza2 = spPizza2.getSelectedItem().equals("");
-        boolean isPizza3 = spPizza3.getSelectedItem().equals("");
-        boolean isPizza4 = spPizza4.getSelectedItem().equals("");
-        boolean isPizza5 = spPizza5.getSelectedItem().equals("");
-
         spFritti1 = binding.spFritti1;
         spFritti2 = binding.spFritti2;
         spFritti3 = binding.spFritti3;
         spFritti4 = binding.spFritti4;
         spFritti5 = binding.spFritti5;
         addFrittiSpinner();
-
-        boolean isFritti1 = spFritti1.getSelectedItem().equals("");
-        boolean isFritti2 = spFritti2.getSelectedItem().equals("");
-        boolean isFritti3 = spFritti3.getSelectedItem().equals("");
-        boolean isFritti4 = spFritti4.getSelectedItem().equals("");
-        boolean isFritti5 = spFritti5.getSelectedItem().equals("");
 
         spBibite1 = binding.spBibite1;
         spBibite2 = binding.spBibite2;
@@ -123,24 +110,12 @@ public class putOrdine1 extends Fragment {
         spBibite5 = binding.spBibite5;
         addBibiteSpinner();
 
-        boolean isBibite1 = spBibite1.getSelectedItem().equals("");
-        boolean isBibite2 = spBibite2.getSelectedItem().equals("");
-        boolean isBibite3 = spBibite3.getSelectedItem().equals("");
-        boolean isBibite4 = spBibite4.getSelectedItem().equals("");
-        boolean isBibite5 = spBibite5.getSelectedItem().equals("");
-
         binding.btInviaOrdine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Log.d("putOrdine1", "onClick: prima IF");
-                /*if (isPizza1 == true && isPizza2 == true && isPizza3 == true && isPizza4 == true && isPizza5 == true && isFritti1 == true && isFritti2 == true && isFritti3 == true && isFritti4 == true && isFritti5 == true && isBibite1 == true && isBibite2 == true && isBibite3 == true && isBibite4 == true && isBibite5 == true) {
-                    Toast.makeText(getContext(), "Ordine vuoto", Toast.LENGTH_SHORT).show();
-                } else {*/
                     putOrdine1(spPizza1, spPizza2, spPizza3, spPizza4, spPizza5, spFritti1, spFritti2, spFritti3, spFritti4, spFritti5, spBibite1, spBibite2, spBibite3, spBibite4, spBibite5);
                     NavHostFragment.findNavController(putOrdine1.this).navigate(R.id.action_putOrdine1_to_home);
                     Toast.makeText(getContext(), "Ordine inviato", Toast.LENGTH_SHORT).show();
-                //}
             }
         });
 

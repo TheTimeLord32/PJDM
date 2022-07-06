@@ -5,188 +5,243 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- tvPizza -->
+    <TextView
+        android:id="@+id/tvPizza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:text="Pizze"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--pizza1-->
     <TextView
         android:id="@+id/tvPizza1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="128dp"
+        android:gravity="left"
         android:text="Pizza1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPizza" />
 
+    <!--pizza2-->
     <TextView
         android:id="@+id/tvPizza2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:gravity="left"
         android:text="Pizza2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPizza1"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPizza1" />
 
+    <!--pizza3-->
     <TextView
         android:id="@+id/tvPizza3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:gravity="left"
         android:text="Pizza3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPizza2"
-        app:layout_constraintVertical_bias="0.098" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPizza2" />
 
+    <!--pizza4-->
     <TextView
         android:id="@+id/tvPizza4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:gravity="left"
         android:text="Pizza4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPizza3"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPizza3" />
 
+    <!--pizza5-->
     <TextView
         android:id="@+id/tvPizza5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:gravity="left"
         android:text="Pizza5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPizza4" />
 
+    <!--tvFritti-->
+    <TextView
+        android:id="@+id/tvFritti"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:text="Fritti"
+        app:layout_constraintEnd_toStartOf="@+id/tvBibite"
+        app:layout_constraintStart_toEndOf="@+id/tvPizza"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--fritti1-->
     <TextView
         android:id="@+id/tvFritti1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
         android:text="Fritti1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toStartOf="@+id/tvBibite1"
+        app:layout_constraintStart_toEndOf="@+id/tvPizza1"
+        app:layout_constraintTop_toBottomOf="@+id/tvFritti" />
 
+    <!--fritti2-->
     <TextView
         android:id="@+id/tvFritti2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="64dp"
         android:text="Fritti2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFritti1"
-        app:layout_constraintVertical_bias="0.047" />
+        android:gravity="center"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toStartOf="@+id/tvBibite2"
+        app:layout_constraintStart_toEndOf="@+id/tvPizza2"
+        app:layout_constraintTop_toBottomOf="@+id/tvFritti1" />
 
+    <!--fritti3-->
     <TextView
         android:id="@+id/tvFritti3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:text="Fritti3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFritti2"
-        app:layout_constraintVertical_bias="0.066" />
+        android:gravity="center"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toStartOf="@+id/tvBibite3"
+        app:layout_constraintStart_toEndOf="@+id/tvPizza3"
+        app:layout_constraintTop_toBottomOf="@+id/tvFritti2" />
 
+    <!--fritti4-->
     <TextView
         android:id="@+id/tvFritti4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:text="Fritti4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFritti3"
-        app:layout_constraintVertical_bias="0.105" />
+        android:gravity="center"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toStartOf="@+id/tvBibite4"
+        app:layout_constraintStart_toEndOf="@+id/tvPizza4"
+        app:layout_constraintTop_toBottomOf="@+id/tvFritti3" />
 
+    <!--fritti5-->
     <TextView
         android:id="@+id/tvFritti5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="64dp"
         android:text="Fritti5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFritti4"
-        app:layout_constraintVertical_bias="0.159" />
+        android:gravity="center"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toStartOf="@+id/tvBibite5"
+        app:layout_constraintStart_toEndOf="@+id/tvPizza5"
+        app:layout_constraintTop_toBottomOf="@+id/tvFritti4" />
 
+    <!--tvBibite-->
+    <TextView
+        android:id="@+id/tvBibite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:text="Bibite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--bibite1-->
     <TextView
         android:id="@+id/tvBibite1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="right"
         android:text="Bibite1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBibite" />
 
+    <!--bibite2-->
     <TextView
         android:id="@+id/tvBibite2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="right"
         android:text="Bibite2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBibite1"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBibite1" />
 
+    <!--bibite3-->
     <TextView
         android:id="@+id/tvBibite3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="right"
         android:text="Bibite3"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBibite2"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBibite2" />
 
+    <!--bibite4-->
     <TextView
         android:id="@+id/tvBibite4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="right"
         android:text="Bibite4"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBibite3"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBibite3" />
 
+    <!--bibite5-->
     <TextView
         android:id="@+id/tvBibite5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="right"
         android:text="Bibite5"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="gravity"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFritti5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBibite4"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBibite4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
