@@ -118,7 +118,6 @@ public class putOrdine extends Fragment {
                 if (nomeValido == false && orarioValido == false && recapitoValido == false && indirizzoValido == false) {
                     putOrdine(nome_cliente, orario, recapito, indirizzo);
                     NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
-                    Toast.makeText(getContext(), "Ordine inviato", Toast.LENGTH_SHORT).show();
                 }
             }
         });
