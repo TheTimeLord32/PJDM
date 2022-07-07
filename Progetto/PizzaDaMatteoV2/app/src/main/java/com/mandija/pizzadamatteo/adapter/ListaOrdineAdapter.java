@@ -35,8 +35,6 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
     private ArrayList<ListaOrdineElemento> dati;
     private Context context;
     private LayoutInflater inflater;
-    private Bundle bundle = new Bundle();
-    private Executor executor = Executors.newSingleThreadExecutor();
 
     public ListaOrdineAdapter(Context context) {
         this.context = context;
@@ -54,26 +52,11 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ORDViewAdapter holder, int position) {
-        //String id_ordine = Integer.toString(dati.get(position).getId_ordine());
         holder.tvId_ordine.setText(Integer.toString(dati.get(position).getId_ordine()));
         holder.tvCliente.setText(dati.get(position).getNome_cliente());
         holder.tvOrario.setText(dati.get(position).getOrario());
         holder.tvRecapito.setText(dati.get(position).getRecapito());
         holder.tvIndirizzo.setText(dati.get(position).getIndirizzo());
-
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("getOrdine-getOrdine1", "onClick: clicked on: " + id_ordine);
-                /*bundle.putInt("id_ordine", dati.get(holder.getAdapterPosition()).getId_ordine());
-                FunctiongetOrdine1(id_ordine);
-
-                getOrdine1 go1 =new getOrdine1();
-                go1.setArguments(bundle);
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fl_lista, go1).addToBackStack(null).commit();
-            }
-        });*/
     }
 
     @Override
@@ -88,35 +71,6 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
             }
             notifyDataSetChanged();
         }
-    }
-
-    public void FunctiongetOrdine1(String id_ordine) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(context.getString(R.string.hostname) + context.getString(R.string.getOrdine1) + "?id_ordine=" + id_ordine);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    BufferedReader reader = new BufferedReader(new java.io.InputStreamReader(url.openStream()));
-                    String line = reader.readLine();
-
-                    bundle.putString("line", line);
-
-                    Handler handler = new Handler(context.getMainLooper());
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() { }
-                    };
-                    handler.post(runnable);
-                    reader.close();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     class ORDViewAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {

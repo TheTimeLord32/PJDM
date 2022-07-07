@@ -106,7 +106,8 @@
         android:inputType="time"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCliente" />
+        app:layout_constraintTop_toBottomOf="@+id/etCliente"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/etRecapito"
@@ -119,7 +120,8 @@
         android:inputType="number"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etOrario" />
+        app:layout_constraintTop_toBottomOf="@+id/etOrario"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btNext"

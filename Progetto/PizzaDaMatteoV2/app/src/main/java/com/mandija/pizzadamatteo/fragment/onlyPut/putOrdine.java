@@ -21,11 +21,10 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,8 +40,6 @@ public class putOrdine extends Fragment {
     private FragmentPutOrdineBinding binding;
     private Bundle bundle = new Bundle();
     private Executor executor = Executors.newSingleThreadExecutor();
-    private Pattern pattern = Pattern.compile("\\d\\d[:]\\d\\d");
-    private Matcher matcher;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -95,29 +92,30 @@ public class putOrdine extends Fragment {
                 String orario = binding.etOrario.getText().toString();
                 String recapito = binding.etRecapito.getText().toString();
                 String indirizzo = binding.etIndirizzo.getText().toString();
-                matcher = pattern.matcher(orario);  // necessario per regex su orario
 
-                if(nome_cliente.isEmpty() || orario.isEmpty() || recapito.isEmpty() || indirizzo.isEmpty()) {
-                    Toast.makeText(getContext(), "Riempi tutti i campi", Toast.LENGTH_SHORT).show();
-                    binding.etCliente.setError("Riempi il campo");
-                    binding.etOrario.setError("Riempi il campo");
-                    binding.etRecapito.setError("Riempi il campo");
-                    binding.etIndirizzo.setError("Riempi il campo");
-                }
+                boolean nomeValido = nome_cliente.matches("[a-zA-Z]{3,50}+");
+                boolean recapitoValido = recapito.matches("[0-9]{10}+");
+                boolean indirizzoValido = indirizzo.matches("[a-zA-Z0-9]{5,50}+");
 
-                boolean nomeValido = nome_cliente.length() > 50;
-                boolean orarioValido = matcher.matches() != true;
-                boolean recapitoValido = recapito.length() > 10;
-                boolean indirizzoValido = indirizzo.length() > 50;
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                    LocalTime time = formatter.parse(orario, LocalTime::from);
+                    String orario_convertito = time.toString();
 
-                if (nomeValido) { binding.etCliente.setError("Massimo 50 caratteri"); }
-                if (recapitoValido) { binding.etRecapito.setError("Massimo 10 caratteri"); }
-                if (indirizzoValido) { binding.etIndirizzo.setError("Massimo 50 caratteri"); }
-                if (orarioValido) { binding.etOrario.setError("Formato corretto: hh:mm"); }
+                    if (!nomeValido || nome_cliente.isEmpty()) { binding.etCliente.setError("Nome non valido, inserire solo caratteri alfabetici.\nMinimo 3, massimo 50 caratteri."); }
+                    if (!recapitoValido || recapito.isEmpty()) { binding.etRecapito.setError("Recapito non valido, inserire solo numeri.\nMassimo 10 cifre."); }
+                    if (!indirizzoValido || indirizzo.isEmpty()) { binding.etIndirizzo.setError("Indirizzo non valido, inserire solo caratteri alfabetici e numeri.\nMinimo 5, massimo 50 caratteri."); }
 
-                if (nomeValido == false && orarioValido == false && recapitoValido == false && indirizzoValido == false) {
-                    putOrdine(nome_cliente, orario, recapito, indirizzo);
-                    NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
+                    if (nomeValido && orario_convertito.length() == 5 && recapitoValido && indirizzoValido) {
+                        putOrdine(nome_cliente, orario_convertito, recapito, indirizzo);
+                        NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
+                    }
+                } catch (Exception e) {
+                    binding.etCliente.setError("Campo vuoto o incorretto. Controllare");
+                    binding.etOrario.setError("Campo vuoto o incorretto.\nFormato corretto: HH:mm");
+                    binding.etRecapito.setError("Campo vuoto o incorretto. Controllare");
+                    binding.etIndirizzo.setError("Campo vuoto o incorretto. Controllare");
+                    e.printStackTrace();
                 }
             }
         });
