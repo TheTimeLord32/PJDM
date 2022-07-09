@@ -38,6 +38,7 @@ public class getStatsPizze extends HttpServlet {
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
+			System.out.println("PizzaDaMatteo - Stats Pizze. Error opening DB connection. \n");
 		}
 		System.out.println("DONE.");
     }

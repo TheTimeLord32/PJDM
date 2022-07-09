@@ -151,25 +151,16 @@ public class home extends Fragment {
                     reader.close();
 
                     Handler handler = new Handler(getContext().getMainLooper());
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getOrdine, bundle); }
-                    };
+                    Runnable runnable = () -> NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getOrdine, bundle);
                     handler.post(runnable);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (ConnectException e) {
-                    new Handler(getContext().getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() { Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show(); }
-                    });
+                    new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show());
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    new Handler(getContext().getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() { Toast.makeText(getContext(), "Tabella ordine vuota", Toast.LENGTH_SHORT).show(); }
-                    });
+                    new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Tabella ordine vuota", Toast.LENGTH_SHORT).show());
                 }
             }
         });
@@ -186,21 +177,15 @@ public class home extends Fragment {
                     bundle.putString("line", line);
                     reader.close();
 
-                    NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsOrario, bundle);
+                    new Handler(getContext().getMainLooper()).post(() -> NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsOrario, bundle));
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (ConnectException e) {
-                    new Handler(getContext().getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() { Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show(); }
-                    });
+                    new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show());
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    new Handler(getContext().getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() { Toast.makeText(getContext(), "Statistiche orario vuote", Toast.LENGTH_SHORT).show(); }
-                    });
+                    new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Statistiche orario vuote", Toast.LENGTH_SHORT).show());
                 }
             }
         });
@@ -217,21 +202,15 @@ public class home extends Fragment {
                     bundle.putString("line", line);
                     reader.close();
 
-                    NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsPizze, bundle);
+                    new Handler(getContext().getMainLooper()).post(() -> NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsPizze, bundle));
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (ConnectException e) {
-                    new Handler(getContext().getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() { Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show(); }
-                    });
+                    new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show());
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    new Handler(getContext().getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() { Toast.makeText(getContext(), "Statistiche pizze vuote", Toast.LENGTH_SHORT).show(); }
-                    });
+                    new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Statistiche pizze vuote", Toast.LENGTH_SHORT).show());
                 }
             }
         });

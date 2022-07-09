@@ -227,7 +227,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public void deleteOrdine(int id_ordine) throws SQLException {
 		String delete = "UPDATE ordine SET confermato = 1 WHERE id_ordine =" + id_ordine + ";";
-		String delete1 = "UPDATE ordine1 SET confermato = 1 WHERE id_ordine =\"" + id_ordine + "\";";
+		String delete1 = "UPDATE ordine1 SET confermato = 1 WHERE id_ordine =" + id_ordine + ";";
 		
 		Statement statement = conn.createStatement();
 		statement.execute(delete);

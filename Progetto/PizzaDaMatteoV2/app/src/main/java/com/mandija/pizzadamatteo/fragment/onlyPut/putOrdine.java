@@ -107,8 +107,11 @@ public class putOrdine extends Fragment {
                     if (!indirizzoValido || indirizzo.isEmpty()) { binding.etIndirizzo.setError("Indirizzo non valido, inserire solo caratteri alfabetici e numeri.\nMinimo 5, massimo 50 caratteri."); }
 
                     if (nomeValido && orario_convertito.length() == 5 && recapitoValido && indirizzoValido) {
-                        putOrdine(nome_cliente, orario_convertito, recapito, indirizzo);
-
+                        bundle.putString("nome_cliente", nome_cliente);
+                        bundle.putString("orario_convertito", orario_convertito);
+                        bundle.putString("recapito", recapito);
+                        bundle.putString("indirizzo", indirizzo);
+                        NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
                     }
                 } catch (Exception e) {
                     binding.etCliente.setError("Campo vuoto o incorretto. Controllare");
@@ -120,52 +123,5 @@ public class putOrdine extends Fragment {
             }
         });
         return binding.getRoot();
-    }
-
-    // passare gli edit text nel URL della servlet
-    private void putOrdine(String nome_cliente, String orario, String recapito, String indirizzo) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine) + "?nome_cliente=" + nome_cliente + "&orario=" + orario + "&recapito=" + recapito + "&indirizzo=" + indirizzo);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("POST");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String line = reader.readLine();
-                    bundle.putString("line", line);
-
-                    Handler mainHandler = new Handler(getActivity().getMainLooper());
-                    Runnable myRunnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
-                        }
-                    };
-                    mainHandler.post(myRunnable);
-                    reader.close();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (ConnectException e) {
-                    new Handler(getContext().getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() { Toast.makeText(getContext(), "Connessione non disponibile", Toast.LENGTH_SHORT).show(); }
-                    });
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getActivity(), "Ordine errato", Toast.LENGTH_SHORT).show();
-                            binding.etCliente.setText("");
-                            binding.etOrario.setText("");
-                            binding.etRecapito.setText("");
-                            binding.etIndirizzo.setText("");
-                        }
-                    });
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 }

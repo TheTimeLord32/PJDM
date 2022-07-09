@@ -21,11 +21,13 @@ import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -113,9 +115,12 @@ public class putOrdine1 extends Fragment {
         binding.btInviaOrdine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (spPizza1.getSelectedItem().toString().equals("") && spPizza2.getSelectedItem().toString().equals("") && spPizza3.getSelectedItem().toString().equals("") && spPizza3.getSelectedItem().toString().equals("") && spPizza4.getSelectedItem().toString().equals("") && spPizza5.getSelectedItem().toString().equals("") && spFritti1.getSelectedItem().toString().equals("") && spFritti2.getSelectedItem().toString().equals("") && spFritti3.getSelectedItem().toString().equals("") && spFritti4.getSelectedItem().toString().equals("") && spFritti5.getSelectedItem().toString().equals("") && spBibite1.getSelectedItem().toString().equals("") && spBibite2.getSelectedItem().toString().equals("") && spBibite3.getSelectedItem().toString().equals("") && spBibite4.getSelectedItem().toString().equals("") && spBibite5.getSelectedItem().toString().equals("")) {
+                if (spPizza1.getSelectedItem().toString().equals("") && spPizza2.getSelectedItem().toString().equals("") && spPizza3.getSelectedItem().toString().equals("") && spPizza4.getSelectedItem().toString().equals("") && spPizza5.getSelectedItem().toString().equals("")
+                        && spFritti1.getSelectedItem().toString().equals("") && spFritti2.getSelectedItem().toString().equals("") && spFritti3.getSelectedItem().toString().equals("") && spFritti4.getSelectedItem().toString().equals("") && spFritti5.getSelectedItem().toString().equals("")
+                        && spBibite1.getSelectedItem().toString().equals("") && spBibite2.getSelectedItem().toString().equals("") && spBibite3.getSelectedItem().toString().equals("") && spBibite4.getSelectedItem().toString().equals("") && spBibite5.getSelectedItem().toString().equals("")) {
                     Toast.makeText(getContext(), "Ordine vuoto.\nInserire almeno un elemento", Toast.LENGTH_SHORT).show();
                 } else {
+                    putOrdine();
                     putOrdine1(spPizza1, spPizza2, spPizza3, spPizza4, spPizza5, spFritti1, spFritti2, spFritti3, spFritti4, spFritti5, spBibite1, spBibite2, spBibite3, spBibite4, spBibite5);
                     NavHostFragment.findNavController(putOrdine1.this).navigate(R.id.action_putOrdine1_to_home);
                     Toast.makeText(getContext(), "Ordine inviato", Toast.LENGTH_SHORT).show();
@@ -261,31 +266,49 @@ public class putOrdine1 extends Fragment {
         });
     }
 
-    private void putOrdine1(Spinner spPizza1, Spinner spPizza2, Spinner spPizza3, Spinner spPizza4, Spinner spPizza5, Spinner spFritti1, Spinner spFritti2, Spinner spFritti3, Spinner spFritti4, Spinner spFritti5, Spinner spBibite1, Spinner spBibite2, Spinner spBibite3, Spinner spBibite4, Spinner spBibite5) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine1) + "?pizza1=" + spPizza1.getSelectedItem().toString() + "&pizza2=" + spPizza2.getSelectedItem().toString() + "&pizza3=" + spPizza3.getSelectedItem().toString() + "&pizza4=" + spPizza4.getSelectedItem().toString() + "&pizza5=" + spPizza5.getSelectedItem().toString() + "&fritti1=" + spFritti1.getSelectedItem().toString() + "&fritti2=" + spFritti2.getSelectedItem().toString() + "&fritti3=" + spFritti3.getSelectedItem().toString() + "&fritti4=" + spFritti4.getSelectedItem().toString() + "&fritti5=" + spFritti5.getSelectedItem().toString() + "&bibite1=" + spBibite1.getSelectedItem().toString() + "&bibite2=" + spBibite2.getSelectedItem().toString() + "&bibite3=" + spBibite3.getSelectedItem().toString() + "&bibite4=" + spBibite4.getSelectedItem().toString() + "&bibite5=" + spBibite5.getSelectedItem().toString());
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("POST");
-                    BufferedReader reader = new BufferedReader(new java.io.InputStreamReader(connection.getInputStream()));
-                    connection.connect();
+    private void putOrdine() {
+        String nome_cliente = bundle.getString("nome_cliente");
+        String orario_convertito = bundle.getString("orario_convertito");
+        String recapito = bundle.getString("recapito");
+        String indirizzo = bundle.getString("indirizzo");
 
-                    Handler mainHandler = new Handler(getActivity().getMainLooper());
-                    Runnable myRunnable = new Runnable() {
-                        @Override
-                        public void run() { }
-                    };
-                    mainHandler.post(myRunnable);
-                    reader.close();
-                } catch (ProtocolException e) {
-                    e.printStackTrace();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        executor.execute(() -> {
+            try {
+                URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine) + "?nome_cliente=" + nome_cliente + "&orario=" + orario_convertito + "&recapito=" + recapito + "&indirizzo=" + indirizzo);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line = reader.readLine();
+                bundle.putString("ordine", line);
+                connection.connect();
+                reader.close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void putOrdine1(Spinner spPizza1, Spinner spPizza2, Spinner spPizza3, Spinner spPizza4, Spinner spPizza5, Spinner spFritti1, Spinner spFritti2, Spinner spFritti3, Spinner spFritti4, Spinner spFritti5, Spinner spBibite1, Spinner spBibite2, Spinner spBibite3, Spinner spBibite4, Spinner spBibite5) {
+        executor.execute(() -> {
+            try {
+                URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine1) + spPizza1.getSelectedItem().toString() + "&pizza2=" + spPizza2.getSelectedItem().toString() + "&pizza3=" + spPizza3.getSelectedItem().toString() + "&pizza4=" + spPizza4.getSelectedItem().toString() + "&pizza5=" + spPizza5.getSelectedItem().toString() + "&fritti1=" + spFritti1.getSelectedItem().toString() + "&fritti2=" + spFritti2.getSelectedItem().toString() + "&fritti3=" + spFritti3.getSelectedItem().toString() + "&fritti4=" + spFritti4.getSelectedItem().toString() + "&fritti5=" + spFritti5.getSelectedItem().toString() + "&bibite1=" + spBibite1.getSelectedItem().toString() + "&bibite2=" + spBibite2.getSelectedItem().toString() + "&bibite3=" + spBibite3.getSelectedItem().toString() + "&bibite4=" + spBibite4.getSelectedItem().toString() + "&bibite5=" + spBibite5.getSelectedItem().toString());
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                connection.connect();
+                reader.close();
+                Handler mainHandler = new Handler(getActivity().getMainLooper());
+                Runnable myRunnable = () -> { };
+                mainHandler.post(myRunnable);
+                reader.close();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
