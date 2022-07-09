@@ -48,30 +48,28 @@ public class getOrdine extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
-		String nomeOrdine = request.getParameter("nomeOrdine");
-		
-		try {
-			if(nomeOrdine != null) {
-				ArrayList<Ordine> allOrdine = dao.loadOrdine();
-				JSONArray allOrdineJson = new JSONArray(allOrdine);
-				out.print(allOrdineJson.toString());
+
+		try{
+			ArrayList<Ordine> allOrdine = dao.loadOrdine();
+			if (allOrdine.toString().equals("[]"))
+			{
+				System.out.println("Ordine vuoto");
+				response.setStatus(400);
+				out.print("Ordine vuoto 1\n");
 				out.flush();
 			} else {
-				ArrayList<Ordine> allOrdine = dao.loadOrdine();
+				response.setStatus(200);
 				JSONArray allOrdineJson = new JSONArray(allOrdine);
-				out.print(allOrdineJson.toString());
+				out.print(allOrdineJson);
 				out.flush();
 			}
-		}
-		catch(SQLException err) {
-			err.printStackTrace();
+		} catch (SQLException e) {
+			out.print("Ordine vuoto 2\n");
+			out.flush();
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -84,7 +82,6 @@ public class getOrdine extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		String id_ordine = request.getParameter("id_ordine");
-		String modalita = request.getParameter("modalita");
 		String nome_cliente = request.getParameter("nome_cliente");
 		String orario = request.getParameter("orario");
 		String recapito = request.getParameter("recapito");
@@ -92,11 +89,10 @@ public class getOrdine extends HttpServlet {
 		String confermato = request.getParameter("confermato");
 
 		try {
-			dao.inserisciOrdine(new Ordine(0, modalita, nome_cliente, orario, recapito, indirizzo, false));
+			dao.inserisciOrdine(new Ordine(0, nome_cliente, orario, recapito, indirizzo, false));
 			response.setStatus(200);
 			out.print("{\r\n"
 					+ "	\"id_ordine\": \"" + id_ordine + "\",\r\n"
-					+ "	\"modalita\": \"" + modalita + "\",\r\n"
 					+ "	\"nomeCliente\": \"" + nome_cliente + "\",\r\n"
 					+ "	\"orario\": \"" + orario + "\",\r\n"
 					+ "	\"recapito\": \"" + recapito + "\",\r\n"
@@ -119,14 +115,19 @@ public class getOrdine extends HttpServlet {
 
 		String id_ordine = request.getParameter("id_ordine");
 		try {
-			dao.deleteOrdine(Integer.parseInt(id_ordine));
-			out.print("Ordine rimosso correttamente");
-			out.flush();
+			doGet(request, response);
+			if (response.getStatus() == 200) {
+				dao.deleteOrdine(Integer.parseInt(id_ordine));
+				out.print("Ordine rimosso correttamente");
+				out.flush();
+			} else {
+				out.print("Ordine non rimosso - Try");
+				out.flush();
+			}
+
 		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
-			response.setStatus(404);
-			out.print("Ordine non rimosso correttamente");
-			out.flush();
+			System.out.println("Ordine non rimosso - Catch");
 		}
 	}
 	

@@ -133,23 +133,23 @@ public class getOrdine extends Fragment {
                     reader.close();
                     Handler handler = new Handler(getContext().getMainLooper());
 
-                    if (line.equals("[]"))
-                    {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() { Toast.makeText(getContext(), "Ordine non trovato", Toast.LENGTH_SHORT).show(); }
-                        });
-                    } else {
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() { NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_getOrdine1, bundle); }
-                        };
-                        handler.post(runnable);
-                    }
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() { NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_getOrdine1, bundle); }
+                    };
+                    handler.post(runnable);
+
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
+                    Log.d("getOrdine1", "run: ordine non trovato_MalformedURLException");
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.d("getOrdine1", "run: ordine non trovato_Exception");
+                    Handler handler = new Handler(getContext().getMainLooper());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getContext(), "Ordine non trovato", Toast.LENGTH_SHORT).show(); }
+                    });
                 }
             }
         });
@@ -191,6 +191,12 @@ public class getOrdine extends Fragment {
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.d("getOrdine1", "run: ordine non eliminato_Exception");
+                    Handler handler = new Handler(getContext().getMainLooper());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getContext(), "Ordine non trovato", Toast.LENGTH_SHORT).show(); }
+                    });
                 }
             }
         });

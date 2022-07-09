@@ -48,30 +48,24 @@ public class getFritti extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
-		String nomeFritti = request.getParameter("nomeFritti");
-		
-		try {
-			if(nomeFritti != null) {
-				ArrayList<Fritti> allFritti = dao.loadFritti();
-				JSONArray allFrittiJson = new JSONArray(allFritti);
-				out.print(allFrittiJson.toString());
-				out.flush();
+
+		try{
+			ArrayList<Fritti> allFritti = dao.loadFritti();
+			if (allFritti.toString().equals("[]"))
+			{
+				System.out.println("Inventario fritti vuoto");
+				response.setStatus(400);
 			} else {
-				ArrayList<Fritti> allFritti = dao.loadFritti();
+				response.setStatus(200);
 				JSONArray allFrittiJson = new JSONArray(allFritti);
-				out.print(allFrittiJson.toString());
+				out.print(allFrittiJson);
 				out.flush();
 			}
-		}
-		catch(SQLException err) {
-			err.printStackTrace();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
 

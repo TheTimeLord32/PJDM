@@ -48,32 +48,24 @@ public class getPizze extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
-		String nomePizza = request.getParameter("nomePizza");
-		
-		try {
-			if(nomePizza != null) {
-				ArrayList<Pizze> allPizze = dao.loadPizze();
-				JSONArray allPizzeJson = new JSONArray(allPizze);
-				out.print(allPizzeJson.toString());
-				out.flush();
+		try{
+			ArrayList<Pizze> allPizze = dao.loadPizze();
+			if (allPizze.toString().equals("[]"))
+			{
+				System.out.println("Inventario pizze vuoto");
+				response.setStatus(400);
 			} else {
-				ArrayList<Pizze> allPizze = dao.loadPizze();
+				response.setStatus(200);
 				JSONArray allPizzeJson = new JSONArray(allPizze);
-				out.print(allPizzeJson.toString());
+				out.print(allPizzeJson);
 				out.flush();
 			}
-		}
-		catch(SQLException err) {
-			err.printStackTrace();
-		}
-		 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}		 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

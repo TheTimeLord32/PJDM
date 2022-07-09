@@ -108,7 +108,7 @@ public class putOrdine extends Fragment {
 
                     if (nomeValido && orario_convertito.length() == 5 && recapitoValido && indirizzoValido) {
                         putOrdine(nome_cliente, orario_convertito, recapito, indirizzo);
-                        NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
+
                     }
                 } catch (Exception e) {
                     binding.etCliente.setError("Campo vuoto o incorretto. Controllare");
@@ -138,7 +138,9 @@ public class putOrdine extends Fragment {
                     Handler mainHandler = new Handler(getActivity().getMainLooper());
                     Runnable myRunnable = new Runnable() {
                         @Override
-                        public void run() { }
+                        public void run() {
+                            NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
+                        }
                     };
                     mainHandler.post(myRunnable);
                     reader.close();

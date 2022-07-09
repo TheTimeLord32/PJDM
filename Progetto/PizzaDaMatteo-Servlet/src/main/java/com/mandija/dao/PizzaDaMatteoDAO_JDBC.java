@@ -105,14 +105,13 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		
 		while(rsetOrdine.next()) {
 			int id_ordine = rsetOrdine.getInt(1);
-			String modalita = rsetOrdine.getString(2);
-			String nomeCliente = rsetOrdine.getString(3);
-			String orario = rsetOrdine.getString(4);
-			String recapito = rsetOrdine.getString(5);
-			String indirizzo = rsetOrdine.getString(6);
-			boolean confermato = rsetOrdine.getBoolean(7);
+			String nomeCliente = rsetOrdine.getString(2);
+			String orario = rsetOrdine.getString(3);
+			String recapito = rsetOrdine.getString(4);
+			String indirizzo = rsetOrdine.getString(5);
+			boolean confermato = rsetOrdine.getBoolean(6);
 			
-			res.add(new Ordine(id_ordine, modalita, nomeCliente, orario, recapito, indirizzo, confermato));
+			res.add(new Ordine(id_ordine, nomeCliente, orario, recapito, indirizzo, confermato));
 		}
 		rsetOrdine.close();
 		stmt.close();
@@ -130,33 +129,27 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		ResultSet rsetOrdine1 = stmt.executeQuery(query);
 		
 		while(rsetOrdine1.next()) {
-			int numPizze = rsetOrdine1.getInt(2);
-			int numFritti = rsetOrdine1.getInt(8);
-			int numBibite = rsetOrdine1.getInt(14);
+			String pizza1 = rsetOrdine1.getString(2);
+			String pizza2 = rsetOrdine1.getString(3);
+			String pizza3 = rsetOrdine1.getString(4);
+			String pizza4 = rsetOrdine1.getString(5);
+			String pizza5 = rsetOrdine1.getString(6);
 
-			String pizza1 = rsetOrdine1.getString(3);
-			String pizza2 = rsetOrdine1.getString(4);
-			String pizza3 = rsetOrdine1.getString(5);
-			String pizza4 = rsetOrdine1.getString(6);
-			String pizza5 = rsetOrdine1.getString(7);
+			String fritti1 = rsetOrdine1.getString(7);
+			String fritti2 = rsetOrdine1.getString(8);
+			String fritti3 = rsetOrdine1.getString(9);
+			String fritti4 = rsetOrdine1.getString(10);
+			String fritto5 = rsetOrdine1.getString(11);
 
-			String fritti1 = rsetOrdine1.getString(9);
-			String fritti2 = rsetOrdine1.getString(10);
-			String fritti3 = rsetOrdine1.getString(11);
-			String fritti4 = rsetOrdine1.getString(12);
-			String fritto5 = rsetOrdine1.getString(13);
+			String bibite1 = rsetOrdine1.getString(12);
+			String bibite2 = rsetOrdine1.getString(13);
+			String bibite3 = rsetOrdine1.getString(14);
+			String bibite4 = rsetOrdine1.getString(15);
+			String bibite5 = rsetOrdine1.getString(16);
 
-			String bibite1 = rsetOrdine1.getString(15);
-			String bibite2 = rsetOrdine1.getString(16);
-			String bibite3 = rsetOrdine1.getString(17);
-			String bibite4 = rsetOrdine1.getString(18);
-			String bibite5 = rsetOrdine1.getString(19);
+			boolean confermato = rsetOrdine1.getBoolean(17);
 			
-			String note = rsetOrdine1.getString(20);
-			int conto = rsetOrdine1.getInt(21);
-			boolean confermato = rsetOrdine1.getBoolean(22);
-			
-			res.add(new Ordine1(id_ordine, numPizze, numFritti, numBibite, conto, pizza1, pizza2, pizza3, pizza4, pizza5, fritti1, fritti2, fritti3, fritti4, fritto5, bibite1, bibite2, bibite3, bibite4, bibite5, note, confermato));
+			res.add(new Ordine1(id_ordine, pizza1, pizza2, pizza3, pizza4, pizza5, fritti1, fritti2, fritti3, fritti4, fritto5, bibite1, bibite2, bibite3, bibite4, bibite5,  confermato));
 		}
 		rsetOrdine1.close();
 		stmt.close();
@@ -167,17 +160,16 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// inserimento ordine
 	@Override
 	public int inserisciOrdine(Ordine ordine) throws SQLException {
-		String insert = "INSERT INTO ordine VALUES (?, ?, ?, ?, ?, ?, ?);";
+		String insert = "INSERT INTO ordine VALUES (?, ?, ?, ?, ?, ?);";
 		
 		PreparedStatement pstmt = conn.prepareStatement(insert);
 		
 		pstmt.setInt(1, ordine.getId_ordine());
-		pstmt.setString(2, ordine.getModalita());
-		pstmt.setString(3, ordine.getNomeCliente());
-		pstmt.setString(4, ordine.getOrario());
-		pstmt.setString(5, ordine.getRecapito());
-		pstmt.setString(6, ordine.getIndirizzo());
-		pstmt.setBoolean(7, ordine.getConfermato());
+		pstmt.setString(2, ordine.getNomeCliente());
+		pstmt.setString(3, ordine.getOrario());
+		pstmt.setString(4, ordine.getRecapito());
+		pstmt.setString(5, ordine.getIndirizzo());
+		pstmt.setBoolean(6, ordine.getConfermato());
 		
 		int affectedRows = pstmt.executeUpdate();
 		pstmt.close();
@@ -188,32 +180,27 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// inserimento ordine1
 	@Override
 	public int inserisciOrdine1(Ordine1 ordine1) throws SQLException {
-		String insert = "INSERT INTO ordine1 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String insert = "INSERT INTO ordine1 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		PreparedStatement pstmt = conn.prepareStatement(insert);
 
 		pstmt.setInt(1, ordine1.getId_ordine());
-		pstmt.setInt(2, ordine1.getnum_pizze());
-		pstmt.setString(3, ordine1.getPizza1());
-		pstmt.setString(4, ordine1.getPizza2());
-		pstmt.setString(5, ordine1.getPizza3());
-		pstmt.setString(6, ordine1.getPizza4());
-		pstmt.setString(7, ordine1.getPizza5());
-		pstmt.setInt(8, ordine1.getnum_fritti());
-		pstmt.setString(9, ordine1.getFritti1());
-		pstmt.setString(10, ordine1.getFritti2());
-		pstmt.setString(11, ordine1.getFritti3());
-		pstmt.setString(12, ordine1.getFritti4());
-		pstmt.setString(13, ordine1.getFritti5());
-		pstmt.setInt(14, ordine1.getnum_bibite());
-		pstmt.setString(15, ordine1.getBibite1());
-		pstmt.setString(16, ordine1.getBibite2());
-		pstmt.setString(17, ordine1.getBibite3());
-		pstmt.setString(18, ordine1.getBibite4());
-		pstmt.setString(19, ordine1.getBibite5());
-		pstmt.setString(20, ordine1.getNote());
-		pstmt.setInt(21, ordine1.getConto());
-		pstmt.setBoolean(22, ordine1.getConfermato());
+		pstmt.setString(2, ordine1.getPizza1());
+		pstmt.setString(3, ordine1.getPizza2());
+		pstmt.setString(4, ordine1.getPizza3());
+		pstmt.setString(5, ordine1.getPizza4());
+		pstmt.setString(6, ordine1.getPizza5());
+		pstmt.setString(7, ordine1.getFritti1());
+		pstmt.setString(8, ordine1.getFritti2());
+		pstmt.setString(9, ordine1.getFritti3());
+		pstmt.setString(10, ordine1.getFritti4());
+		pstmt.setString(11, ordine1.getFritti5());
+		pstmt.setString(12, ordine1.getBibite1());
+		pstmt.setString(13, ordine1.getBibite2());
+		pstmt.setString(14, ordine1.getBibite3());
+		pstmt.setString(15, ordine1.getBibite4());
+		pstmt.setString(16, ordine1.getBibite5());
+		pstmt.setBoolean(17, ordine1.getConfermato());
 
 		int affectedRows = pstmt.executeUpdate();
 		pstmt.close();

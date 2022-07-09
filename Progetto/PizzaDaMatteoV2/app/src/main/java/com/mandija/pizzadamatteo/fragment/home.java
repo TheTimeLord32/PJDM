@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -161,11 +162,17 @@ public class home extends Fragment {
                 } catch (ConnectException e) {
                     new Handler(getContext().getMainLooper()).post(new Runnable() {
                         @Override
-                        public void run() { Toast.makeText(getContext(), "Mostra ordine non disponibile", Toast.LENGTH_SHORT).show(); }
+                        public void run() { Toast.makeText(getContext(), "Connessione assente. Riprovare", Toast.LENGTH_SHORT).show(); }
                     });
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.d("getOrdine", "run: ordine non trovato_Exception");
+                    Handler handler = new Handler(getContext().getMainLooper());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getContext(), "Ordini non disponibili", Toast.LENGTH_SHORT).show(); }
+                    });
                 }
             }
         });

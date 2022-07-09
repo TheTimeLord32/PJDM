@@ -48,30 +48,24 @@ public class getBibite extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		String nomeBibite = request.getParameter("nomeBibite");
-		
-		try {
-			if(nomeBibite != null) {
-				ArrayList<Bibite> allBibite = dao.loadBibite();
-				JSONArray allBibiteJson = new JSONArray(allBibite);
-				out.print(allBibiteJson.toString());
-				out.flush();
+		try{
+			ArrayList<Bibite> allBibite = dao.loadBibite();
+			if (allBibite.toString().equals("[]"))
+			{
+				System.out.println("Inventario bibite vuoto");
+				response.setStatus(400);
 			} else {
-				ArrayList<Bibite> allBibite = dao.loadBibite();
+				response.setStatus(200);
 				JSONArray allBibiteJson = new JSONArray(allBibite);
-				out.print(allBibiteJson.toString());
+				out.print(allBibiteJson);
 				out.flush();
 			}
-		}
-		catch(SQLException err) {
-			err.printStackTrace();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
 

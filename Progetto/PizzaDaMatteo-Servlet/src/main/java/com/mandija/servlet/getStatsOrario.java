@@ -46,19 +46,24 @@ public class getStatsOrario extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
 		try{
-			ArrayList<StatsOrario> allStats = dao.getStatsOrario();
-			JSONArray timeStatsJSON = new JSONArray(allStats);
-			out.print(timeStatsJSON.toString());
-			out.flush();
-		} catch(SQLException err){
-			err.printStackTrace();
-		} 
+			ArrayList<StatsOrario> allStatsOrario = dao.getStatsOrario();
+			if (allStatsOrario.toString().equals("[]"))
+			{
+				System.out.println("Inventario statistiche orario vuoto");
+				response.setStatus(400);
+			} else {
+				response.setStatus(200);
+				JSONArray allStatsOrarioJson = new JSONArray(allStatsOrario);
+				out.print(allStatsOrarioJson);
+				out.flush();
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

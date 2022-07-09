@@ -1,14 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="5.0">
-  <display-name>PizzaDaMatteo-Servlet</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>Archetype Created Web Application</display-name>
+
   <context-param>
     <param-name>ip</param-name>
     <param-value>localhost</param-value>
@@ -23,14 +17,15 @@
   </context-param>
   <context-param>
     <param-name>userName</param-name>
-    <param-value>root</param-value>
+    <param-value>utente</param-value>
   </context-param>
   <context-param>
     <param-name>userPwd</param-name>
     <param-value>7631</param-value>
   </context-param>
+
   <servlet>
-    <description></description>
+    <description/>
     <display-name>getPizze</display-name>
     <servlet-name>getPizze</servlet-name>
     <servlet-class>com.mandija.servlet.getPizze</servlet-class>
@@ -40,7 +35,7 @@
     <url-pattern>/getPizze</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>getFritti</display-name>
     <servlet-name>getFritti</servlet-name>
     <servlet-class>com.mandija.servlet.getFritti</servlet-class>
@@ -50,7 +45,7 @@
     <url-pattern>/getFritti</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>getBibite</display-name>
     <servlet-name>getBibite</servlet-name>
     <servlet-class>com.mandija.servlet.getBibite</servlet-class>
@@ -60,7 +55,7 @@
     <url-pattern>/getBibite</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>getOrdine</display-name>
     <servlet-name>getOrdine</servlet-name>
     <servlet-class>com.mandija.servlet.getOrdine</servlet-class>
@@ -70,7 +65,7 @@
     <url-pattern>/getOrdine</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>getOrdine1</display-name>
     <servlet-name>getOrdine1</servlet-name>
     <servlet-class>com.mandija.servlet.getOrdine1</servlet-class>
@@ -80,7 +75,7 @@
     <url-pattern>/getOrdine1</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>getStatsOrario</display-name>
     <servlet-name>getStatsOrario</servlet-name>
     <servlet-class>com.mandija.servlet.getStatsOrario</servlet-class>
@@ -90,7 +85,7 @@
     <url-pattern>/getStatsOrario</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
+    <description/>
     <display-name>getStatsPizze</display-name>
     <servlet-name>getStatsPizze</servlet-name>
     <servlet-class>com.mandija.servlet.getStatsPizze</servlet-class>

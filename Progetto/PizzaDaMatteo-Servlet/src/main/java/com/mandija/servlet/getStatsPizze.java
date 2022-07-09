@@ -1,5 +1,6 @@
 package com.mandija.servlet;
 
+import com.mandija.entity.StatsPizze;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -48,19 +49,24 @@ public class getStatsPizze extends HttpServlet {
 	}
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
-    	PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
 		try{
-			ArrayList<StatsPizze> allStats = dao.getStatsPizze();
-			JSONArray pizzeStatsJSON = new JSONArray(allStats);
-			out.print(pizzeStatsJSON.toString());
-			out.flush();
-		} catch(SQLException err){
-			err.printStackTrace();
+			ArrayList<StatsPizze> allStatsPizze = dao.getStatsPizze();
+			if (allStatsPizze.toString().equals("[]"))
+			{
+				System.out.println("Inventario statistiche pizze vuoto");
+				response.setStatus(400);
+			} else {
+				response.setStatus(200);
+				JSONArray allStatsPizzeJson = new JSONArray(allStatsPizze);
+				out.print(allStatsPizzeJson);
+				out.flush();
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }
