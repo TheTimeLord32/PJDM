@@ -100,30 +100,10 @@ public class getOrdine1 extends HttpServlet {
 		try {
 			dao.inserisciOrdine1(new Ordine1(0, pizza1, pizza2, pizza3, pizza4, pizza5, fritti1, fritti2, fritti3, fritti4, fritti5, bibite1, bibite2, bibite3, bibite4, bibite5, false));
 			response.setStatus(200);
-			out.print("{\r\n"
-					+ "	\"id_ordine\": \"" + id_ordine + "\",\r\n"
-					+ "	\"pizza1\": \"" + pizza1 + "\",\r\n"
-					+ "	\"pizza2\": \"" + pizza2 + "\",\r\n"
-					+ "	\"pizza3\": \"" + pizza3 + "\",\r\n"
-					+ "	\"pizza4\": \"" + pizza4 + "\",\r\n"
-					+ "	\"pizza5\": \"" + pizza5 + "\",\r\n"
-					+ "	\"fritti1\": \"" + fritti1 + "\",\r\n"
-					+ "	\"fritti2\": \"" + fritti2 + "\",\r\n"
-					+ "	\"fritti3\": \"" + fritti3 + "\",\r\n"
-					+ "	\"fritti4\": \"" + fritti4 + "\",\r\n"
-					+ "	\"fritti5\": \"" + fritti5 + "\",\r\n"
-					+ "	\"bibite1\": \"" + bibite1 + "\",\r\n"
-					+ "	\"bibite2\": \"" + bibite2 + "\",\r\n"
-					+ "	\"bibite3\": \"" + bibite3 + "\",\r\n"
-					+ "	\"bibite4\": \"" + bibite4 + "\",\r\n"
-					+ "	\"bibite5\": \"" + bibite5 + "\",\r\n"
-					+ "	\"confermato\": \"" + confermato + "\",\r\n"
-					+ "}");
+			out.print("Ordine inserito\n");
 		} catch (SQLException err) {
 			response.setStatus(505);
-			out.print("{\r\n"
-					+ "	\"error\": \"Ordine non inserito\"\r\n"
-					+ "}");
+			out.print("Errore inserimento ordine\n");
 			err.printStackTrace();
 		}
 	}

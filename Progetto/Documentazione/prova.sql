@@ -170,3 +170,9 @@ insert into ricetta values
 
 select * from ricetta, pizzanuova, ingredientinuova where ricetta.codice=pizzanuova.codice and ricetta.id=ingredientinuova.id; 
 /* trovo la pizza con i suoi ingredienti */
+
+create procedure resetPizza()
+update pizza
+set quantita = 0;
+
+call resetPizza();

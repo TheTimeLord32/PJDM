@@ -59,7 +59,8 @@ ApertureScacchi
 Java/.metadata
 
 !Progetto/PizzaDaMatteo-Servlet/.idea/.gitignore
-Progetto/PizzaDaMatteo-Servlet/target
+
+Progetto/PizzaDaMatteo-Servlet/target/
 
 !Progetto/PizzaDaMatteoV2/.idea/.gitignore
 !Progetto/PizzaDaMatteoV2/.gitignore

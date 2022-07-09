@@ -38,7 +38,7 @@ public class home extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private FragmentHomeBinding binding;
-
+    private String abConn = "Connessione assente. Riprovare";
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -110,8 +110,8 @@ public class home extends Fragment {
                 home.this.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (connected == true) { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_putOrdine);
-                        } else { Toast.makeText(getContext(), "Inserimento ordine non disponibile", Toast.LENGTH_SHORT).show(); }
+                        if (connected) { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_putOrdine);
+                        } else { Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show(); }
                     }
                 });
             }
@@ -150,7 +150,6 @@ public class home extends Fragment {
                     bundle.putString("line", line);
                     reader.close();
 
-                    // main thread
                     Handler handler = new Handler(getContext().getMainLooper());
                     Runnable runnable = new Runnable() {
                         @Override
@@ -162,16 +161,14 @@ public class home extends Fragment {
                 } catch (ConnectException e) {
                     new Handler(getContext().getMainLooper()).post(new Runnable() {
                         @Override
-                        public void run() { Toast.makeText(getContext(), "Connessione assente. Riprovare", Toast.LENGTH_SHORT).show(); }
+                        public void run() { Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show(); }
                     });
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.d("getOrdine", "run: ordine non trovato_Exception");
-                    Handler handler = new Handler(getContext().getMainLooper());
-                    handler.post(new Runnable() {
+                    new Handler(getContext().getMainLooper()).post(new Runnable() {
                         @Override
-                        public void run() { Toast.makeText(getContext(), "Ordini non disponibili", Toast.LENGTH_SHORT).show(); }
+                        public void run() { Toast.makeText(getContext(), "Tabella ordine vuota", Toast.LENGTH_SHORT).show(); }
                     });
                 }
             }
@@ -188,31 +185,22 @@ public class home extends Fragment {
                     String line = reader.readLine();
                     bundle.putString("line", line);
                     reader.close();
-                    Handler handler = new Handler(getContext().getMainLooper());
 
-                    if (line.equals("[]"))
-                    {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() { Toast.makeText(getContext(), "Statistiche orario non disponibili", Toast.LENGTH_SHORT).show(); }
-                        });
-                    } else {
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsOrario, bundle); }
-                        };
-                        handler.post(runnable);
-                    }
+                    NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsOrario, bundle);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (ConnectException e) {
                     new Handler(getContext().getMainLooper()).post(new Runnable() {
                         @Override
-                        public void run() { Toast.makeText(getContext(), "Statistiche orario non disponibili", Toast.LENGTH_SHORT).show(); }
+                        public void run() { Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show(); }
                     });
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    new Handler(getContext().getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getContext(), "Statistiche orario vuote", Toast.LENGTH_SHORT).show(); }
+                    });
                 }
             }
         });
@@ -228,31 +216,22 @@ public class home extends Fragment {
                     String line = reader.readLine();
                     bundle.putString("line", line);
                     reader.close();
-                    Handler handler = new Handler(getContext().getMainLooper());
 
-                    if (line.equals("[]"))
-                    {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() { Toast.makeText(getContext(), "Statistiche pizze non disponibili", Toast.LENGTH_SHORT).show(); }
-                        });
-                    } else {
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() { NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsPizze, bundle); }
-                        };
-                        handler.post(runnable);
-                    }
+                    NavHostFragment.findNavController(home.this).navigate(R.id.action_home_to_getStatsPizze, bundle);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (ConnectException e) {
                     new Handler(getContext().getMainLooper()).post(new Runnable() {
                         @Override
-                        public void run() { Toast.makeText(getContext(), "Statistiche pizze non disponibili", Toast.LENGTH_SHORT).show(); }
+                        public void run() { Toast.makeText(getContext(), abConn, Toast.LENGTH_SHORT).show(); }
                     });
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    new Handler(getContext().getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getContext(), "Statistiche pizze vuote", Toast.LENGTH_SHORT).show(); }
+                    });
                 }
             }
         });

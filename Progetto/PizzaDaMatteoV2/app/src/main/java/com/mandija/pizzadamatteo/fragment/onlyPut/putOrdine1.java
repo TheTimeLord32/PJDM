@@ -114,7 +114,7 @@ public class putOrdine1 extends Fragment {
             @Override
             public void onClick(View view) {
                 if (spPizza1.getSelectedItem().toString().equals("") && spPizza2.getSelectedItem().toString().equals("") && spPizza3.getSelectedItem().toString().equals("") && spPizza3.getSelectedItem().toString().equals("") && spPizza4.getSelectedItem().toString().equals("") && spPizza5.getSelectedItem().toString().equals("") && spFritti1.getSelectedItem().toString().equals("") && spFritti2.getSelectedItem().toString().equals("") && spFritti3.getSelectedItem().toString().equals("") && spFritti4.getSelectedItem().toString().equals("") && spFritti5.getSelectedItem().toString().equals("") && spBibite1.getSelectedItem().toString().equals("") && spBibite2.getSelectedItem().toString().equals("") && spBibite3.getSelectedItem().toString().equals("") && spBibite4.getSelectedItem().toString().equals("") && spBibite5.getSelectedItem().toString().equals("")) {
-                    Toast.makeText(getContext(), "Ordine vuoto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Ordine vuoto.\nInserire almeno un elemento", Toast.LENGTH_SHORT).show();
                 } else {
                     putOrdine1(spPizza1, spPizza2, spPizza3, spPizza4, spPizza5, spFritti1, spFritti2, spFritti3, spFritti4, spFritti5, spBibite1, spBibite2, spBibite3, spBibite4, spBibite5);
                     NavHostFragment.findNavController(putOrdine1.this).navigate(R.id.action_putOrdine1_to_home);

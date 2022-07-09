@@ -64,9 +64,7 @@ public class ListaOrdine1Adapter extends RecyclerView.Adapter<ListaOrdine1Adapte
 
         for (int i = 0; i < array.length(); i++) {
             try {
-                Log.d("aggiungiJSON", "aggiungi1: prima ADD");
                 dati.add(new ListaOrdine1Elemento(array.getJSONObject(i).getInt("id_ordine"), array.getJSONObject(i).getString("pizza1"), array.getJSONObject(i).getString("pizza2"), array.getJSONObject(i).getString("pizza3"), array.getJSONObject(i).getString("pizza4"), array.getJSONObject(i).getString("pizza5"), array.getJSONObject(i).getString("fritti1"), array.getJSONObject(i).getString("fritti2"), array.getJSONObject(i).getString("fritti3"), array.getJSONObject(i).getString("fritti4"), array.getJSONObject(i).getString("fritti5"), array.getJSONObject(i).getString("bibite1"), array.getJSONObject(i).getString("bibite2"), array.getJSONObject(i).getString("bibite3"), array.getJSONObject(i).getString("bibite4"), array.getJSONObject(i).getString("bibite5")));
-                Log.d("aggiungiJSON", "aggiungi1: dopo ADD");
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(context, "Errore nella stampa", Toast.LENGTH_SHORT).show();

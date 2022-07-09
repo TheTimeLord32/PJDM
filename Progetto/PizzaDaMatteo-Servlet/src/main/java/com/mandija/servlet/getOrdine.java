@@ -91,20 +91,11 @@ public class getOrdine extends HttpServlet {
 		try {
 			dao.inserisciOrdine(new Ordine(0, nome_cliente, orario, recapito, indirizzo, false));
 			response.setStatus(200);
-			out.print("{\r\n"
-					+ "	\"id_ordine\": \"" + id_ordine + "\",\r\n"
-					+ "	\"nomeCliente\": \"" + nome_cliente + "\",\r\n"
-					+ "	\"orario\": \"" + orario + "\",\r\n"
-					+ "	\"recapito\": \"" + recapito + "\",\r\n"
-					+ "	\"indirizzo\": \"" + indirizzo + "\",\r\n"
-					+ "	\"confermato\": " + confermato +"\r\n"
-					+ "}");
+			out.print("Ordine inserito\n");
 		} catch (SQLException err) {
-				response.setStatus(505);
-				out.print("{\r\n"
-						+ "	\"error\": \"Ordine non inserito\"\r\n"
-						+ "}");
-				err.printStackTrace();
+			response.setStatus(505);
+			out.print("Errore inserimento ordine\n");
+			err.printStackTrace();
 		}
 	}
 
