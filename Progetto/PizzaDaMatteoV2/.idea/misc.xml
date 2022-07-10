@@ -8,15 +8,18 @@
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine.xml" value="0.33" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine1.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine2.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine_nuovo.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_stats.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_stats_orario.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_stats_pizze.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_home2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_put_ordine.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_put_ordine1.xml" value="0.29333333333333333" />
-        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_put_ordine2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_put_ordine1.xml" value="0.75" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_put_ordine2.xml" value="0.25" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getordine1_row.xml" value="0.5" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getordine2_row.xml" value="0.67" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getordine_row.xml" value="0.67" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getstats_row.xml" value="0.67" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getstatsorario_row.xml" value="0.67" />

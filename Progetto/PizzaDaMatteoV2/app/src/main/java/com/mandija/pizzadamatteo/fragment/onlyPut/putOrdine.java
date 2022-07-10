@@ -38,6 +38,7 @@ public class putOrdine extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private FragmentPutOrdineBinding binding;
+    private String msgErrore = "Campo vuoto o incorretto, controllare.";
     private Bundle bundle = new Bundle();
     private Executor executor = Executors.newSingleThreadExecutor();
 
@@ -95,33 +96,80 @@ public class putOrdine extends Fragment {
 
                 boolean nomeValido = nome_cliente.matches("[a-zA-Z]{3,50}+");
                 boolean recapitoValido = recapito.matches("[0-9]{10}+");
-                boolean indirizzoValido = indirizzo.matches("[a-zA-Z0-9]{5,50}+");
+                boolean indirizzoValido = indirizzo.matches("[a-zA-Z0-9 ]{5,50}+");
 
                 try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
                     LocalTime time = formatter.parse(orario, LocalTime::from);
                     String orario_convertito = time.toString();
 
-                    if (!nomeValido || nome_cliente.isEmpty()) { binding.etCliente.setError("Nome non valido, inserire solo caratteri alfabetici.\nMinimo 3, massimo 50 caratteri."); }
-                    if (!recapitoValido || recapito.isEmpty()) { binding.etRecapito.setError("Recapito non valido, inserire solo numeri.\nMassimo 10 cifre."); }
-                    if (!indirizzoValido || indirizzo.isEmpty()) { binding.etIndirizzo.setError("Indirizzo non valido, inserire solo caratteri alfabetici e numeri.\nMinimo 5, massimo 50 caratteri."); }
+                    if (!nomeValido || nome_cliente.isEmpty()) { binding.etCliente.setError(msgErrore + "\nInserire solo caratteri alfabetici: minimo 3, massimo 50 caratteri."); }
+                    if (!recapitoValido || recapito.isEmpty()) { binding.etRecapito.setError(msgErrore + "\nInserire solo cifre: 10 cifre."); }
+                    if (!indirizzoValido || indirizzo.isEmpty()) { binding.etIndirizzo.setError(msgErrore + "\nInserire solo caratteri alfabetici e cifre.\nMinimo 5, massimo 50 caratteri."); }
 
                     if (nomeValido && orario_convertito.length() == 5 && recapitoValido && indirizzoValido) {
                         bundle.putString("nome_cliente", nome_cliente);
                         bundle.putString("orario_convertito", orario_convertito);
                         bundle.putString("recapito", recapito);
                         bundle.putString("indirizzo", indirizzo);
-                        NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
+                        putOrdine(nome_cliente, orario_convertito, recapito, indirizzo);
+                        //NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
                     }
                 } catch (Exception e) {
-                    binding.etCliente.setError("Campo vuoto o incorretto. Controllare");
-                    binding.etOrario.setError("Campo vuoto o incorretto.\nFormato corretto: HH:mm");
-                    binding.etRecapito.setError("Campo vuoto o incorretto. Controllare");
-                    binding.etIndirizzo.setError("Campo vuoto o incorretto. Controllare");
+                    binding.etCliente.setError(msgErrore);
+                    binding.etOrario.setError(msgErrore + "\nFormato corretto: HH:mm");
+                    binding.etRecapito.setError(msgErrore);
+                    binding.etIndirizzo.setError(msgErrore);
                     e.printStackTrace();
                 }
             }
         });
         return binding.getRoot();
+    }
+
+    private void putOrdine(String nome_cliente, String orario, String recapito, String indirizzo) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine) + "?nome_cliente=" + nome_cliente + "&orario=" + orario + "&recapito=" + recapito + "&indirizzo=" + indirizzo);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String line = reader.readLine();
+                    bundle.putString("line", line);
+
+                    Handler mainHandler = new Handler(getActivity().getMainLooper());
+                    Runnable myRunnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine2, bundle);
+                        }
+                    };
+                    mainHandler.post(myRunnable);
+                    reader.close();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (ConnectException e) {
+                    new Handler(getContext().getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getContext(), "Connessione non disponibile", Toast.LENGTH_SHORT).show(); }
+                    });
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity(), "Ordine errato", Toast.LENGTH_SHORT).show();
+                            binding.etCliente.setText("");
+                            binding.etOrario.setText("");
+                            binding.etRecapito.setText("");
+                            binding.etIndirizzo.setText("");
+                        }
+                    });
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

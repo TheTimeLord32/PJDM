@@ -1,6 +1,8 @@
 package com.mandija.servlet;
 
+import com.mandija.dao.PizzaDaMatteoDAO_JDBC;
 import com.mandija.entity.StatsPizze;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,9 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
-
-import com.mandija.dao.PizzaDaMatteoDAO_JDBC;
-import com.mandija.entity.StatsPizze;
 
 /**
  * Servlet implementation class getStatsPizze

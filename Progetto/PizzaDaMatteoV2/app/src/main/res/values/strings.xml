@@ -8,9 +8,11 @@
     <string name="getBibite">/getBibite</string>
     <string name="getStatsOrario">/getStatsOrario</string>
     <string name="getStatsPizze">/getStatsPizze</string>
+    <string name="getLastOrdine">/getLastOrdine</string>
 
     <string name="getOrdine">/getOrdine</string>
     <string name="getOrdine1">/getOrdine1</string>
+    <string name="getOrdine2">/getOrdine2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

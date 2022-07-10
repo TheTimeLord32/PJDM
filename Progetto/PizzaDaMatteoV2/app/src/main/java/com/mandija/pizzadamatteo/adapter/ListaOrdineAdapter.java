@@ -73,6 +73,11 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
         }
     }
 
+    public void removeItem(int position) {
+        dati.remove(position);
+        notifyItemRemoved(position);
+    }
+
     class ORDViewAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvId_ordine, tvCliente, tvOrario, tvRecapito, tvIndirizzo;
 

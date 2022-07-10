@@ -4,10 +4,10 @@ public class StatsPizze {
 
 	private String numPizza, nomePizza;
 
-	public StatsPizze(String numPizza, String nomePizza) {
+	public StatsPizze(String nomePizza, String numPizza) {
 		super();
-		this.numPizza = numPizza;
 		this.nomePizza = nomePizza;
+		this.numPizza = numPizza;
 	}
 
 	public String getNumPizza() { return numPizza; }

@@ -72,14 +72,10 @@ public class getOrdine1 extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// doGet(request, response);
-
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
-		String id_ordine = request.getParameter("id_ordine");
 		String pizza1 = request.getParameter("pizza1");
 		String pizza2 = request.getParameter("pizza2");
 		String pizza3 = request.getParameter("pizza3");
@@ -95,7 +91,6 @@ public class getOrdine1 extends HttpServlet {
 		String bibite3 = request.getParameter("bibite3");
 		String bibite4 = request.getParameter("bibite4");
 		String bibite5 = request.getParameter("bibite5");
-		String confermato = request.getParameter("confermato");
 
 		try {
 			dao.inserisciOrdine1(new Ordine1(0, pizza1, pizza2, pizza3, pizza4, pizza5, fritti1, fritti2, fritti3, fritti4, fritti5, bibite1, bibite2, bibite3, bibite4, bibite5, false));

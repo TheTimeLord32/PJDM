@@ -33,7 +33,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 			e.printStackTrace();
 		}
 	}
-	
+
 	// elenco pizze
 	@Override
 	public ArrayList<Pizze> loadPizze() throws SQLException {
@@ -157,6 +157,29 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		return res;
 	}
 
+	@Override
+	public ArrayList<Ordine2> loadOrdine2(int id_ordine) throws SQLException {
+		ArrayList<Ordine2>res = new ArrayList<Ordine2>();
+		String query = "SELECT * FROM ordine2 WHERE id_ordine = " + id_ordine+ " AND confermato != true;";
+
+		Statement stmt = conn.createStatement();
+		ResultSet rsetOrdine2 = stmt.executeQuery(query);
+
+		while(rsetOrdine2.next()) {
+			int id_riga = Integer.parseInt(rsetOrdine2.getString(1));
+			int id_ordine1 = Integer.parseInt(rsetOrdine2.getString(2));
+			String pizza = rsetOrdine2.getString(3);
+			String fritti = rsetOrdine2.getString(4);
+			String bibite = rsetOrdine2.getString(5);
+			boolean confermato = rsetOrdine2.getBoolean(6);
+
+			res.add(new Ordine2(id_riga, id_ordine1, pizza, fritti, bibite, confermato));
+		}
+		rsetOrdine2.close();
+		stmt.close();
+		return res;
+	}
+
 	// inserimento ordine
 	@Override
 	public int inserisciOrdine(Ordine ordine) throws SQLException {
@@ -205,21 +228,27 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		int affectedRows = pstmt.executeUpdate();
 		pstmt.close();
 		
-		String update = "UPDATE pizza SET quantita = quantita+1 WHERE nome=? OR nome=? OR nome=? OR nome=? OR nome=?;";
-		// query per effettuare le statistiche
-
-		PreparedStatement up = conn.prepareStatement(update);
-		up.setString(1, ordine1.getPizza1());
-		up.setString(2, ordine1.getPizza2());
-		up.setString(3, ordine1.getPizza3());
-		up.setString(4, ordine1.getPizza4());
-		up.setString(5, ordine1.getPizza5());
-		
-		affectedRows = up.executeUpdate();
-		up.close();
-		
 		/* scalare ingredienti pizze */
 		
+		return affectedRows;
+	}
+
+	@Override
+	public int inserisciOrdine2(Ordine2 ordine2) throws SQLException {
+		String insert = "INSERT INTO ordine2 VALUES (?, ?, ?, ?, ?, ?);";
+
+		PreparedStatement pstmt = conn.prepareStatement(insert);
+
+		pstmt.setInt(1, ordine2.getId_riga());
+		pstmt.setInt(2, ordine2.getId_ordine());
+		pstmt.setString(3, ordine2.getPizza());
+		pstmt.setString(4, ordine2.getFritti());
+		pstmt.setString(5, ordine2.getBibite());
+		pstmt.setBoolean(6, ordine2.getConfermato());
+
+		int affectedRows = pstmt.executeUpdate();
+		pstmt.close();
+
 		return affectedRows;
 	}
 
@@ -227,7 +256,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public void deleteOrdine(int id_ordine) throws SQLException {
 		String delete = "UPDATE ordine SET confermato = 1 WHERE id_ordine =" + id_ordine + ";";
-		String delete1 = "UPDATE ordine1 SET confermato = 1 WHERE id_ordine =" + id_ordine + ";";
+		String delete1 = "UPDATE ordine2 SET confermato = 1 WHERE id_ordine =" + id_ordine + ";";
 		
 		Statement statement = conn.createStatement();
 		statement.execute(delete);
@@ -262,18 +291,31 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public ArrayList<StatsPizze> getStatsPizze() throws SQLException {
 		ArrayList<StatsPizze> res = new ArrayList<StatsPizze>();
-		String queryPizze = "SELECT nome, quantita FROM pizza WHERE quantita != 0 and nome != '';";
+		String queryPizze = "SELECT pizza, cntPizza FROM numero;";
 		
 		Statement stmtStatsPizze = conn.createStatement();
 		ResultSet rsetStatsPizze = stmtStatsPizze.executeQuery(queryPizze);
 
 		while(rsetStatsPizze.next()) {
-			String quantita = rsetStatsPizze.getString(1);
-			String nome = rsetStatsPizze.getString(2);
-			res.add(new StatsPizze(nome, quantita));
+			String pizza = rsetStatsPizze.getString(1);
+			String cntPizza = rsetStatsPizze.getString(2);
+			res.add(new StatsPizze(pizza, cntPizza));
 		}
 		rsetStatsPizze.close();
 		stmtStatsPizze.close();
 		return res;
-	}	
+	}
+
+	public int loadLastOrdine() throws SQLException {
+		int res = 0;
+		String query = "SELECT id_ordine FROM ordine ORDER BY id_ordine DESC LIMIT 1;";
+		Statement stmt = conn.createStatement();
+		ResultSet rset = stmt.executeQuery(query);
+		if(rset.next()) {
+			res = rset.getInt(1);
+		}
+		rset.close();
+		stmt.close();
+		return res;
+	}
 }

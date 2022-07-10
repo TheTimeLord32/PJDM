@@ -34,6 +34,7 @@
     <servlet-name>getPizze</servlet-name>
     <url-pattern>/getPizze</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description/>
     <display-name>getFritti</display-name>
@@ -44,6 +45,7 @@
     <servlet-name>getFritti</servlet-name>
     <url-pattern>/getFritti</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description/>
     <display-name>getBibite</display-name>
@@ -54,6 +56,7 @@
     <servlet-name>getBibite</servlet-name>
     <url-pattern>/getBibite</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description/>
     <display-name>getOrdine</display-name>
@@ -64,6 +67,7 @@
     <servlet-name>getOrdine</servlet-name>
     <url-pattern>/getOrdine</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description/>
     <display-name>getOrdine1</display-name>
@@ -74,6 +78,18 @@
     <servlet-name>getOrdine1</servlet-name>
     <url-pattern>/getOrdine1</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+        <description/>
+        <display-name>getOrdine2</display-name>
+        <servlet-name>getOrdine2</servlet-name>
+        <servlet-class>com.mandija.servlet.getOrdine2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getOrdine2</servlet-name>
+        <url-pattern>/getOrdine2</url-pattern>
+    </servlet-mapping>
+
   <servlet>
     <description/>
     <display-name>getStatsOrario</display-name>
@@ -84,6 +100,7 @@
     <servlet-name>getStatsOrario</servlet-name>
     <url-pattern>/getStatsOrario</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description/>
     <display-name>getStatsPizze</display-name>
@@ -94,4 +111,15 @@
     <servlet-name>getStatsPizze</servlet-name>
     <url-pattern>/getStatsPizze</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+        <description/>
+        <display-name>getLastOrdine</display-name>
+        <servlet-name>getLastOrdine</servlet-name>
+        <servlet-class>com.mandija.servlet.getLastOrdine</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getLastOrdine</servlet-name>
+        <url-pattern>/getLastOrdine</url-pattern>
+    </servlet-mapping>
 </web-app>
