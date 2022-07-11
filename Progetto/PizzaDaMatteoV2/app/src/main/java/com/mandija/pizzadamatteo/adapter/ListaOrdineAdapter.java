@@ -1,34 +1,20 @@
 package com.mandija.pizzadamatteo.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mandija.pizzadamatteo.R;
 import com.mandija.pizzadamatteo.entity.ListaOrdineElemento;
-import com.mandija.pizzadamatteo.fragment.onlyGet.getOrdine1;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.ORDViewAdapter> {
 
@@ -71,11 +57,6 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
             }
             notifyDataSetChanged();
         }
-    }
-
-    public void removeItem(int position) {
-        dati.remove(position);
-        notifyItemRemoved(position);
     }
 
     class ORDViewAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {

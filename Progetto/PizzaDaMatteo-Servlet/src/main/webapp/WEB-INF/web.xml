@@ -21,7 +21,7 @@
   </context-param>
   <context-param>
     <param-name>userPwd</param-name>
-    <param-value>7631</param-value>
+    <param-value>utente</param-value>
   </context-param>
 
   <servlet>

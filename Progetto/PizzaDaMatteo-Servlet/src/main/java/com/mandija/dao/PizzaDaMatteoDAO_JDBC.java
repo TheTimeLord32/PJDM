@@ -291,7 +291,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public ArrayList<StatsPizze> getStatsPizze() throws SQLException {
 		ArrayList<StatsPizze> res = new ArrayList<StatsPizze>();
-		String queryPizze = "SELECT pizza, cntPizza FROM numero;";
+		String queryPizze = "SELECT pizza, cntPizza FROM stats_pizza;";
 		
 		Statement stmtStatsPizze = conn.createStatement();
 		ResultSet rsetStatsPizze = stmtStatsPizze.executeQuery(queryPizze);

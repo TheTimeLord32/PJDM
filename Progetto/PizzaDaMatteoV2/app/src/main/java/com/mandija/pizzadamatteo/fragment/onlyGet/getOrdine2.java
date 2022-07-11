@@ -33,7 +33,7 @@ public class getOrdine2 extends Fragment {
         rv.setAdapter(adapter);
 
         if (this.getArguments() != null) {
-            String line = this.getArguments().getString("line");
+            String line = this.getArguments().getString("getOrdine2");
             try {
                 JSONArray array = new JSONArray(line);
                 adapter.aggiungi(array);

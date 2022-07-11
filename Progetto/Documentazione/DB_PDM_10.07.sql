@@ -1,4 +1,4 @@
-CREATE DATABASE pdm;
+-- CREATE DATABASE pdm;
 USE pdm;
 
 CREATE TABLE 'pizza' (
@@ -86,17 +86,20 @@ CREATE TABLE 'ordine2' (
 CREATE VIEW stats_pizza AS
 SELECT pizza, count(pizza) AS cntPizza
 FROM ordine2 
-GROUP BY pizza;
+GROUP BY pizza 
+ORDER BY pizza ASC;
 
 CREATE VIEW stats_fritti AS
 SELECT fritti, count(fritti) AS cntFritti
 FROM ordine2 
-GROUP BY fritti;
+GROUP BY fritti
+ORDER BY fritti ASC;
 
 CREATE VIEW stats_bibite AS
 SELECT bibite, count(bibite) AS cntBibite
 FROM ordine2 
-GROUP BY bibite;
+GROUP BY bibite
+ORDER BY bibite ASC;
 
 delimiter //
 create procedure reset()
@@ -109,3 +112,11 @@ begin
 
 end //
 delimiter ;
+
+/* user */
+create user 'utente'@'localhost' identified by 'utente';
+grant select on pdm.* to 'utente'@'localhost';
+grant select on pdm.stats_pizza to 'utente'@'localhost';
+grant update on pdm.pizza to 'utente'@'localhost';
+grant insert, update on pdm.ordine to 'utente'@'localhost';
+grant insert, update on pdm.ordine2 to 'utente'@'localhost';

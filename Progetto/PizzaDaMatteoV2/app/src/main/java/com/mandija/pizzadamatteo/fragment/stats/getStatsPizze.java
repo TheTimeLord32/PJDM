@@ -33,7 +33,7 @@ public class getStatsPizze extends Fragment {
         rv.setAdapter(adapter);
 
         if (this.getArguments() != null) {
-            String line = this.getArguments().getString("line");
+            String line = this.getArguments().getString("getStatsPizze");
             try {
                 JSONArray array = new JSONArray(line);
                 adapter.aggiungiStatsPizze(array);
