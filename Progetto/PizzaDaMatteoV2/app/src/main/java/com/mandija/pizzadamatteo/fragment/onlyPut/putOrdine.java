@@ -1,5 +1,6 @@
 package com.mandija.pizzadamatteo.fragment.onlyPut;
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,8 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.mandija.pizzadamatteo.R;
@@ -23,152 +26,73 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link putOrdine#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class putOrdine extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private FragmentPutOrdineBinding binding;
     private String msgErrore = "Campo vuoto o incorretto, controllare.";
     private Bundle bundle = new Bundle();
     private Executor executor = Executors.newSingleThreadExecutor();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public putOrdine() { }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment putOrdine.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static putOrdine newInstance(String param1, String param2) {
-        putOrdine fragment = new putOrdine();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPutOrdineBinding.inflate(inflater, container, false);
+        Button setTime = binding.btSetTime;
 
-        binding.btBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_home);
-            }
+        setTime.setOnClickListener(v -> {
+            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
+                int ora = hourOfDay;
+                int minuti = minute;
+                setTime.setText(String.format(Locale.getDefault(), "%02d:%02d", ora, minuti));
+            }, LocalTime.now().getHour(), LocalTime.now().getMinute(), true);
+            timePickerDialog.show();
         });
 
-        binding.btNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nome_cliente = binding.etCliente.getText().toString();
-                String orario = binding.etOrario.getText().toString();
-                String recapito = binding.etRecapito.getText().toString();
-                String indirizzo = binding.etIndirizzo.getText().toString();
+        binding.btBack.setOnClickListener(v -> NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_home));
 
-                boolean nomeValido = nome_cliente.matches("[a-zA-Z]{3,50}+");
-                boolean recapitoValido = recapito.matches("[0-9]{10}+");
-                boolean indirizzoValido = indirizzo.matches("[a-zA-Z0-9 ]{5,50}+");
+        binding.btNext.setOnClickListener(v -> {
+            String nome_cliente = binding.etCliente.getText().toString();
+            String orario = setTime.getText().toString();
+            String recapito = binding.etRecapito.getText().toString();
+            String indirizzo = binding.etIndirizzo.getText().toString();
 
-                try {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                    LocalTime time = formatter.parse(orario, LocalTime::from);
-                    String orario_convertito = time.toString();
+            boolean nomeValido = nome_cliente.matches("[a-zA-Z ]{3,50}+");
+            boolean orarioValido = orario.matches("[0-9]{2}:[0-9]{2}");
+            boolean recapitoValido = recapito.matches("[0-9]{10}+");
+            boolean indirizzoValido = indirizzo.matches("[a-zA-Z0-9 ,]{5,50}+");
 
-                    if (!nomeValido || nome_cliente.isEmpty()) { binding.etCliente.setError(msgErrore + "\nInserire solo caratteri alfabetici: minimo 3, massimo 50 caratteri."); }
-                    if (!recapitoValido || recapito.isEmpty()) { binding.etRecapito.setError(msgErrore + "\nInserire solo cifre: 10 cifre."); }
-                    if (!indirizzoValido || indirizzo.isEmpty()) { binding.etIndirizzo.setError(msgErrore + "\nInserire solo caratteri alfabetici e cifre.\nMinimo 5, massimo 50 caratteri."); }
+            if (!nomeValido || nome_cliente.isEmpty()) { binding.etCliente.setError(msgErrore + "\nInserire solo caratteri alfabetici: minimo 3, massimo 50 caratteri."); }
+            if (!orarioValido || orario.equals("Scegli orario")) { Toast.makeText(getContext(), "Inserire orario", Toast.LENGTH_SHORT).show(); }
+            if (!recapitoValido || recapito.isEmpty()) { binding.etRecapito.setError(msgErrore + "\nInserire solo cifre: 10 cifre."); }
+            if (!indirizzoValido || indirizzo.isEmpty()) { binding.etIndirizzo.setError(msgErrore + "\nInserire solo caratteri alfabetici e cifre.\nMinimo 5, massimo 50 caratteri."); }
 
-                    if (nomeValido && orario_convertito.length() == 5 && recapitoValido && indirizzoValido) {
-                        bundle.putString("nome_cliente", nome_cliente);
-                        bundle.putString("orario_convertito", orario_convertito);
-                        bundle.putString("recapito", recapito);
-                        bundle.putString("indirizzo", indirizzo);
-                        putOrdine(nome_cliente, orario_convertito, recapito, indirizzo);
-                        //NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine1, bundle);
-                    }
-                } catch (Exception e) {
-                    binding.etCliente.setError(msgErrore);
-                    binding.etOrario.setError(msgErrore + "\nFormato corretto: HH:mm");
-                    binding.etRecapito.setError(msgErrore);
-                    binding.etIndirizzo.setError(msgErrore);
-                    e.printStackTrace();
-                }
-            }
+            if (nomeValido && orarioValido && recapitoValido && indirizzoValido)
+                putOrdine(nome_cliente, orario, recapito, indirizzo);
         });
         return binding.getRoot();
     }
 
     private void putOrdine(String nome_cliente, String orario, String recapito, String indirizzo) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine) + "?nome_cliente=" + nome_cliente + "&orario=" + orario + "&recapito=" + recapito + "&indirizzo=" + indirizzo);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("POST");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String line = reader.readLine();
-                    bundle.putString("line", line);
-
-                    Handler mainHandler = new Handler(getActivity().getMainLooper());
-                    Runnable myRunnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine2, bundle);
-                        }
-                    };
-                    mainHandler.post(myRunnable);
-                    reader.close();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (ConnectException e) {
-                    new Handler(getContext().getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() { Toast.makeText(getContext(), "Connessione non disponibile", Toast.LENGTH_SHORT).show(); }
-                    });
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getActivity(), "Ordine errato", Toast.LENGTH_SHORT).show();
-                            binding.etCliente.setText("");
-                            binding.etOrario.setText("");
-                            binding.etRecapito.setText("");
-                            binding.etIndirizzo.setText("");
-                        }
-                    });
-                    e.printStackTrace();
-                }
+        executor.execute(() -> {
+            try {
+                URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine) + "?nome_cliente=" + nome_cliente + "&orario=" + orario + "&recapito=" + recapito + "&indirizzo=" + indirizzo);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                reader.readLine();
+                reader.close();
+                new Handler(getActivity().getMainLooper()).post(()-> NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine2));
+            } catch (MalformedURLException e) { e.printStackTrace();
+            } catch (ConnectException e) {
+                new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Connessione non disponibile", Toast.LENGTH_SHORT).show());
+                e.printStackTrace();
+            } catch (IOException e) {
+                getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), "Ordine errato", Toast.LENGTH_SHORT).show());
+                e.printStackTrace();
             }
         });
     }
