@@ -22,5 +22,5 @@ public interface PizzaDaMatteoDAO {
 	
 	public ArrayList<StatsOrario> getStatsOrario() throws SQLException;
 	public ArrayList<StatsPizze> getStatsPizze() throws SQLException;
-	public int loadLastOrdine() throws SQLException;
+	public int getLastOrdine() throws SQLException;
 }

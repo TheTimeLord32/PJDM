@@ -81,6 +81,7 @@
           <version>3.3.2</version>
           <configuration>
             <webappDirectory>A:\Programmi\Uni-TorVergata-Programmi\Tomcat10\webapps\${project.name}</webappDirectory>
+<!--            <webappDirectory>C:\DevTools\Tomcat\webapps\${project.name}</webappDirectory>-->
           </configuration>
         </plugin>
       </plugins>

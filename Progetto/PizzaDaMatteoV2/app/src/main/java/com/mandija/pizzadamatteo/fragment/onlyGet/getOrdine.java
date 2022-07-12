@@ -102,15 +102,13 @@ public class getOrdine extends Fragment {
                 String line = reader.readLine();
                 Handler handler = new Handler(getContext().getMainLooper());
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoOutput(true);
 
-                connection.setRequestMethod("GET");
                 if (line.equals("[]")){
                     handler.post(() -> Toast.makeText(getContext(), "Ordine non trovato", Toast.LENGTH_SHORT).show());
                 } else {
-                    connection.disconnect();
                     connection.setDoOutput(true);
                     connection.setRequestMethod("DELETE");
+                    connection.getResponseCode();
                     connection.connect();
                     handler.post(() -> Toast.makeText(getContext(), "Ordine cancellato", Toast.LENGTH_SHORT).show());
                 }

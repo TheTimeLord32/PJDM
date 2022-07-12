@@ -1,14 +1,14 @@
--- CREATE DATABASE pdm;
+CREATE DATABASE pdm;
 USE pdm;
 
-CREATE TABLE 'pizza' (
-  'nome' varchar(50) NOT NULL,
-  'prezzo' float NULL,
-  'quantita' int NULL,
-  PRIMARY KEY ('nome')
+CREATE TABLE pizza (
+  nome varchar(50) NOT NULL,
+  prezzo float NULL,
+  quantita int NULL,
+  PRIMARY KEY (nome)
 );
 
-INSERT INTO 'pizza' VALUES
+INSERT INTO pizza VALUES
 ('',0, 0),
 ('4 Stagioni',6.5, 0),
 ('Bismarck',6, 0),
@@ -26,13 +26,13 @@ INSERT INTO 'pizza' VALUES
 ('Porcini',6.5, 0),
 ('Rossa',3.5, 0);
 
-CREATE TABLE 'fritti' (
-  'nome' varchar(50)  NOT NULL,
-  'prezzo' float NOT NULL,
-  PRIMARY KEY ('nome')
+CREATE TABLE fritti (
+  nome varchar(50)  NOT NULL,
+  prezzo float NOT NULL,
+  PRIMARY KEY (nome)
 );
 
-INSERT INTO 'fritti' VALUES 
+INSERT INTO fritti VALUES 
 ('',0),
 ('Crocchette',1),
 ('Fiori di zucca (1 pz)',1.5),
@@ -40,18 +40,18 @@ INSERT INTO 'fritti' VALUES
 ('Mozzarelline (5 pz)',3),
 ('Olive ascolane (5 pz)',3),
 ('Patatine fritte',3),
-('Suppli classico',1),
+('Suppli classico',1);
 
-CREATE TABLE 'bibite' (
-  'nome' varchar(50)  NOT NULL,
-  'prezzo' float NOT NULL,
-  PRIMARY KEY ('nome')
+CREATE TABLE bibite (
+  nome varchar(50)  NOT NULL,
+  prezzo float NOT NULL,
+  PRIMARY KEY (nome)
 );
 
-INSERT INTO 'bibite' VALUES 
+INSERT INTO bibite VALUES 
 ('',0),
 ('Acqua grande frizzante',2),
-('Acqua grande naturale ',2),
+('Acqua grande naturale' ,2),
 ('Acqua piccola frizzante',1),
 ('Acqua piccola naturale',1),
 ('Ceres 33cl',3),
@@ -59,28 +59,28 @@ INSERT INTO 'bibite' VALUES
 ('Coca-Cola piccola',2),
 ('Fanta bottiglietta',2),
 ('Franziskaner 50cl',3),
-('Heineken 33cl',2.5);
+('Heineken 33cl',2.5),
 ('Kozel 50cl',2.5),
-('Peroni 66cl',3),
+('Peroni 66cl',3);
 
-CREATE TABLE 'ordine' (
-  'id_ordine' int NOT NULL AUTO_INCREMENT,
-  'nome_cliente' varchar(50) NOT NULL,
-  'orario' time NOT NULL,
-  'recapito' varchar(10)  NOT NULL,
-  'indirizzo' varchar(50)  NULL,
-  'confermato' tinyint(1) NULL,
-  PRIMARY KEY ('id_ordine')
+CREATE TABLE ordine (
+  id_ordine int NOT NULL AUTO_INCREMENT,
+  nome_cliente varchar(50) NOT NULL,
+  orario time NOT NULL,
+  recapito varchar(10)  NOT NULL,
+  indirizzo varchar(50)  NULL,
+  confermato boolean NULL,
+  PRIMARY KEY (id_ordine)
 );
 
-CREATE TABLE 'ordine2' (
-  'id_riga' int NOT NULL AUTO_INCREMENT,
-  'id_ordine' int NULL,
-  'pizza' varchar(50) NULL,
-  'fritti' varchar(50) NULL,
-  'bibite' varchar(50) NULL,
-  'confermato' tinyint(1) NULL,
-  PRIMARY KEY ('id_riga')
+CREATE TABLE ordine2 (
+  id_riga int NOT NULL AUTO_INCREMENT,
+  id_ordine int NULL,
+  pizza varchar(50) NULL,
+  fritti varchar(50) NULL,
+  bibite varchar(50) NULL,
+  confermato boolean NULL,
+  PRIMARY KEY (id_riga)
 );
 
 CREATE VIEW stats_pizza AS
@@ -89,17 +89,17 @@ FROM ordine2
 GROUP BY pizza 
 ORDER BY pizza ASC;
 
-CREATE VIEW stats_fritti AS
-SELECT fritti, count(fritti) AS cntFritti
-FROM ordine2 
-GROUP BY fritti
-ORDER BY fritti ASC;
+CREATE TABLE ingredienti (
+  nome varchar(50)  NOT NULL,
+  quantita int NOT NULL,
+  PRIMARY KEY (nome)
+);
 
-CREATE VIEW stats_bibite AS
-SELECT bibite, count(bibite) AS cntBibite
-FROM ordine2 
-GROUP BY bibite
-ORDER BY bibite ASC;
+CREATE TABLE ricetta (
+  nome varchar(50)  NOT NULL,
+  prezzo float NOT NULL,
+  PRIMARY KEY (nome)
+);
 
 delimiter //
 create procedure reset()

@@ -12,9 +12,6 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
-/**
- * Servlet implementation class getOrdine
- */
 public class getOrdine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PizzaDaMatteoDAO_JDBC dao;
@@ -74,19 +71,14 @@ public class getOrdine extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// doGet(request, response);
-		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		String id_ordine = request.getParameter("id_ordine");
 		String nome_cliente = request.getParameter("nome_cliente");
 		String orario = request.getParameter("orario");
 		String recapito = request.getParameter("recapito");
 		String indirizzo = request.getParameter("indirizzo");
-		String confermato = request.getParameter("confermato");
 
 		try {
 			dao.inserisciOrdine(new Ordine(0, nome_cliente, orario, recapito, indirizzo, false));
@@ -106,7 +98,6 @@ public class getOrdine extends HttpServlet {
 
 		String id_ordine = request.getParameter("id_ordine");
 		try {
-			doGet(request, response);
 			if (response.getStatus() == 200) {
 				dao.deleteOrdine(Integer.parseInt(id_ordine));
 				out.print("Ordine rimosso correttamente");

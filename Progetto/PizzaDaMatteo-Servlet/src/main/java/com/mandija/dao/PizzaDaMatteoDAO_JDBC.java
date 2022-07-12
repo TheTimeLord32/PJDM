@@ -306,7 +306,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		return res;
 	}
 
-	public int loadLastOrdine() throws SQLException {
+	public int getLastOrdine() throws SQLException {
 		int res = 0;
 		String query = "SELECT id_ordine FROM ordine ORDER BY id_ordine DESC LIMIT 1;";
 		Statement stmt = conn.createStatement();

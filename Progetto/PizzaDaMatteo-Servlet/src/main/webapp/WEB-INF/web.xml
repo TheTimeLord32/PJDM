@@ -13,7 +13,7 @@
   </context-param>
   <context-param>
     <param-name>dbName</param-name>
-    <param-value>pizza</param-value>
+    <param-value>pdm</param-value>
   </context-param>
   <context-param>
     <param-name>userName</param-name>

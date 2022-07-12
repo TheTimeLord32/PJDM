@@ -48,7 +48,7 @@ public class getLastOrdine extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         try{
-            int lastOrdine = dao.loadLastOrdine();
+            int lastOrdine = dao.getLastOrdine();
             out.print(lastOrdine);
             out.flush();
         } catch(SQLException e) {
