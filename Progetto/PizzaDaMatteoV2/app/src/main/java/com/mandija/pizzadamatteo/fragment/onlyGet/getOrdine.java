@@ -25,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -65,6 +66,11 @@ public class getOrdine extends Fragment {
             getOrdine2(id_ordine);
         });
 
+        binding.btRicetta.setOnClickListener(v -> {
+            String id_ordine = binding.etNumVisual.getText().toString();
+            getRicetta(id_ordine);
+        });
+
         binding.btDelOrdine.setOnClickListener(v -> {
             String id_ordine = binding.etNumVisual.getText().toString();
             delOrdine(id_ordine);
@@ -90,6 +96,23 @@ public class getOrdine extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
                 new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Ordine non trovato", Toast.LENGTH_SHORT).show());
+            }
+        });
+    }
+
+    private void getRicetta(String id_ordine) {
+        executor.execute(()-> {
+            try {
+                URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getRicetta) + "?id_ordine=" + id_ordine); // prendere ID manualmente
+                BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
+                String line = reader.readLine();
+                bundle.putString("getRicetta", line);
+                reader.close();
+                new Handler(getContext().getMainLooper()).post(() -> NavHostFragment.findNavController(getOrdine.this).navigate(R.id.action_getOrdine_to_getRicetta, bundle));
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }

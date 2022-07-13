@@ -24,4 +24,6 @@ public interface PizzaDaMatteoDAO {
 	public ArrayList<StatsPizze> getStatsPizze() throws SQLException;
 	public int getLastOrdine() throws SQLException;
     void updateConto(int id_ordine) throws SQLException;
+
+	public ArrayList<Ricetta> getRicetta(int id_ordine) throws SQLException;
 }

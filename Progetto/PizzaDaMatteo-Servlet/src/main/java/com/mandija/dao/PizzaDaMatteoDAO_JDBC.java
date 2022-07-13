@@ -330,4 +330,23 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		stmt.close();
 		return res;
 	}
+
+	@Override
+	public ArrayList<Ricetta> getRicetta(int id_ordine) throws SQLException {
+		ArrayList<Ricetta> res = new ArrayList<>();
+		String query = "select ricetta.* from ricetta, ordine2 where  ricetta.codice_pizza = ordine2.pizza and id_ordine=" + id_ordine + ";";
+
+		Statement stmt = conn.createStatement();
+		ResultSet rset = stmt.executeQuery(query);
+
+		while (rset.next()){
+			String codice_pizza = rset.getString(1);
+			String codice_ingrediente = rset.getString(2);
+			int quantita = rset.getInt(3);
+			res.add(new Ricetta(codice_pizza, codice_ingrediente, quantita));
+		}
+		rset.close();
+		stmt.close();
+		return res;
+	}
 }

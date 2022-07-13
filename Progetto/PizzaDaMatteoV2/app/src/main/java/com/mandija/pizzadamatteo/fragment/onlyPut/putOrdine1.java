@@ -123,7 +123,7 @@ public class putOrdine1 extends Fragment {
                     putOrdine();
                     putOrdine1(spPizza1, spPizza2, spPizza3, spPizza4, spPizza5, spFritti1, spFritti2, spFritti3, spFritti4, spFritti5, spBibite1, spBibite2, spBibite3, spBibite4, spBibite5);
                     //putOrdine2(spPizza1, spFritti1, spBibite1);
-                    NavHostFragment.findNavController(putOrdine1.this).navigate(R.id.action_putOrdine1_to_home);
+//                    NavHostFragment.findNavController(putOrdine1.this).navigate(R.id.action_putOrdine1_to_home);
                     Toast.makeText(getContext(), "Ordine inviato", Toast.LENGTH_SHORT).show();
                 }
             }

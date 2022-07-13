@@ -122,4 +122,15 @@
         <servlet-name>getLastOrdine</servlet-name>
         <url-pattern>/getLastOrdine</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+      <display-name>getRicetta</display-name>
+        <servlet-name>getRicetta</servlet-name>
+        <servlet-class>com.mandija.servlet.getRicetta</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getRicetta</servlet-name>
+        <url-pattern>/getRicetta</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -2,8 +2,8 @@
     <string name="app_name">PizzaDaMatteo</string>
 
     <string name="hostname">http://192.168.1.10:8080/PizzaDaMatteo-Servlet</string>
-<!--    <string name="hostname">http://AWS_EC2:8080/PizzaDaMatteo-Servlet</string>-->
-<!--    <string name="hostname">http://IP_UNI:8080/PizzaDaMatteo-Servlet</string>-->
+    <!--    <string name="hostname">http://AWS_EC2:8080/PizzaDaMatteo-Servlet</string>-->
+    <!--    <string name="hostname">http://IP_UNI:8080/PizzaDaMatteo-Servlet</string>-->
 
     <string name="getPizze">/getPizze</string>
     <string name="getFritti">/getFritti</string>
@@ -11,6 +11,7 @@
     <string name="getStatsOrario">/getStatsOrario</string>
     <string name="getStatsPizze">/getStatsPizze</string>
     <string name="getLastOrdine">/getLastOrdine</string>
+    <string name="getRicetta">/getRicetta</string>
 
     <string name="getOrdine">/getOrdine</string>
     <string name="getOrdine1">/getOrdine1</string>

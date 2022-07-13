@@ -6,10 +6,11 @@
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.351" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.351" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine.xml" value="0.33" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine.xml" value="0.67" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine1.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine2.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ordine_nuovo.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_ricetta.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_stats.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_stats_orario.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/fragment_get_stats_pizze.xml" value="0.36666666666666664" />
@@ -21,6 +22,7 @@
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getordine1_row.xml" value="0.5" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getordine2_row.xml" value="0.67" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getordine_row.xml" value="0.67" />
+        <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getricetta_row.xml" value="0.5" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getstats_row.xml" value="0.67" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getstatsorario_row.xml" value="0.67" />
         <entry key="..\:/Users/Thomas/Documents/Uni-TorVergata/Anno 21-22/Corsi/Progr. Java Mobile (II sem)/Progetto/PizzaDaMatteoV2/app/src/main/res/layout/getstatspizze_row.xml" value="0.75" />
