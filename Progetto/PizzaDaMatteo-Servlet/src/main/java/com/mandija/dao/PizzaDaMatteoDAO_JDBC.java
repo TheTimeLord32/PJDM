@@ -110,8 +110,9 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 			String recapito = rsetOrdine.getString(4);
 			String indirizzo = rsetOrdine.getString(5);
 			boolean confermato = rsetOrdine.getBoolean(6);
+			float conto = rsetOrdine.getFloat(7);
 			
-			res.add(new Ordine(id_ordine, nomeCliente, orario, recapito, indirizzo, confermato));
+			res.add(new Ordine(id_ordine, nomeCliente, orario, recapito, indirizzo, confermato, conto));
 		}
 		rsetOrdine.close();
 		stmt.close();
@@ -183,7 +184,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// inserimento ordine
 	@Override
 	public int inserisciOrdine(Ordine ordine) throws SQLException {
-		String insert = "INSERT INTO ordine VALUES (?, ?, ?, ?, ?, ?);";
+		String insert = "INSERT INTO ordine VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
 		PreparedStatement pstmt = conn.prepareStatement(insert);
 		
@@ -193,6 +194,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		pstmt.setString(4, ordine.getRecapito());
 		pstmt.setString(5, ordine.getIndirizzo());
 		pstmt.setBoolean(6, ordine.getConfermato());
+		pstmt.setFloat(7, ordine.getConto());
 		
 		int affectedRows = pstmt.executeUpdate();
 		pstmt.close();
@@ -265,6 +267,16 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		Statement statement1 = conn.createStatement();
 		statement1.execute(delete1);
 		statement1.close();
+	}
+
+	// calcolo il conto dell'ordine
+	@Override
+	public void updateConto(int id_ordine) throws SQLException {
+		String update = "update ordine set conto = (select sum(pizza.prezzo + fritti.prezzo + bibite.prezzo) as tot from ordine2, pizza, fritti, bibite where pizza.nome = ordine2.pizza and fritti.nome = ordine2.fritti and bibite.nome = ordine2.bibite and id_ordine = " + id_ordine + ") where id_ordine = " + id_ordine + ";";
+
+		Statement statement = conn.createStatement();
+		statement.execute(update);
+		statement.close();
 	}
 
 	// elenco statistiche orario + pizza

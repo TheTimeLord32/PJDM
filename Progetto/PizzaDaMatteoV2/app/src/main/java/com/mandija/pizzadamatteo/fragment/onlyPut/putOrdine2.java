@@ -2,6 +2,7 @@ package com.mandija.pizzadamatteo.fragment.onlyPut;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +22,10 @@ import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -98,6 +101,27 @@ public class putOrdine2 extends Fragment {
                 reader2.close();
             } catch (MalformedURLException e) { e.printStackTrace();
             } catch (IOException e) { e.printStackTrace(); }
+        });
+
+        executor.execute(()-> {
+            try {
+                URL url = new URL(getContext().getString(R.string.hostname) + getContext().getString(R.string.getOrdine) + "?id_ordine=" + lastID_global);
+                BufferedReader readerConto = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
+                String line = readerConto.readLine();
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoOutput(true);
+                connection.setRequestMethod("PUT");
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(line);
+                writer.close();
+                connection.getResponseCode();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 

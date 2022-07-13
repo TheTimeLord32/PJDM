@@ -14,6 +14,7 @@ import com.mandija.pizzadamatteo.entity.ListaOrdineElemento;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 
 public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.ORDViewAdapter> {
@@ -43,6 +44,7 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
         holder.tvOrario.setText(dati.get(position).getOrario());
         holder.tvRecapito.setText(dati.get(position).getRecapito());
         holder.tvIndirizzo.setText(dati.get(position).getIndirizzo());
+        holder.tvConto.setText(dati.get(position).getConto());
     }
 
     @Override
@@ -51,7 +53,7 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
     public void aggiungi(JSONArray array) {
         for (int i = 0; i < array.length(); i++) {
             try {
-                dati.add(new ListaOrdineElemento(array.getJSONObject(i).getInt("id_ordine"), array.getJSONObject(i).getString("nomeCliente"), array.getJSONObject(i).getString("orario"), array.getJSONObject(i).getString("recapito"), array.getJSONObject(i).getString("indirizzo")));
+                dati.add(new ListaOrdineElemento(array.getJSONObject(i).getInt("id_ordine"), array.getJSONObject(i).getString("nomeCliente"), array.getJSONObject(i).getString("orario"), array.getJSONObject(i).getString("recapito"), array.getJSONObject(i).getString("indirizzo"), array.getJSONObject(i).getString("conto")));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -60,7 +62,7 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
     }
 
     class ORDViewAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tvId_ordine, tvCliente, tvOrario, tvRecapito, tvIndirizzo;
+        TextView tvId_ordine, tvCliente, tvOrario, tvRecapito, tvIndirizzo, tvConto;
 
         public ORDViewAdapter(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +71,7 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
             tvOrario = itemView.findViewById(R.id.tvOrario);
             tvRecapito = itemView.findViewById(R.id.tvRecapito);
             tvIndirizzo = itemView.findViewById(R.id.tvIndirizzo);
+            tvConto = itemView.findViewById(R.id.tvConto);
         }
 
         @Override

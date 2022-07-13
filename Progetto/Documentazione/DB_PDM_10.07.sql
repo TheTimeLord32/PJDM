@@ -70,6 +70,7 @@ CREATE TABLE ordine (
   recapito varchar(10)  NOT NULL,
   indirizzo varchar(50)  NULL,
   confermato boolean NULL,
+  conto float NULL,
   PRIMARY KEY (id_ordine)
 );
 

@@ -81,7 +81,7 @@ public class getOrdine extends HttpServlet {
 		String indirizzo = request.getParameter("indirizzo");
 
 		try {
-			dao.inserisciOrdine(new Ordine(0, nome_cliente, orario, recapito, indirizzo, false));
+			dao.inserisciOrdine(new Ordine(0, nome_cliente, orario, recapito, indirizzo, false, 0));
 			response.setStatus(200);
 			out.print("Ordine inserito\n");
 		} catch (SQLException err) {
@@ -112,5 +112,27 @@ public class getOrdine extends HttpServlet {
 			System.out.println("Ordine non rimosso - Catch");
 		}
 	}
-	
+
+	@Override
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+
+		String id_ordine = request.getParameter("id_ordine");
+		try {
+			if (response.getStatus() == 200) {
+				dao.updateConto(Integer.parseInt(id_ordine));
+				out.print("Conto inserito correttamente");
+				out.flush();
+			} else {
+				out.print("Conto non inserito - Try");
+				out.flush();
+			}
+
+		} catch (NumberFormatException | SQLException e) {
+			e.printStackTrace();
+			System.out.println("Conto non inserito - Catch");
+		}
+	}
 }
