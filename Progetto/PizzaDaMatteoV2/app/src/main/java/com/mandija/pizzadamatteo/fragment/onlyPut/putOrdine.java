@@ -88,7 +88,7 @@ public class putOrdine extends Fragment {
                 new Handler(getActivity().getMainLooper()).post(()-> NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_putOrdine2));
             } catch (MalformedURLException e) { e.printStackTrace();
             } catch (ConnectException e) {
-                new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Connessione non disponibile", Toast.LENGTH_SHORT).show());
+                new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Connessione assente. Riprovare", Toast.LENGTH_SHORT).show());
                 e.printStackTrace();
             } catch (IOException e) {
                 getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), "Ordine errato", Toast.LENGTH_SHORT).show());

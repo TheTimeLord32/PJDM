@@ -2,8 +2,8 @@
     <string name="app_name">PizzaDaMatteo</string>
 
     <string name="hostname">http://192.168.1.10:8080/PizzaDaMatteo-Servlet</string>
-    <!--    <string name="hostname">http://AWS_EC2:8080/PizzaDaMatteo-Servlet</string>-->
-    <!--    <string name="hostname">http://IP_UNI:8080/PizzaDaMatteo-Servlet</string>-->
+<!--    <string name="hostname">http://ec2-15-161-228-94.eu-south-1.compute.amazonaws.com:8080/PizzaDaMatteo-Servlet</string>-->
+<!--    <string name="hostname">http://IP_UNI:8080/PizzaDaMatteo-Servlet</string>-->
 
     <string name="getPizze">/getPizze</string>
     <string name="getFritti">/getFritti</string>

@@ -2,7 +2,6 @@ package com.mandija.pizzadamatteo.fragment.onlyPut;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -83,8 +80,6 @@ public class putOrdine2 extends Fragment {
                 connection.connect();
                 reader.close();
                 connection.disconnect();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -99,8 +94,8 @@ public class putOrdine2 extends Fragment {
                 connection.connect();
                 reader2.readLine();
                 reader2.close();
-            } catch (MalformedURLException e) { e.printStackTrace();
-            } catch (IOException e) { e.printStackTrace(); }
+            } catch (IOException e) { e.printStackTrace();
+            }
         });
 
         executor.execute(()-> {
@@ -115,10 +110,6 @@ public class putOrdine2 extends Fragment {
                 writer.write(line);
                 writer.close();
                 connection.getResponseCode();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -148,8 +139,8 @@ public class putOrdine2 extends Fragment {
                         } catch (JSONException e) { e.printStackTrace();
                     }
                 });
-            } catch (MalformedURLException e) { e.printStackTrace();
-            } catch (IOException e) { e.printStackTrace(); }
+            } catch (IOException e) { e.printStackTrace();
+            }
         });
     }
 
@@ -175,8 +166,8 @@ public class putOrdine2 extends Fragment {
                         }
                     } catch (JSONException e) { e.printStackTrace(); }
                 });
-            } catch (MalformedURLException e) { e.printStackTrace();
-            } catch (IOException e) { e.printStackTrace(); }
+            } catch (IOException e) { e.printStackTrace();
+            }
         });
     }
 
@@ -202,8 +193,8 @@ public class putOrdine2 extends Fragment {
                         }
                     } catch (JSONException e) { e.printStackTrace(); }
                 });
-            } catch (MalformedURLException e) { e.printStackTrace();
-            } catch (IOException e) { e.printStackTrace(); }
+            } catch (IOException e) { e.printStackTrace();
+            }
         });
     }
 }

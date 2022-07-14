@@ -8,22 +8,22 @@ CREATE TABLE pizza (
 );
 
 INSERT INTO pizza VALUES
-('',0, 0),
-('4 Stagioni',6.5, 0),
-('Bismarck',6, 0),
-('Boscaiola',6.5, 0),
-('Bufalona',7, 0),
-('Capricciosa',7.5, 0),
-('Carbonara',7, 0),
-('Crostino',5, 0),
-('Diavola',6, 0),
-('Margherita',4.5, 0),
-('Napoli',4.5, 0),
-('Ortolana',5.5, 0),
-('Parmigiana',6, 0),
-('Patate',4.5, 0),
-('Porcini',6.5, 0),
-('Rossa',3.5, 0);
+('',0),
+('4 Stagioni',6.5),
+('Bismarck',6),
+('Boscaiola',6.5),
+('Bufalona',7),
+('Capricciosa',7.5),
+('Carbonara',7),
+('Crostino',5),
+('Diavola',6),
+('Margherita',4.5),
+('Napoli',4.5),
+('Ortolana',5.5),
+('Parmigiana',6),
+('Patate',4.5),
+('Porcini',6.5),
+('Rossa',3.5);
 
 CREATE TABLE fritti (
   nome varchar(50)  NOT NULL,
@@ -86,6 +86,7 @@ CREATE TABLE ordine2 (
 CREATE VIEW stats_pizza AS
 SELECT pizza, count(pizza) AS cntPizza
 FROM ordine2 
+WHERE pizza != ''
 GROUP BY pizza 
 ORDER BY pizza ASC;
 

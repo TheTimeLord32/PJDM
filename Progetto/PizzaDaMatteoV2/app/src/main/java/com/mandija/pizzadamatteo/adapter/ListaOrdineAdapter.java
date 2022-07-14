@@ -44,7 +44,7 @@ public class ListaOrdineAdapter extends RecyclerView.Adapter<ListaOrdineAdapter.
         holder.tvOrario.setText(dati.get(position).getOrario());
         holder.tvRecapito.setText(dati.get(position).getRecapito());
         holder.tvIndirizzo.setText(dati.get(position).getIndirizzo());
-        holder.tvConto.setText(dati.get(position).getConto());
+        holder.tvConto.setText(dati.get(position).getConto() + " €");
     }
 
     @Override
