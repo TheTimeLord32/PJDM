@@ -73,6 +73,7 @@
 
     <Button
         android:id="@+id/btAdd"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aggiungi all'ordine"
@@ -84,6 +85,7 @@
 
     <Button
         android:id="@+id/btClose"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Concludi ordine"

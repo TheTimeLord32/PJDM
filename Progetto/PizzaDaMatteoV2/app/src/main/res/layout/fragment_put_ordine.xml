@@ -7,6 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".fragment.onlyPut.putOrdine">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCliente"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Nome Cliente"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:helperText="Necessario"
+        app:counterEnabled="true"
+        app:counterMaxLength="50"
+        app:endIconMode="clear_text"
+        app:helperTextTextColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputCliente"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:inputType="textCapWords"
+            android:maxLength="50"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--
     <TextView
         android:id="@+id/tvCliente"
         android:layout_width="133dp"
@@ -35,40 +64,56 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvOrario"
-        android:layout_width="133dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center_vertical"
-        android:onClick="onClickOrario"
-        android:text="Orario: "
-        android:textAlignment="gravity"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/btSetTime"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCliente" />
+-->
 
     <Button
         android:id="@+id/btSetTime"
-        android:layout_width="234dp"
+        style="@style/Widget.MaterialComponents.TimePicker.Button"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:text="Scegli orario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilCliente"
         tools:ignore="TouchTargetSizeCheck" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRecapito"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Recapito"
+        app:startIconDrawable="@drawable/ic_baseline_local_phone_24"
+        app:helperText="Necessario"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        app:endIconMode="clear_text"
+        app:prefixText="+39"
+        app:helperTextTextColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSetTime">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputRecapito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="10"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--
     <TextView
         android:id="@+id/tvRecapito"
         android:layout_width="133dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
         android:gravity="center_vertical"
         android:text="Recapito: "
         android:textAlignment="gravity"
@@ -76,21 +121,20 @@
         app:layout_constraintEnd_toStartOf="@+id/etRecapito"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvOrario" />
+        tools:layout_editor_absoluteY="336dp" />
 
     <EditText
         android:id="@+id/etRecapito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="3462472413"
         android:inputType="number"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btSetTime"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        tools:layout_editor_absoluteY="334dp" />
 
     <TextView
         android:id="@+id/tvIndirizzo"
@@ -120,6 +164,33 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRecapito" />
+-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilIndirizzo"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Indirizzo"
+        app:startIconDrawable="@drawable/ic_baseline_map_24"
+        app:helperText="Necessario"
+        app:helperTextTextColor="#FF0000"
+        app:counterEnabled="true"
+        app:counterMaxLength="50"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilRecapito">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputIndirizzo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:maxLength="50"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btBack"

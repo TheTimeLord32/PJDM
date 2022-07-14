@@ -62,17 +62,17 @@ public class getOrdine extends Fragment {
         }
 
         binding.btNextOrdine.setOnClickListener(v -> {
-            String id_ordine = binding.etNumVisual.getText().toString();
+            String id_ordine = binding.etIDOrdine.getText().toString();
             getOrdine2(id_ordine);
         });
 
         binding.btRicetta.setOnClickListener(v -> {
-            String id_ordine = binding.etNumVisual.getText().toString();
+            String id_ordine = binding.etIDOrdine.getText().toString();
             getRicetta(id_ordine);
         });
 
         binding.btDelOrdine.setOnClickListener(v -> {
-            String id_ordine = binding.etNumVisual.getText().toString();
+            String id_ordine = binding.etIDOrdine.getText().toString();
             delOrdine(id_ordine);
         });
 

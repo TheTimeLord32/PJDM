@@ -55,20 +55,23 @@ public class putOrdine extends Fragment {
         binding.btBack.setOnClickListener(v -> NavHostFragment.findNavController(putOrdine.this).navigate(R.id.action_putOrdine_to_home));
 
         binding.btNext.setOnClickListener(v -> {
-            String nome_cliente = binding.etCliente.getText().toString();
+            String nome_cliente = binding.inputCliente.getText().toString();
             String orario = setTime.getText().toString();
-            String recapito = binding.etRecapito.getText().toString();
-            String indirizzo = binding.etIndirizzo.getText().toString();
+            String recapito = binding.inputRecapito.getText().toString();
+            String indirizzo = binding.inputIndirizzo.getText().toString();
+//            String nome_cliente = binding.etCliente.getText().toString();
+//            String recapito = binding.etRecapito.getText().toString();
+//            String indirizzo = binding.etIndirizzo.getText().toString();
 
             boolean nomeValido = nome_cliente.matches("[a-zA-Z ]{3,50}+");
             boolean orarioValido = orario.matches("[0-9]{2}:[0-9]{2}");
             boolean recapitoValido = recapito.matches("[0-9]{10}+");
             boolean indirizzoValido = indirizzo.matches("[a-zA-Z0-9 ,]{5,50}+");
 
-            if (!nomeValido || nome_cliente.isEmpty()) { binding.etCliente.setError(msgErrore + "\nInserire solo caratteri alfabetici: minimo 3, massimo 50 caratteri."); }
+            if (!nomeValido || nome_cliente.isEmpty()) { binding.inputCliente.setError(msgErrore + "\nInserire solo caratteri alfabetici: minimo 3, massimo 50 caratteri."); }
             if (!orarioValido || orario.equals("Scegli orario")) { Toast.makeText(getContext(), "Inserire orario", Toast.LENGTH_SHORT).show(); }
-            if (!recapitoValido || recapito.isEmpty()) { binding.etRecapito.setError(msgErrore + "\nInserire solo cifre: 10 cifre."); }
-            if (!indirizzoValido || indirizzo.isEmpty()) { binding.etIndirizzo.setError(msgErrore + "\nInserire solo caratteri alfabetici e cifre.\nMinimo 5, massimo 50 caratteri."); }
+            if (!recapitoValido || recapito.isEmpty()) { binding.inputRecapito.setError(msgErrore + "\nInserire solo cifre: 10 cifre."); }
+            if (!indirizzoValido || indirizzo.isEmpty()) { binding.inputIndirizzo.setError(msgErrore + "\nInserire solo caratteri alfabetici e cifre.\nMinimo 5, massimo 50 caratteri."); }
 
             if (nomeValido && orarioValido && recapitoValido && indirizzoValido)
                 putOrdine(nome_cliente, orario, recapito, indirizzo);

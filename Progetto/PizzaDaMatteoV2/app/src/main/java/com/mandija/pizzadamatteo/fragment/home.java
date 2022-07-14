@@ -33,10 +33,16 @@ public class home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        binding.btPutOrdine.setOnClickListener(v -> putOrdine());
-        binding.btGetOrdine.setOnClickListener(v -> getOrdine());
-        binding.btGetStatsOrario.setOnClickListener(v -> getStatsOrario());
-        binding.btGetStatsPizze.setOnClickListener(v -> getStatsPizze());
+
+        binding.ivPutOrdine.setOnClickListener(v -> putOrdine());
+        binding.ivGetOrdine.setOnClickListener(v -> getOrdine());
+        binding.ivGetStatsOrario.setOnClickListener(v -> getStatsOrario());
+        binding.ivGetStatsPizze.setOnClickListener(v -> getStatsPizze());
+
+//        binding.btPutOrdine.setOnClickListener(v -> putOrdine());
+//        binding.btGetOrdine.setOnClickListener(v -> getOrdine());
+//        binding.btGetStatsOrario.setOnClickListener(v -> getStatsOrario());
+//        binding.btGetStatsPizze.setOnClickListener(v -> getStatsPizze());
         return binding.getRoot();
     }
 
