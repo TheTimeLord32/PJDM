@@ -29,11 +29,12 @@ public class getLastOrdine extends HttpServlet {
 
         try {
             dao = new PizzaDaMatteoDAO_JDBC(ip, port, dbName, userName, password);
+            System.out.println("DONE.");
         }
         catch(SQLException | ClassNotFoundException e) {
+            System.out.println("PizzaDaMatteo - Ordine. Errore connessione DB. \n");
             e.printStackTrace();
         }
-        System.out.println("DONE.");
     }
 
     public void destroy() {
@@ -49,11 +50,19 @@ public class getLastOrdine extends HttpServlet {
 
         try{
             int lastOrdine = dao.getLastOrdine();
-            out.print(lastOrdine);
-            out.flush();
+            if (lastOrdine == 0) {
+                System.out.println("Nessun ordine presente");
+                response.setStatus(400);
+            } else {
+                System.out.println("Ultimo ordine: " + lastOrdine);
+                response.setStatus(200);
+                out.print(lastOrdine);
+                out.flush();
+            }
         } catch(SQLException e) {
-            e.printStackTrace();
-            out.println("Errore \n" + e.getMessage());
+            response.setStatus(400);
+            System.out.println("Errore: " + e.getMessage());
+            out.println("Errore: " + e.getMessage());
         }
     }
 }

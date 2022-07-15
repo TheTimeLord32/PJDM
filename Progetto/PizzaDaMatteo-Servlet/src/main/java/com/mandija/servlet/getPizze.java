@@ -34,11 +34,12 @@ public class getPizze extends HttpServlet {
 		
 		try {
 			dao = new PizzaDaMatteoDAO_JDBC(ip, port, dbName, userName, password);
+			System.out.println("DONE.");
 		}
 		catch(SQLException | ClassNotFoundException e) {
+			System.out.println("PizzaDaMatteo - Pizze. Errore connessione DB. \n");
 			e.printStackTrace();
 		}
-		System.out.println("DONE.");
     }
     
     public void destroy() {
@@ -64,13 +65,9 @@ public class getPizze extends HttpServlet {
 				out.flush();
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			response.setStatus(400);
+			System.out.println("Errore: " + e.getMessage());
+			out.println("Errore: " + e.getMessage());
 		}		 
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

@@ -32,11 +32,12 @@ public class getStatsOrario extends HttpServlet {
 		
 		try {
 			dao = new PizzaDaMatteoDAO_JDBC(ip, port, dbName, userName, password);
+			System.out.println("DONE.");
 		}
 		catch(SQLException | ClassNotFoundException e) {
+			System.out.println("PizzaDaMatteo - Stats Orario. Error opening DB connection. \n");
 			e.printStackTrace();
 		}
-		System.out.println("DONE.");
     }
     
     public void destroy() {
@@ -57,13 +58,16 @@ public class getStatsOrario extends HttpServlet {
 				System.out.println("Inventario statistiche orario vuoto");
 				response.setStatus(400);
 			} else {
+				System.out.println("Statistiche orario caricate \n");
 				response.setStatus(200);
 				JSONArray allStatsOrarioJson = new JSONArray(allStatsOrario);
 				out.print(allStatsOrarioJson);
 				out.flush();
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			response.setStatus(400);
+			System.out.println("Errore: " + e.getMessage());
+			out.println("Errore: " + e.getMessage());
 		}
 	}
 }

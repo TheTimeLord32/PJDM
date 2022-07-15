@@ -31,11 +31,12 @@ public class getOrdine extends HttpServlet {
 		
 		try {
 			dao = new PizzaDaMatteoDAO_JDBC(ip, port, dbName, userName, password);
+			System.out.println("DONE.");
 		}
 		catch(SQLException | ClassNotFoundException e) {
+			System.out.println("PizzaDaMatteo - Ordine. Errore connessione DB. \n");
 			e.printStackTrace();
 		}
-		System.out.println("DONE.");
     }
     
     public void destroy() {

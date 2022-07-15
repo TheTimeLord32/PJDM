@@ -34,12 +34,12 @@ public class getStatsPizze extends HttpServlet {
 		
 		try {
 			dao = new PizzaDaMatteoDAO_JDBC(ip, port, dbName, userName, password);
+			System.out.println("DONE.");
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("PizzaDaMatteo - Stats Pizze. Error opening DB connection. \n");
 		}
-		System.out.println("DONE.");
     }
     
     public void destroy() {
@@ -60,13 +60,16 @@ public class getStatsPizze extends HttpServlet {
 				System.out.println("Inventario statistiche pizze vuoto");
 				response.setStatus(400);
 			} else {
+				System.out.println("Statistiche pizze caricate \n");
 				response.setStatus(200);
 				JSONArray allStatsPizzeJson = new JSONArray(allStatsPizze);
 				out.print(allStatsPizzeJson);
 				out.flush();
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			response.setStatus(400);
+			System.out.println("Errore: " + e.getMessage());
+			out.println("Errore: " + e.getMessage());
 		}
 	}
 }

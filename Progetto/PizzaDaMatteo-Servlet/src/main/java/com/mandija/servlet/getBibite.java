@@ -12,9 +12,6 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
-/**
- * Servlet implementation class getBibite
- */
 public class getBibite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PizzaDaMatteoDAO_JDBC dao;
@@ -34,11 +31,12 @@ public class getBibite extends HttpServlet {
 		
 		try {
 			dao = new PizzaDaMatteoDAO_JDBC(ip, port, dbName, userName, password);
+			System.out.println("DONE.");
 		}
 		catch(SQLException | ClassNotFoundException e) {
+			System.out.println("PizzaDaMatteo - Bibite. Errore connessione DB. \n");
 			e.printStackTrace();
 		}
-		System.out.println("DONE.");
     }
     
     public void destroy() {
@@ -65,13 +63,9 @@ public class getBibite extends HttpServlet {
 				out.flush();
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			response.setStatus(400);
+			System.out.println("Errore: " + e.getMessage());
+			out.println("Errore: " + e.getMessage());
 		}
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

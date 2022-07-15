@@ -30,11 +30,12 @@ public class getRicetta extends HttpServlet {
 
         try {
             dao = new PizzaDaMatteoDAO_JDBC(ip, port, dbName, userName, password);
+            System.out.println("DONE.");
         }
         catch(SQLException | ClassNotFoundException e) {
+            System.out.println("PizzaDaMatteo - Ricetta. Errore connessione DB. \n");
             e.printStackTrace();
         }
-        System.out.println("DONE.");
     }
 
     public void destroy() {
@@ -49,26 +50,33 @@ public class getRicetta extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        String id_ordine = request.getParameter("id_ordine");
-
         try{
-            ArrayList<Ricetta> allRicetta = dao.getRicetta(Integer.parseInt(id_ordine));
-            if (allRicetta.toString().equals("[]"))
-            {
-                System.out.println("Ricetta vuoto");
-                response.setStatus(400);
-                out.print("Ricetta vuoto 1\n");
-                out.flush();
-            } else {
-                response.setStatus(200);
-                JSONArray allOrdineJson = new JSONArray(allRicetta);
-                out.print(allOrdineJson);
-                out.flush();
+            int id_ordine = Integer.parseInt(request.getParameter("id_ordine"));
+
+            if(id_ordine == Integer.parseInt(String.valueOf(id_ordine))) {
+                System.out.println("ID Ordine numerico! \n");
+                out.println("ID Ordine numerico! \n");
+                ArrayList<Ricetta> allRicetta = dao.getRicetta(Integer.valueOf(id_ordine));
+                if (allRicetta.toString().equals("[]")) {
+                    response.setStatus(204);
+                    System.out.println("Ricetta vuoto");
+                    out.print("Ricetta vuoto\n");
+                } else {
+                    response.setStatus(200);
+                    JSONArray allOrdineJson = new JSONArray(allRicetta);
+                    out.print(allOrdineJson);
+                    out.flush();
+                }
             }
+        } catch (NumberFormatException e) {
+            response.setStatus(400);
+            System.out.println("ID Ordine non numerico! \n");
+            out.println("ID Ordine non numerico! \n");
+            e.printStackTrace();
         } catch (SQLException e) {
-            out.print("Ricetta vuoto 2\n");
-            out.flush();
-            throw new RuntimeException(e);
+            response.setStatus(400);
+            System.out.println("Errore: " + e.getMessage());
+            out.println("Errore: " + e.getMessage());
         }
     }
 }
