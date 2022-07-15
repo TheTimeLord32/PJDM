@@ -39,14 +39,10 @@ public class home extends Fragment {
         binding.ivGetStatsOrario.setOnClickListener(v -> getStatsOrario());
         binding.ivGetStatsPizze.setOnClickListener(v -> getStatsPizze());
 
-//        binding.btPutOrdine.setOnClickListener(v -> putOrdine());
-//        binding.btGetOrdine.setOnClickListener(v -> getOrdine());
-//        binding.btGetStatsOrario.setOnClickListener(v -> getStatsOrario());
-//        binding.btGetStatsPizze.setOnClickListener(v -> getStatsPizze());
         return binding.getRoot();
     }
 
-    private void putOrdine() { NavHostFragment.findNavController(this).navigate(R.id.action_home_to_putOrdine); }
+    private void putOrdine() { connToDest(getContext().getString(R.string.getOrdine), R.id.action_home_to_putOrdine, ""); }
     private void getOrdine() { connToDest(getContext().getString(R.string.getOrdine), R.id.action_home_to_getOrdine, "getOrdine"); }
     private void getStatsOrario() { connToDest(getContext().getString(R.string.getStatsOrario), R.id.action_home_to_getStatsOrario, "getStatsOrario"); }
     private void getStatsPizze() { connToDest(getContext().getString(R.string.getStatsPizze), R.id.action_home_to_getStatsPizze, "getStatsPizze"); }
@@ -62,7 +58,11 @@ public class home extends Fragment {
                 String line = reader.readLine();
                 bundle.putString(bundleToPass, line);
                 reader.close();
-                new Handler(getContext().getMainLooper()).post(() -> NavHostFragment.findNavController(home.this).navigate(NavAction, bundle));
+                if (connection.getResponseCode() == 204) {
+                    new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Inventario vuoto", Toast.LENGTH_SHORT).show());
+                } else {
+                    new Handler(getContext().getMainLooper()).post(() -> NavHostFragment.findNavController(home.this).navigate(NavAction, bundle));
+                }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

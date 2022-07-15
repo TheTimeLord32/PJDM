@@ -52,26 +52,24 @@ public class getOrdine extends HttpServlet {
 
 		try{
 			ArrayList<Ordine> allOrdine = dao.loadOrdine();
-			if (allOrdine.toString().equals("[]"))
-			{
-				System.out.println("Ordine vuoto");
-				response.setStatus(400);
-				out.print("Ordine vuoto 1\n");
-				out.flush();
+			if (allOrdine.toString().equals("[]")) {
+				response.setStatus(204);
+				System.out.println("Ordine vuoto \n");
 			} else {
 				response.setStatus(200);
+				System.out.println("Ordine caricato \n");
 				JSONArray allOrdineJson = new JSONArray(allOrdine);
 				out.print(allOrdineJson);
 				out.flush();
 			}
 		} catch (SQLException e) {
-			out.print("Ordine vuoto 2\n");
-			out.flush();
-			throw new RuntimeException(e);
+			response.setStatus(400);
+			System.out.println("Errore: " + e.getMessage());
+			out.println("Errore: " + e.getMessage());
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
@@ -82,58 +80,63 @@ public class getOrdine extends HttpServlet {
 		String indirizzo = request.getParameter("indirizzo");
 
 		try {
-			dao.inserisciOrdine(new Ordine(0, nome_cliente, orario, recapito, indirizzo, false, 0));
-			response.setStatus(200);
-			out.print("Ordine inserito\n");
-		} catch (SQLException err) {
-			response.setStatus(505);
-			out.print("Errore inserimento ordine\n");
-			err.printStackTrace();
+			if (!nome_cliente.equals("") && !orario.equals("") && !recapito.equals("") && !indirizzo.equals("")) {
+				dao.inserisciOrdine(new Ordine(0, nome_cliente, orario, recapito, indirizzo, false, 0));
+				response.setStatus(201);
+				out.print("Ordine inserito correttamente \n");
+				out.flush();
+			}
+		} catch (NullPointerException | SQLException e){
+			response.setStatus(422);
+			out.print("Campi vuoti o errati. Riprovare\n");
+			e.printStackTrace();
 		}
 	}
 
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
-		String id_ordine = request.getParameter("id_ordine");
 		try {
-			if (response.getStatus() == 200) {
-				dao.deleteOrdine(Integer.parseInt(id_ordine));
-				out.print("Ordine rimosso correttamente");
+			int id_ordine = Integer.parseInt(request.getParameter("id_ordine"));
+			if (id_ordine == Integer.parseInt(String.valueOf(id_ordine))) {
+				dao.deleteOrdine(id_ordine);
+				out.print("Ordine rimosso correttamente \n");
 				out.flush();
 			} else {
-				out.print("Ordine non rimosso - Try");
+				out.print("Ordine non rimosso. Riprovare \n");
 				out.flush();
 			}
-
 		} catch (NumberFormatException | SQLException e) {
+			response.setStatus(400);
+			System.out.println("ID Ordine non numerico. Riprovare \n");
+			out.println("ID Ordine non numerico. Riprovare \n");
 			e.printStackTrace();
-			System.out.println("Ordine non rimosso - Catch");
 		}
 	}
 
 	@Override
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
-		String id_ordine = request.getParameter("id_ordine");
 		try {
-			if (response.getStatus() == 200) {
-				dao.updateConto(Integer.parseInt(id_ordine));
-				out.print("Conto inserito correttamente");
+			int id_ordine = Integer.parseInt(request.getParameter("id_ordine"));
+			if (id_ordine == Integer.parseInt(String.valueOf(id_ordine))) {
+				dao.updateConto(id_ordine);
+				out.print("Conto inserito correttamente \n");
 				out.flush();
 			} else {
-				out.print("Conto non inserito - Try");
+				out.print("Conto non inserito. Riprovare \n");
 				out.flush();
 			}
-
 		} catch (NumberFormatException | SQLException e) {
+			response.setStatus(400);
+			System.out.println("ID Ordine non numerico. Riprovare \n");
+			out.println("ID Ordine non numerico. Riprovare \n");
 			e.printStackTrace();
-			System.out.println("Conto non inserito - Catch");
 		}
 	}
 }

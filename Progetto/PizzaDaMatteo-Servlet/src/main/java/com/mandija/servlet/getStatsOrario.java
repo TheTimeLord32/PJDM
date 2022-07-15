@@ -55,11 +55,11 @@ public class getStatsOrario extends HttpServlet {
 			ArrayList<StatsOrario> allStatsOrario = dao.getStatsOrario();
 			if (allStatsOrario.toString().equals("[]"))
 			{
-				System.out.println("Inventario statistiche orario vuoto");
-				response.setStatus(400);
+				response.setStatus(204);
+				System.out.println("Inventario statistiche orario vuoto \n");
 			} else {
-				System.out.println("Statistiche orario caricate \n");
 				response.setStatus(200);
+				System.out.println("Statistiche orario caricate \n");
 				JSONArray allStatsOrarioJson = new JSONArray(allStatsOrario);
 				out.print(allStatsOrarioJson);
 				out.flush();

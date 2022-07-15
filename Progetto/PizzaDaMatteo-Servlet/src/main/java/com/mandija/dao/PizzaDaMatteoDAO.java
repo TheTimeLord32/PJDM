@@ -6,24 +6,20 @@ import java.sql.SQLException;
 import com.mandija.entity.*;
 
 public interface PizzaDaMatteoDAO {
-	public ArrayList<Pizze> loadPizze() throws SQLException;
-	public ArrayList<Fritti> loadFritti() throws SQLException;
-	public ArrayList<Bibite> loadBibite() throws SQLException;
-
-	public ArrayList<Ordine> loadOrdine() throws SQLException;
-	public ArrayList<Ordine1> loadOrdine1(int id_ordine) throws SQLException;
-	public ArrayList<Ordine2> loadOrdine2(int id_ordine) throws SQLException;
+	ArrayList<Pizze> loadPizze() throws SQLException;
+	ArrayList<Fritti> loadFritti() throws SQLException;
+	ArrayList<Bibite> loadBibite() throws SQLException;
+	ArrayList<Ordine> loadOrdine() throws SQLException;
+	ArrayList<Ordine2> loadOrdine2(int id_ordine) throws SQLException;
+	ArrayList<Ordine2Pizza> loadOrdine2Pizza(int id_ordine)  throws SQLException;
+	void inserisciOrdine(Ordine ordine) throws SQLException;
+	int inserisciOrdine2(Ordine2 ordine2) throws SQLException;
+	void inserisciOrdine2Pizza(Ordine2Pizza ordine2pizza) throws SQLException;
+	void deleteOrdine(int id_ordine) throws SQLException;
 	
-	public int inserisciOrdine(Ordine ordine) throws SQLException;
-	public int inserisciOrdine1(Ordine1 ordine1) throws SQLException;
-	public int inserisciOrdine2(Ordine2 ordine2) throws SQLException;
-	
-	public void deleteOrdine(int id_ordine) throws SQLException;
-	
-	public ArrayList<StatsOrario> getStatsOrario() throws SQLException;
-	public ArrayList<StatsPizze> getStatsPizze() throws SQLException;
-	public int getLastOrdine() throws SQLException;
+	ArrayList<StatsOrario> getStatsOrario() throws SQLException;
+	ArrayList<StatsPizze> getStatsPizze() throws SQLException;
+	int getLastOrdine() throws SQLException;
     void updateConto(int id_ordine) throws SQLException;
-
-	public ArrayList<Ricetta> getRicetta(int id_ordine) throws SQLException;
+	ArrayList<Ricetta> getRicetta(int id_ordine) throws SQLException;
 }

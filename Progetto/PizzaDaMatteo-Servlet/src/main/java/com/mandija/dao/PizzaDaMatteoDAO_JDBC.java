@@ -8,7 +8,7 @@ import com.mandija.entity.*;
 
 public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 
-	private Connection conn;
+	private final Connection conn;
 	
 	// connessione al database
 	public PizzaDaMatteoDAO_JDBC(String ip, String port, String dbName, String userName, String userPwd) throws ClassNotFoundException, SQLException{
@@ -37,7 +37,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// elenco pizze
 	@Override
 	public ArrayList<Pizze> loadPizze() throws SQLException {
-		ArrayList<Pizze>res = new ArrayList<Pizze>();
+		ArrayList<Pizze>res = new ArrayList<>();
 		String query = "SELECT nome FROM pizza;";
 		
 		Statement stmt = conn.createStatement();
@@ -57,7 +57,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// elenco fritti
 	@Override
 	public ArrayList<Fritti> loadFritti() throws SQLException {
-		ArrayList<Fritti>res = new ArrayList<Fritti>();
+		ArrayList<Fritti>res = new ArrayList<>();
 		String query = "SELECT nome FROM fritti;";
 		
 		Statement stmt = conn.createStatement();
@@ -77,7 +77,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// elenco bevande
 	@Override
 	public ArrayList<Bibite> loadBibite() throws SQLException {
-		ArrayList<Bibite>res = new ArrayList<Bibite>();
+		ArrayList<Bibite>res = new ArrayList<>();
 		String query = "SELECT nome FROM bibite;";
 		
 		Statement stmt = conn.createStatement();
@@ -97,7 +97,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// elenco ordine
 	@Override
 	public ArrayList<Ordine> loadOrdine() throws SQLException {
-		ArrayList<Ordine>res = new ArrayList<Ordine>();
+		ArrayList<Ordine>res = new ArrayList<>();
 		String query = "SELECT * FROM ordine WHERE confermato != 1 ORDER BY ordine.id_ordine ASC;";
 		
 		Statement stmt = conn.createStatement();
@@ -120,47 +120,9 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		return res;
 	}
 
-	// elenco ordine1
-	@Override
-	public ArrayList<Ordine1> loadOrdine1(int id_ordine) throws SQLException {
-		ArrayList<Ordine1>res = new ArrayList<Ordine1>();
-		String query = "SELECT * FROM ordine1 WHERE id_ordine = " + id_ordine+ " AND confermato != true;";
-		
-		Statement stmt = conn.createStatement();
-		ResultSet rsetOrdine1 = stmt.executeQuery(query);
-		
-		while(rsetOrdine1.next()) {
-			String pizza1 = rsetOrdine1.getString(2);
-			String pizza2 = rsetOrdine1.getString(3);
-			String pizza3 = rsetOrdine1.getString(4);
-			String pizza4 = rsetOrdine1.getString(5);
-			String pizza5 = rsetOrdine1.getString(6);
-
-			String fritti1 = rsetOrdine1.getString(7);
-			String fritti2 = rsetOrdine1.getString(8);
-			String fritti3 = rsetOrdine1.getString(9);
-			String fritti4 = rsetOrdine1.getString(10);
-			String fritto5 = rsetOrdine1.getString(11);
-
-			String bibite1 = rsetOrdine1.getString(12);
-			String bibite2 = rsetOrdine1.getString(13);
-			String bibite3 = rsetOrdine1.getString(14);
-			String bibite4 = rsetOrdine1.getString(15);
-			String bibite5 = rsetOrdine1.getString(16);
-
-			boolean confermato = rsetOrdine1.getBoolean(17);
-			
-			res.add(new Ordine1(id_ordine, pizza1, pizza2, pizza3, pizza4, pizza5, fritti1, fritti2, fritti3, fritti4, fritto5, bibite1, bibite2, bibite3, bibite4, bibite5,  confermato));
-		}
-		rsetOrdine1.close();
-		stmt.close();
-		
-		return res;
-	}
-
 	@Override
 	public ArrayList<Ordine2> loadOrdine2(int id_ordine) throws SQLException {
-		ArrayList<Ordine2>res = new ArrayList<Ordine2>();
+		ArrayList<Ordine2>res = new ArrayList<>();
 		String query = "SELECT * FROM ordine2 WHERE id_ordine = " + id_ordine+ " AND confermato != true;";
 
 		Statement stmt = conn.createStatement();
@@ -181,9 +143,29 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		return res;
 	}
 
+	@Override
+	public ArrayList<Ordine2Pizza> loadOrdine2Pizza(int id_ordine) throws SQLException {
+		ArrayList<Ordine2Pizza>res = new ArrayList<>();
+		String query = "SELECT * FROM ordine2_pizza WHERE id_ordine = " + id_ordine+ " AND confermato != true;";
+		Statement stmt = conn.createStatement();
+		ResultSet rsetOrdine2Pizza = stmt.executeQuery(query);
+
+		while (rsetOrdine2Pizza.next()) {
+			int id_riga = Integer.parseInt(rsetOrdine2Pizza.getString(1));
+			int id_ordine1 = Integer.parseInt(rsetOrdine2Pizza.getString(2));
+			String pizza = rsetOrdine2Pizza.getString(3);
+			boolean confermato = rsetOrdine2Pizza.getBoolean(4);
+
+			res.add(new Ordine2Pizza(id_riga, id_ordine1, pizza, confermato));
+		}
+		rsetOrdine2Pizza.close();
+		stmt.close();
+		return res;
+	}
+
 	// inserimento ordine
 	@Override
-	public int inserisciOrdine(Ordine ordine) throws SQLException {
+	public void inserisciOrdine(Ordine ordine) throws SQLException {
 		String insert = "INSERT INTO ordine VALUES (?, ?, ?, ?, ?, ?, ?);";
 		
 		PreparedStatement pstmt = conn.prepareStatement(insert);
@@ -196,43 +178,8 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		pstmt.setBoolean(6, ordine.getConfermato());
 		pstmt.setFloat(7, ordine.getConto());
 		
-		int affectedRows = pstmt.executeUpdate();
+		pstmt.executeUpdate();
 		pstmt.close();
-		
-		return affectedRows;		
-	}
-
-	// inserimento ordine1
-	@Override
-	public int inserisciOrdine1(Ordine1 ordine1) throws SQLException {
-		String insert = "INSERT INTO ordine1 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-		
-		PreparedStatement pstmt = conn.prepareStatement(insert);
-
-		pstmt.setInt(1, ordine1.getId_ordine());
-		pstmt.setString(2, ordine1.getPizza1());
-		pstmt.setString(3, ordine1.getPizza2());
-		pstmt.setString(4, ordine1.getPizza3());
-		pstmt.setString(5, ordine1.getPizza4());
-		pstmt.setString(6, ordine1.getPizza5());
-		pstmt.setString(7, ordine1.getFritti1());
-		pstmt.setString(8, ordine1.getFritti2());
-		pstmt.setString(9, ordine1.getFritti3());
-		pstmt.setString(10, ordine1.getFritti4());
-		pstmt.setString(11, ordine1.getFritti5());
-		pstmt.setString(12, ordine1.getBibite1());
-		pstmt.setString(13, ordine1.getBibite2());
-		pstmt.setString(14, ordine1.getBibite3());
-		pstmt.setString(15, ordine1.getBibite4());
-		pstmt.setString(16, ordine1.getBibite5());
-		pstmt.setBoolean(17, ordine1.getConfermato());
-
-		int affectedRows = pstmt.executeUpdate();
-		pstmt.close();
-		
-		/* scalare ingredienti pizze */
-		
-		return affectedRows;
 	}
 
 	@Override
@@ -252,6 +199,21 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		pstmt.close();
 
 		return affectedRows;
+	}
+
+	@Override
+	public void inserisciOrdine2Pizza(Ordine2Pizza ordine2pizza) throws SQLException {
+		String insert = "INSERT INTO ordine2pizza VALUES (?, ?, ?, ?);";
+
+		PreparedStatement pstmt = conn.prepareStatement(insert);
+
+		pstmt.setInt(1, ordine2pizza.getId_riga());
+		pstmt.setInt(2, ordine2pizza.getId_ordine());
+		pstmt.setString(3, ordine2pizza.getPizza());
+		pstmt.setBoolean(4, ordine2pizza.getConfermato());
+
+		pstmt.executeUpdate();
+		pstmt.close();
 	}
 
 	// archiviazione ordine
@@ -282,7 +244,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	// elenco statistiche orario + pizza
 	@Override
 	public ArrayList<StatsOrario> getStatsOrario() throws SQLException {
-		ArrayList<StatsOrario> res = new ArrayList<StatsOrario>();
+		ArrayList<StatsOrario> res = new ArrayList<>();
 		String queryOrario = "SELECT orario, count(orario) AS countOrario FROM ordine GROUP BY orario;";
 		
 		Statement stmtStatsOrario = conn.createStatement();
@@ -302,7 +264,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 
 	@Override
 	public ArrayList<StatsPizze> getStatsPizze() throws SQLException {
-		ArrayList<StatsPizze> res = new ArrayList<StatsPizze>();
+		ArrayList<StatsPizze> res = new ArrayList<>();
 		String queryPizze = "SELECT pizza, cntPizza FROM stats_pizza;";
 		
 		Statement stmtStatsPizze = conn.createStatement();

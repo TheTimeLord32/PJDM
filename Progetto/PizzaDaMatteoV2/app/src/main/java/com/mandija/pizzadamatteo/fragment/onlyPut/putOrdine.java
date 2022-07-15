@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.mandija.pizzadamatteo.R;
@@ -25,7 +24,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -33,7 +31,6 @@ import java.util.concurrent.Executors;
 public class putOrdine extends Fragment {
     private FragmentPutOrdineBinding binding;
     private String msgErrore = "Campo vuoto o incorretto, controllare.";
-    private Bundle bundle = new Bundle();
     private Executor executor = Executors.newSingleThreadExecutor();
 
     public putOrdine() { }
@@ -59,9 +56,6 @@ public class putOrdine extends Fragment {
             String orario = setTime.getText().toString();
             String recapito = binding.inputRecapito.getText().toString();
             String indirizzo = binding.inputIndirizzo.getText().toString();
-//            String nome_cliente = binding.etCliente.getText().toString();
-//            String recapito = binding.etRecapito.getText().toString();
-//            String indirizzo = binding.etIndirizzo.getText().toString();
 
             boolean nomeValido = nome_cliente.matches("[a-zA-Z ]{3,50}+");
             boolean orarioValido = orario.matches("[0-9]{2}:[0-9]{2}");

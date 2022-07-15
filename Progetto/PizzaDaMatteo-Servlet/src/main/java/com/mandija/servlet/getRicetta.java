@@ -52,31 +52,30 @@ public class getRicetta extends HttpServlet {
 
         try{
             int id_ordine = Integer.parseInt(request.getParameter("id_ordine"));
+            System.out.println("id_ordine: " + id_ordine);
 
             if(id_ordine == Integer.parseInt(String.valueOf(id_ordine))) {
                 System.out.println("ID Ordine numerico! \n");
                 out.println("ID Ordine numerico! \n");
-                ArrayList<Ricetta> allRicetta = dao.getRicetta(Integer.valueOf(id_ordine));
+                ArrayList<Ricetta> allRicetta = dao.getRicetta(id_ordine);
+                System.out.println("Ricetta: " + allRicetta.toString() + "\n");
+
                 if (allRicetta.toString().equals("[]")) {
                     response.setStatus(204);
-                    System.out.println("Ricetta vuoto");
-                    out.print("Ricetta vuoto\n");
+                    System.out.println("Ricetta non trovata \n");
                 } else {
                     response.setStatus(200);
+                    System.out.println("Ricetta trovata");
                     JSONArray allOrdineJson = new JSONArray(allRicetta);
                     out.print(allOrdineJson);
                     out.flush();
                 }
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | SQLException e) {
             response.setStatus(400);
-            System.out.println("ID Ordine non numerico! \n");
-            out.println("ID Ordine non numerico! \n");
+            System.out.println("ID Ordine non numerico. Riprovare \n");
+            out.println("ID Ordine non numerico. Riprovare \n");
             e.printStackTrace();
-        } catch (SQLException e) {
-            response.setStatus(400);
-            System.out.println("Errore: " + e.getMessage());
-            out.println("Errore: " + e.getMessage());
         }
     }
 }

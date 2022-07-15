@@ -69,26 +69,25 @@
   </servlet-mapping>
 
   <servlet>
-    <description/>
-    <display-name>getOrdine1</display-name>
-    <servlet-name>getOrdine1</servlet-name>
-    <servlet-class>com.mandija.servlet.getOrdine1</servlet-class>
+      <description/>
+      <display-name>getOrdine2</display-name>
+      <servlet-name>getOrdine2</servlet-name>
+      <servlet-class>com.mandija.servlet.getOrdine2</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>getOrdine1</servlet-name>
-    <url-pattern>/getOrdine1</url-pattern>
+      <servlet-name>getOrdine2</servlet-name>
+      <url-pattern>/getOrdine2</url-pattern>
   </servlet-mapping>
 
-    <servlet>
-        <description/>
-        <display-name>getOrdine2</display-name>
-        <servlet-name>getOrdine2</servlet-name>
-        <servlet-class>com.mandija.servlet.getOrdine2</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getOrdine2</servlet-name>
-        <url-pattern>/getOrdine2</url-pattern>
-    </servlet-mapping>
+  <servlet>
+    <display-name>getOrdine2Pizza</display-name>
+    <servlet-name>getOrdine2Pizza</servlet-name>
+    <servlet-class>com.mandija.servlet.getOrdine2Pizza</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>getOrdine2Pizza</servlet-name>
+      <url-pattern>/getOrdine2Pizza</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <description/>

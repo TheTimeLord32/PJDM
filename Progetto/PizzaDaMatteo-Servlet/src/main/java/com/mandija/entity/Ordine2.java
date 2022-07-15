@@ -2,7 +2,6 @@ package com.mandija.entity;
 
 public class Ordine2 {
     private int id_riga, id_ordine;
-
     private boolean confermato;
     private String pizza, fritti, bibite;
 

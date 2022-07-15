@@ -66,7 +66,7 @@ CREATE TABLE ordine (
   id_ordine int NOT NULL AUTO_INCREMENT,
   nome_cliente varchar(50) NOT NULL,
   orario time NOT NULL,
-  recapito varchar(10)  NOT NULL,
+  recapito int(10)  NOT NULL,
   indirizzo varchar(50)  NULL,
   confermato boolean NULL,
   conto float NULL,

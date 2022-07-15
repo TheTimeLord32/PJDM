@@ -57,11 +57,11 @@ public class getStatsPizze extends HttpServlet {
 			ArrayList<StatsPizze> allStatsPizze = dao.getStatsPizze();
 			if (allStatsPizze.toString().equals("[]"))
 			{
-				System.out.println("Inventario statistiche pizze vuoto");
-				response.setStatus(400);
+				response.setStatus(204);
+				System.out.println("Inventario statistiche pizze vuoto \n");
 			} else {
-				System.out.println("Statistiche pizze caricate \n");
 				response.setStatus(200);
+				System.out.println("Statistiche pizze caricate \n");
 				JSONArray allStatsPizzeJson = new JSONArray(allStatsPizze);
 				out.print(allStatsPizzeJson);
 				out.flush();

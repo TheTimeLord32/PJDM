@@ -9,73 +9,147 @@
 			"name": "Get Request",
 			"item": [
 				{
-					"name": "getPizze",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getPizze",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"1",
-								"10"
-							],
-							"port": "8080",
-							"path": [
-								"PizzaDaMatteo-Servlet",
-								"getPizze"
-							]
+					"name": "No Param",
+					"item": [
+						{
+							"name": "getPizze",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getPizze",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"1",
+										"10"
+									],
+									"port": "8080",
+									"path": [
+										"PizzaDaMatteo-Servlet",
+										"getPizze"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getFritti",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getFritti",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"1",
+										"10"
+									],
+									"port": "8080",
+									"path": [
+										"PizzaDaMatteo-Servlet",
+										"getFritti"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getBibite",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getBibite",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"1",
+										"10"
+									],
+									"port": "8080",
+									"path": [
+										"PizzaDaMatteo-Servlet",
+										"getBibite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getLastOrdine",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getLastOrdine",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"1",
+										"10"
+									],
+									"port": "8080",
+									"path": [
+										"PizzaDaMatteo-Servlet",
+										"getLastOrdine"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getStatsOrario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getStatsOrario",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"1",
+										"10"
+									],
+									"port": "8080",
+									"path": [
+										"PizzaDaMatteo-Servlet",
+										"getStatsOrario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getStatsPizze",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getStatsPizze",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"1",
+										"10"
+									],
+									"port": "8080",
+									"path": [
+										"PizzaDaMatteo-Servlet",
+										"getStatsPizze"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "getFritti",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getFritti",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"1",
-								"10"
-							],
-							"port": "8080",
-							"path": [
-								"PizzaDaMatteo-Servlet",
-								"getFritti"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getBibite",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getBibite",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"1",
-								"10"
-							],
-							"port": "8080",
-							"path": [
-								"PizzaDaMatteo-Servlet",
-								"getBibite"
-							]
-						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "getOrdine",
@@ -95,6 +169,13 @@
 							"path": [
 								"PizzaDaMatteo-Servlet",
 								"getOrdine"
+							],
+							"query": [
+								{
+									"key": "id_ordine",
+									"value": "1",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -104,216 +185,6 @@
 					"name": "getOrdine1",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine1?id_ordine=1",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"1",
-								"10"
-							],
-							"port": "8080",
-							"path": [
-								"PizzaDaMatteo-Servlet",
-								"getOrdine1"
-							],
-							"query": [
-								{
-									"key": "id_ordine",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getStats",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getStats",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"1",
-								"10"
-							],
-							"port": "8080",
-							"path": [
-								"PizzaDaMatteo-Servlet",
-								"getStats"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Put Request",
-			"item": [
-				{
-					"name": "putOrdine",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine?nome_cliente=Dario&orario=20:00&recapito=1234561234&indirizzo=Viale Delle Pizzerie",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"1",
-								"10"
-							],
-							"port": "8080",
-							"path": [
-								"PizzaDaMatteo-Servlet",
-								"getOrdine"
-							],
-							"query": [
-								{
-									"key": "id_ordine",
-									"value": "0",
-									"disabled": true
-								},
-								{
-									"key": "modalita",
-									"value": "Asporto",
-									"disabled": true
-								},
-								{
-									"key": "nome_cliente",
-									"value": "Dario"
-								},
-								{
-									"key": "orario",
-									"value": "20:00"
-								},
-								{
-									"key": "recapito",
-									"value": "1234561234"
-								},
-								{
-									"key": "indirizzo",
-									"value": "Viale Delle Pizzerie"
-								},
-								{
-									"key": "confermato",
-									"value": "true",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "putOrdine1",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine1?num_pizze=2&pizza1=Margherita&pizza2=Capricciosa&num_fritti=1&fritti1=Crocchette&note=Prova&conto=10",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"1",
-								"10"
-							],
-							"port": "8080",
-							"path": [
-								"PizzaDaMatteo-Servlet",
-								"getOrdine1"
-							],
-							"query": [
-								{
-									"key": "id_ordine",
-									"value": "0",
-									"disabled": true
-								},
-								{
-									"key": "num_pizze",
-									"value": "2"
-								},
-								{
-									"key": "pizza1",
-									"value": "Margherita"
-								},
-								{
-									"key": "pizza2",
-									"value": "Capricciosa"
-								},
-								{
-									"key": "num_fritti",
-									"value": "1"
-								},
-								{
-									"key": "fritti1",
-									"value": "Crocchette"
-								},
-								{
-									"key": "note",
-									"value": "Prova"
-								},
-								{
-									"key": "conto",
-									"value": "10"
-								},
-								{
-									"key": "confermato",
-									"value": "true",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Del Request",
-			"item": [
-				{
-					"name": "delOrdine",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine?id_ordine=2",
-							"protocol": "http",
-							"host": [
-								"192",
-								"168",
-								"1",
-								"10"
-							],
-							"port": "8080",
-							"path": [
-								"PizzaDaMatteo-Servlet",
-								"getOrdine"
-							],
-							"query": [
-								{
-									"key": "id_ordine",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delOrdine1",
-					"request": {
-						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine1?id_ordine=2",
@@ -333,6 +204,346 @@
 								{
 									"key": "id_ordine",
 									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrdine2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine2?id_ordine=9",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"10"
+							],
+							"port": "8080",
+							"path": [
+								"PizzaDaMatteo-Servlet",
+								"getOrdine2"
+							],
+							"query": [
+								{
+									"key": "id_ordine",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRicetta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getRicetta?id_ordine=9",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"10"
+							],
+							"port": "8080",
+							"path": [
+								"PizzaDaMatteo-Servlet",
+								"getRicetta"
+							],
+							"query": [
+								{
+									"key": "id_ordine",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Put Request",
+			"item": [
+				{
+					"name": "putOrdine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine?nome_cliente=Thomas&orario=20:00&recapito=3462472413&indirizzo=Viale Alcide De Gasperi",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"10"
+							],
+							"port": "8080",
+							"path": [
+								"PizzaDaMatteo-Servlet",
+								"getOrdine"
+							],
+							"query": [
+								{
+									"key": "nome_cliente",
+									"value": "Thomas"
+								},
+								{
+									"key": "orario",
+									"value": "20:00"
+								},
+								{
+									"key": "recapito",
+									"value": "3462472413"
+								},
+								{
+									"key": "indirizzo",
+									"value": "Viale Alcide De Gasperi"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putOrdine1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine1?pizza1=4 Stagioni&pizza2=Bismarck&pizza3=Boscaiola&pizza4=Boscaiola&pizza5=Capricciosa&fritti1=Crocchette&fritti2=Fiori di zucca (1 pz)&fritti3=Grigette (3 pz)&fritti4=Mozzarelline (5 pz)&fritti5=Patatine fritte&bibite1=Ceres 33cl&bibite2=Ceres 33cl&bibite3=Ceres 33cl&bibite4=Ceres 33cl&bibite5=Ceres 33cl",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"10"
+							],
+							"port": "8080",
+							"path": [
+								"PizzaDaMatteo-Servlet",
+								"getOrdine1"
+							],
+							"query": [
+								{
+									"key": "id_ordine",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "note",
+									"value": "Prova",
+									"disabled": true
+								},
+								{
+									"key": "conto",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "confermato",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "pizza1",
+									"value": "4 Stagioni"
+								},
+								{
+									"key": "pizza2",
+									"value": "Bismarck"
+								},
+								{
+									"key": "pizza3",
+									"value": "Boscaiola"
+								},
+								{
+									"key": "pizza4",
+									"value": "Boscaiola"
+								},
+								{
+									"key": "pizza5",
+									"value": "Capricciosa"
+								},
+								{
+									"key": "fritti1",
+									"value": "Crocchette"
+								},
+								{
+									"key": "fritti2",
+									"value": "Fiori di zucca (1 pz)"
+								},
+								{
+									"key": "fritti3",
+									"value": "Grigette (3 pz)"
+								},
+								{
+									"key": "fritti4",
+									"value": "Mozzarelline (5 pz)"
+								},
+								{
+									"key": "fritti5",
+									"value": "Patatine fritte"
+								},
+								{
+									"key": "bibite1",
+									"value": "Ceres 33cl"
+								},
+								{
+									"key": "bibite2",
+									"value": "Ceres 33cl"
+								},
+								{
+									"key": "bibite3",
+									"value": "Ceres 33cl"
+								},
+								{
+									"key": "bibite4",
+									"value": "Ceres 33cl"
+								},
+								{
+									"key": "bibite5",
+									"value": "Ceres 33cl"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putOrdine2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine2?id_ordine=30",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"10"
+							],
+							"port": "8080",
+							"path": [
+								"PizzaDaMatteo-Servlet",
+								"getOrdine2"
+							],
+							"query": [
+								{
+									"key": "id_ordine",
+									"value": "30"
+								},
+								{
+									"key": "pizza",
+									"value": "Diavola",
+									"disabled": true
+								},
+								{
+									"key": "fritti",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Del Request",
+			"item": [
+				{
+					"name": "delOrdine",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine?id_ordine=1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"10"
+							],
+							"port": "8080",
+							"path": [
+								"PizzaDaMatteo-Servlet",
+								"getOrdine"
+							],
+							"query": [
+								{
+									"key": "id_ordine",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateConto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine?id_ordine=14",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"10"
+							],
+							"port": "8080",
+							"path": [
+								"PizzaDaMatteo-Servlet",
+								"getOrdine"
+							],
+							"query": [
+								{
+									"key": "id_ordine",
+									"value": "14"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delOrdine1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.10:8080/PizzaDaMatteo-Servlet/getOrdine2?id_ordine=1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"10"
+							],
+							"port": "8080",
+							"path": [
+								"PizzaDaMatteo-Servlet",
+								"getOrdine2"
+							],
+							"query": [
+								{
+									"key": "id_ordine",
+									"value": "1"
 								}
 							]
 						}
