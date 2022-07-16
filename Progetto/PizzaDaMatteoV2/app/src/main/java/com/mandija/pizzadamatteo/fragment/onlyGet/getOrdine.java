@@ -112,6 +112,7 @@ public class getOrdine extends Fragment {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                new Handler(getContext().getMainLooper()).post(() -> Toast.makeText(getContext(), "Ricetta vuota", Toast.LENGTH_SHORT).show());
                 e.printStackTrace();
             }
         });

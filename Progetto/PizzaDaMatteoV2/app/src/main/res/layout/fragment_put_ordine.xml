@@ -16,23 +16,24 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:hint="Nome Cliente"
-        app:startIconDrawable="@drawable/ic_baseline_person_24"
-        app:helperText="Necessario"
         app:counterEnabled="true"
         app:counterMaxLength="50"
         app:endIconMode="clear_text"
+        app:helperText="Necessario"
         app:helperTextTextColor="#FF0000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputCliente"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="SpeakableTextPresentCheck"
             android:inputType="textCapWords"
-            android:maxLength="50"/>
+            android:maxLength="50"
+            android:textColorHighlight="@color/blue"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--
@@ -75,6 +76,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:text="Scegli orario"
+        android:textColorHighlight="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilCliente"
@@ -105,7 +107,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:maxLength="10"/>
+            android:maxLength="10"
+            android:textColorHighlight="@color/blue" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--
@@ -189,7 +192,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapWords"
-            android:maxLength="50"/>
+            android:maxLength="50"
+            android:textColorHighlight="@color/blue" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

@@ -56,16 +56,6 @@
         android:label="fragment_get_stats"
         tools:layout="@layout/fragment_get_stats_orario" />
     <fragment
-        android:id="@+id/putOrdine1"
-        android:name="com.mandija.pizzadamatteo.fragment.onlyPut.putOrdine1"
-        android:label="fragment_put_ordine1"
-        tools:layout="@layout/fragment_put_ordine1" />
-    <fragment
-        android:id="@+id/getOrdine1"
-        android:name="com.mandija.pizzadamatteo.fragment.onlyGet.getOrdine1"
-        android:label="fragment_get_ordine1"
-        tools:layout="@layout/fragment_get_ordine1" />
-    <fragment
         android:id="@+id/getStatsPizze"
         android:name="com.mandija.pizzadamatteo.fragment.stats.getStatsPizze"
         android:label="fragment_get_stats_pizze"
