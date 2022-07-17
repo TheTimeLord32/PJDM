@@ -143,26 +143,6 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		return res;
 	}
 
-	@Override
-	public ArrayList<Ordine2Pizza> loadOrdine2Pizza(int id_ordine) throws SQLException {
-		ArrayList<Ordine2Pizza>res = new ArrayList<>();
-		String query = "SELECT * FROM ordine2_pizza WHERE id_ordine = " + id_ordine+ " AND confermato != true;";
-		Statement stmt = conn.createStatement();
-		ResultSet rsetOrdine2Pizza = stmt.executeQuery(query);
-
-		while (rsetOrdine2Pizza.next()) {
-			int id_riga = Integer.parseInt(rsetOrdine2Pizza.getString(1));
-			int id_ordine1 = Integer.parseInt(rsetOrdine2Pizza.getString(2));
-			String pizza = rsetOrdine2Pizza.getString(3);
-			boolean confermato = rsetOrdine2Pizza.getBoolean(4);
-
-			res.add(new Ordine2Pizza(id_riga, id_ordine1, pizza, confermato));
-		}
-		rsetOrdine2Pizza.close();
-		stmt.close();
-		return res;
-	}
-
 	// inserimento ordine
 	@Override
 	public void inserisciOrdine(Ordine ordine) throws SQLException {
@@ -199,21 +179,6 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 		pstmt.close();
 
 		return affectedRows;
-	}
-
-	@Override
-	public void inserisciOrdine2Pizza(Ordine2Pizza ordine2pizza) throws SQLException {
-		String insert = "INSERT INTO ordine2pizza VALUES (?, ?, ?, ?);";
-
-		PreparedStatement pstmt = conn.prepareStatement(insert);
-
-		pstmt.setInt(1, ordine2pizza.getId_riga());
-		pstmt.setInt(2, ordine2pizza.getId_ordine());
-		pstmt.setString(3, ordine2pizza.getPizza());
-		pstmt.setBoolean(4, ordine2pizza.getConfermato());
-
-		pstmt.executeUpdate();
-		pstmt.close();
 	}
 
 	// archiviazione ordine
@@ -296,7 +261,7 @@ public class PizzaDaMatteoDAO_JDBC implements PizzaDaMatteoDAO{
 	@Override
 	public ArrayList<Ricetta> getRicetta(int id_ordine) throws SQLException {
 		ArrayList<Ricetta> res = new ArrayList<>();
-		String query = "select ricetta.* from ricetta, ordine2 where  ricetta.codice_pizza = ordine2.pizza and id_ordine=" + id_ordine + ";";
+		String query = "select ricetta.* from ricetta, ordine2 where  ricetta.codice_pizza = ordine2.pizza and id_ordine=" + id_ordine + " and ordine2.confermato != true;";
 
 		Statement stmt = conn.createStatement();
 		ResultSet rset = stmt.executeQuery(query);

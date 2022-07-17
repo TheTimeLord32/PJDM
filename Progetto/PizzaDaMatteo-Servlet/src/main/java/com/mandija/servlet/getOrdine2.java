@@ -56,10 +56,9 @@ public class getOrdine2 extends HttpServlet {
 
             if (id_ordine == Integer.parseInt(String.valueOf(id_ordine))) {
                 System.out.println("ID Ordine numerico! \n");
-                out.println("ID Ordine numerico! \n");
                 ArrayList<Ordine2> allOrdine2 = dao.loadOrdine2(id_ordine);
                 if (allOrdine2.toString().equals("[]")) {
-                    response.setStatus(204);
+                    response.setStatus(400);
                     System.out.println("Ordine non presente \n");
                     out.println("Ordine non presente \n");
                 } else {

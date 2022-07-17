@@ -56,13 +56,13 @@ public class getRicetta extends HttpServlet {
 
             if(id_ordine == Integer.parseInt(String.valueOf(id_ordine))) {
                 System.out.println("ID Ordine numerico! \n");
-                out.println("ID Ordine numerico! \n");
                 ArrayList<Ricetta> allRicetta = dao.getRicetta(id_ordine);
                 System.out.println("Ricetta: " + allRicetta.toString() + "\n");
 
                 if (allRicetta.toString().equals("[]")) {
-                    response.setStatus(204);
+                    response.setStatus(400);
                     System.out.println("Ricetta non trovata \n");
+                    out.println("Ricetta non trovata \n");
                 } else {
                     response.setStatus(200);
                     System.out.println("Ricetta trovata");

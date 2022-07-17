@@ -11,10 +11,8 @@ public interface PizzaDaMatteoDAO {
 	ArrayList<Bibite> loadBibite() throws SQLException;
 	ArrayList<Ordine> loadOrdine() throws SQLException;
 	ArrayList<Ordine2> loadOrdine2(int id_ordine) throws SQLException;
-	ArrayList<Ordine2Pizza> loadOrdine2Pizza(int id_ordine)  throws SQLException;
 	void inserisciOrdine(Ordine ordine) throws SQLException;
 	int inserisciOrdine2(Ordine2 ordine2) throws SQLException;
-	void inserisciOrdine2Pizza(Ordine2Pizza ordine2pizza) throws SQLException;
 	void deleteOrdine(int id_ordine) throws SQLException;
 	
 	ArrayList<StatsOrario> getStatsOrario() throws SQLException;
