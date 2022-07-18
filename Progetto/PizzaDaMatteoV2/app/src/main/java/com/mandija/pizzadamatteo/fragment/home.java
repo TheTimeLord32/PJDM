@@ -42,7 +42,7 @@ public class home extends Fragment {
         return binding.getRoot();
     }
 
-    private void putOrdine() { connToDest(getContext().getString(R.string.getOrdine), R.id.action_home_to_putOrdine, ""); }
+    private void putOrdine() { NavHostFragment.findNavController(this).navigate(R.id.action_home_to_putOrdine); }
     private void getOrdine() { connToDest(getContext().getString(R.string.getOrdine), R.id.action_home_to_getOrdine, "getOrdine"); }
     private void getStatsOrario() { connToDest(getContext().getString(R.string.getStatsOrario), R.id.action_home_to_getStatsOrario, "getStatsOrario"); }
     private void getStatsPizze() { connToDest(getContext().getString(R.string.getStatsPizze), R.id.action_home_to_getStatsPizze, "getStatsPizze"); }

@@ -62,7 +62,7 @@ public class getOrdine extends HttpServlet {
 				out.print(allOrdineJson);
 				out.flush();
 			}
-		} catch (SQLException e) {
+		} catch (NullPointerException | SQLException e) {
 			response.setStatus(400);
 			System.out.println("Errore: " + e.getMessage());
 			out.println("Errore: " + e.getMessage());
